@@ -86,44 +86,44 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 1 | Pending |
-| FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Pending |
-| FOUND-04 | Phase 1 | Pending |
-| FOUND-05 | Phase 1 | Pending |
-| ATOM-01 | Phase 2 | Pending |
-| ATOM-02 | Phase 2 | Pending |
-| ATOM-03 | Phase 2 | Pending |
-| ATOM-04 | Phase 2 | Pending |
-| ATOM-05 | Phase 2 | Pending |
-| ATOM-06 | Phase 2 | Pending |
-| ATOM-07 | Phase 2 | Pending |
-| SECT-01 | Phase 3 | Pending |
-| SECT-02 | Phase 3 | Pending |
-| SECT-03 | Phase 3 | Pending |
-| SECT-04 | Phase 3 | Pending |
-| SECT-05 | Phase 3 | Pending |
-| SECT-06 | Phase 3 | Pending |
-| SECT-07 | Phase 3 | Pending |
-| SECT-08 | Phase 3 | Pending |
-| SECT-09 | Phase 3 | Pending |
-| SECT-10 | Phase 3 | Pending |
-| SECT-11 | Phase 3 | Pending |
-| CONT-01 | Phase 3 | Pending |
-| CONT-02 | Phase 3 | Pending |
-| CONT-03 | Phase 3 | Pending |
-| CONT-04 | Phase 3 | Pending |
-| CONT-05 | Phase 3 | Pending |
-| CONT-06 | Phase 3 | Pending |
-| CONT-07 | Phase 3 | Pending |
-| SEO-01 | Phase 4 | Pending |
-| SEO-02 | Phase 4 | Pending |
-| SEO-03 | Phase 4 | Pending |
-| SEO-04 | Phase 4 | Pending |
-| SEO-05 | Phase 4 | Pending |
-| DEPLOY-01 | Phase 5 | Pending |
-| DEPLOY-02 | Phase 5 | Pending |
-| DEPLOY-03 | Phase 5 | Pending |
+| FOUND-01 | Phase 1 — Foundation | Pending |
+| FOUND-02 | Phase 1 — Foundation | Pending |
+| FOUND-03 | Phase 1 — Foundation | Pending |
+| FOUND-04 | Phase 1 — Foundation | Pending |
+| FOUND-05 | Phase 1 — Foundation | Pending |
+| ATOM-01 | Phase 2 — Shared Component Library | Pending |
+| ATOM-02 | Phase 2 — Shared Component Library | Pending |
+| ATOM-03 | Phase 2 — Shared Component Library | Pending |
+| ATOM-04 | Phase 2 — Shared Component Library | Pending |
+| ATOM-05 | Phase 2 — Shared Component Library | Pending |
+| ATOM-06 | Phase 2 — Shared Component Library | Pending |
+| ATOM-07 | Phase 2 — Shared Component Library | Pending |
+| SECT-01 | Phase 3 — Sections & Content | Pending |
+| SECT-02 | Phase 3 — Sections & Content | Pending |
+| SECT-03 | Phase 3 — Sections & Content | Pending |
+| SECT-04 | Phase 3 — Sections & Content | Pending |
+| SECT-05 | Phase 3 — Sections & Content | Pending |
+| SECT-06 | Phase 3 — Sections & Content | Pending |
+| SECT-07 | Phase 3 — Sections & Content | Pending |
+| SECT-08 | Phase 3 — Sections & Content | Pending |
+| SECT-09 | Phase 3 — Sections & Content | Pending |
+| SECT-10 | Phase 3 — Sections & Content | Pending |
+| SECT-11 | Phase 3 — Sections & Content | Pending |
+| CONT-01 | Phase 3 — Sections & Content | Pending |
+| CONT-02 | Phase 3 — Sections & Content | Pending |
+| CONT-03 | Phase 3 — Sections & Content | Pending |
+| CONT-04 | Phase 3 — Sections & Content | Pending |
+| CONT-05 | Phase 3 — Sections & Content | Pending |
+| CONT-06 | Phase 3 — Sections & Content | Pending |
+| CONT-07 | Phase 3 — Sections & Content | Pending |
+| SEO-01 | Phase 4 — Animations, SEO & Accessibility | Pending |
+| SEO-02 | Phase 4 — Animations, SEO & Accessibility | Pending |
+| SEO-03 | Phase 4 — Animations, SEO & Accessibility | Pending |
+| SEO-04 | Phase 4 — Animations, SEO & Accessibility | Pending |
+| SEO-05 | Phase 4 — Animations, SEO & Accessibility | Pending |
+| DEPLOY-01 | Phase 5 — Deployment & QA | Pending |
+| DEPLOY-02 | Phase 5 — Deployment & QA | Pending |
+| DEPLOY-03 | Phase 5 — Deployment & QA | Pending |
 
 **Coverage:**
 - v1 requirements: 35 total
@@ -132,4 +132,4 @@
 
 ---
 *Requirements defined: 2026-04-26*
-*Last updated: 2026-04-26 after initial definition*
+*Last updated: 2026-04-26 after roadmap creation*
