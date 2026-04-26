@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* ── Newsprint (default) ─────────────────────────────────────── */
+[data-theme="newsprint"],
+:root {
+  --bg: #e8dbc9;
+  --fg: #0E0E0C;
+  --accent: #8b2223;
+  --sepia: #B8A792;
+}
+
+/* ── Ink (dark) ──────────────────────────────────────────────── */
+[data-theme="ink"] {
+  --bg: #0E0E0C;
+  --fg: #F4EFE6;
+  --accent: #8b2223;
+  --sepia: #8a7c6e;
+}
+
+/* ── Aged ────────────────────────────────────────────────────── */
+[data-theme="aged"] {
+  --bg: #E8DCC8;
+  --fg: #2a1f0e;
+  --accent: #8B2020;
+  --sepia: #9c8060;
+}
+
+/* Prototype compatibility aliases — var(--cream/ink/red) map to theme-aware tokens */
+:root {
+  --cream: var(--bg);
+  --ink: var(--fg);
+  --red: var(--accent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-source-serif), Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* ── Vintage newspaper texture ───────────────────────────────── */
+
+/* Layer 1 — paper grain (fractal noise, medium strength) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23grain)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 400px 400px;
+}
+
+/* Layer 2 — fine horizontal print lines (newsprint impression) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(14, 14, 12, 0.028) 3px,
+    rgba(14, 14, 12, 0.028) 4px
+  );
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--sepia); border-radius: 4px; }
+
+/* Drop cap utility */
+.drop-cap::first-letter {
+  font-family: var(--font-playfair), serif;
+  font-size: 4.2em;
+  font-weight: 900;
+  line-height: 0.75;
+  float: left;
+  margin: 0.05em 0.08em 0 0;
+  color: var(--fg);
+}
+
+/* Ticker */
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: tickerScroll 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+/* Newspaper image filter */
+.np-filter {
+  filter: grayscale(0.85) sepia(0.4) contrast(1.15) brightness(0.88);
+}
+
+/* Classifieds — contact link hover */
+.contact-link { transition: padding-left 0.15s; }
+.contact-link:hover { padding-left: 4px; }
+
+/* Classifieds — CTA button */
+.cta-btn { background: var(--fg); transition: background 0.15s; }
+.cta-btn:hover { background: var(--accent); }

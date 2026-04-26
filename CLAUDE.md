@@ -4,23 +4,10 @@
 
 A Next.js 15 App Router + TypeScript portfolio website for Prasanna Rajendran, styled as a vintage digital broadsheet newspaper. Single scrolling page with 11 sections. Content managed via MDX files.
 
-## GSD Workflow
-
-This project uses the Get Shit Done (GSD) planning system. Planning artifacts live in `.planning/`.
-
 ### Current State
 
 See `.planning/STATE.md` for current phase and progress.
 See `.planning/ROADMAP.md` for the full phase plan.
-
-### Phase Commands
-
-```bash
-/gsd-discuss-phase <N>   # Gather context before planning
-/gsd-plan-phase <N>      # Create detailed plan for a phase
-/gsd-execute-phase <N>   # Execute a planned phase
-/gsd-progress            # Check current progress
-```
 
 ## Architecture Decisions
 

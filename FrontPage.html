@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The PR Gazette — Prasanna Rajendran</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F4EFE6;
+    --ink: #0E0E0C;
+    --red: #C1272D;
+    --sepia: #B8A792;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Paper grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  /* Drop cap */
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.2em;
+    font-weight: 900;
+    line-height: 0.75;
+    float: left;
+    margin: 0.05em 0.08em 0 0;
+    color: var(--ink);
+  }
+
+  /* Ticker animation */
+  @keyframes tickerScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ticker-track:hover { animation-play-state: paused; }
+
+  /* Scroll */
+  .snap-scroll {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  /* Images: newspaper filter */
+  .np-img {
+    filter: grayscale(0.85) sepia(0.4) contrast(1.15) brightness(0.88);
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--sepia); }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .newspaper-grid-3, .newspaper-grid-2 {
+      grid-template-columns: 1fr !important;
+    }
+    .newspaper-grid-3 > *, .newspaper-grid-2 > * {
+      border-right: none !important;
+      border-bottom: 1px solid rgba(14,14,12,0.15) !important;
+    }
+    .books-shelf {
+      grid-template-columns: 1fr !important;
+    }
+    .hobbies-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    .classifieds-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .photo-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .nav-links { display: none !important; }
+
+    /* Masthead header strip: stack vertically on mobile */
+    .masthead-strip {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      gap: 10px !important;
+      padding: 14px 16px !important;
+    }
+
+    /* Collapse two-column text on mobile */
+    .drop-cap, [style*="columns: 2"] {
+      columns: 1 !important;
+    }
+
+    /* Section flag bars: reduce padding */
+    .section-flag {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn { display: flex !important; }
+    .mobile-menu-open { display: flex !important; }
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    align-items: center;
+    gap: 6px;
+    color: inherit;
+  }
+
+  .mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    color: var(--cream);
+    z-index: 9998;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .mobile-nav-overlay.open { display: flex; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(42,122,59,0.5); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(42,122,59,0); }
+  }
+
+  /* Tweaks panel */
+  #tweaks-panel {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 20px;
+    z-index: 10000;
+    width: 240px;
+    border: 1px solid rgba(244,239,230,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    display: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  #tweaks-panel.active { display: block; }
+  #tweaks-panel label { display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 8px; }
+  #tweaks-panel select, #tweaks-panel input[type=range] { width: 100%; margin-top: 4px; }
+  #tweaks-panel h3 { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px; border-bottom: 1px solid rgba(244,239,230,0.15); padding-bottom: 8px; }
+  #tweaks-panel .tw-section { margin-bottom: 12px; }
+  #tweaks-panel .tw-label { color: rgba(244,239,230,0.5); font-size: 9px; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<!-- Tweaks Panel -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <div class="tw-section">
+    <div class="tw-label">Column Rules</div>
+    <label><input type="checkbox" id="tw-rules" checked /> Show rule lines</label>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Color Mode</div>
+    <label><input type="radio" name="tw-mode" value="cream" checked /> Newsprint (default)</label>
+    <label><input type="radio" name="tw-mode" value="dark" /> Ink (dark)</label>
+    <label><input type="radio" name="tw-mode" value="aged" /> Aged yellowed</label>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Type Scale</div>
+    <input type="range" id="tw-scale" min="90" max="115" value="100" step="5" />
+    <div style="color:rgba(244,239,230,0.5);font-size:9px;margin-top:3px;">Body size: <span id="tw-scale-val">100</span>%</div>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Grain Texture</div>
+    <label><input type="checkbox" id="tw-grain" checked /> Show paper grain</label>
+  </div>
+</div>
+
+<div id="root"></div>
+
+<!-- Load components -->
+<script type="text/babel" src="components/newspaper/Shared.jsx"></script>
+<script type="text/babel" src="components/newspaper/VintageAds.jsx"></script>
+<script type="text/babel" src="components/newspaper/Masthead.jsx"></script>
+<script type="text/babel" src="components/newspaper/OpEd.jsx"></script>
+<script type="text/babel" src="components/newspaper/TechDesk.jsx"></script>
+<script type="text/babel" src="components/newspaper/BusinessPages.jsx"></script>
+<script type="text/babel" src="components/newspaper/LabReport.jsx"></script>
+<script type="text/babel" src="components/newspaper/PhotoDesk.jsx"></script>
+<script type="text/babel" src="components/newspaper/BooksReview.jsx"></script>
+<script type="text/babel" src="components/newspaper/Travel.jsx"></script>
+<script type="text/babel" src="components/newspaper/OffDuty.jsx"></script>
+<script type="text/babel" src="components/newspaper/Classifieds.jsx"></script>
+<script type="text/babel" src="components/newspaper/Footer.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "showRules": true,
+  "colorMode": "aged",
+  "typeScale": 100,
+  "showGrain": true
+}/*EDITMODE-END*/;
+
+const colorModes = {
+  cream: { bg: '#F4EFE6', fg: '#0E0E0C', accent: '#C1272D', sepia: '#B8A792', flagBg: '#0E0E0C', flagFg: '#F4EFE6' },
+  dark:  { bg: '#0E0E0C', fg: '#F4EFE6', accent: '#C1272D', sepia: '#8a7c6e', flagBg: '#1a1a18', flagFg: '#F4EFE6' },
+  aged:  { bg: '#E8DCC8', fg: '#2a1f0e', accent: '#8B2020', sepia: '#9c8060', flagBg: '#2a1f0e', flagFg: '#E8DCC8' },
+};
+
+function App() {
+  const [tweaks, setTweaks] = React.useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('prg-tweaks') || '{}');
+      return { ...TWEAK_DEFAULTS, ...saved };
+    } catch { return TWEAK_DEFAULTS; }
+  });
+
+  const mode = colorModes[tweaks.colorMode] || colorModes.cream;
+
+  React.useEffect(() => {
+    localStorage.setItem('prg-tweaks', JSON.stringify(tweaks));
+    // Apply color mode to body
+    document.body.style.background = mode.bg;
+    document.body.style.color = mode.fg;
+    document.body.style.setProperty('--cream', mode.bg);
+    document.body.style.setProperty('--ink', mode.fg);
+    document.body.style.setProperty('--red', mode.accent);
+    document.body.style.setProperty('--sepia', mode.sepia);
+    // Type scale
+    document.documentElement.style.fontSize = `${tweaks.typeScale}%`;
+    // Grain
+    document.body.style.setProperty('--grain-opacity', tweaks.showGrain ? '0.035' : '0');
+  }, [tweaks]);
+
+  // Sync tweaks panel controls
+  React.useEffect(() => {
+    const rulesEl = document.getElementById('tw-rules');
+    const grainEl = document.getElementById('tw-grain');
+    const scaleEl = document.getElementById('tw-scale');
+    const scaleValEl = document.getElementById('tw-scale-val');
+    if (!rulesEl) return;
+
+    rulesEl.checked = tweaks.showRules;
+    grainEl.checked = tweaks.showGrain;
+    scaleEl.value = tweaks.typeScale;
+    scaleValEl.textContent = tweaks.typeScale;
+
+    document.querySelectorAll('input[name="tw-mode"]').forEach(r => {
+      r.checked = r.value === tweaks.colorMode;
+    });
+
+    const onChange = () => {
+      const newMode = document.querySelector('input[name="tw-mode"]:checked')?.value || 'cream';
+      const newScale = parseInt(scaleEl.value);
+      setTweaks(t => ({ ...t, showRules: rulesEl.checked, colorMode: newMode, typeScale: newScale, showGrain: grainEl.checked }));
+      scaleValEl.textContent = scaleEl.value;
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: {
+        showRules: rulesEl.checked, colorMode: newMode, typeScale: newScale, showGrain: grainEl.checked
+      }}, '*');
+    };
+
+    rulesEl.addEventListener('change', onChange);
+    grainEl.addEventListener('change', onChange);
+    scaleEl.addEventListener('input', onChange);
+    document.querySelectorAll('input[name="tw-mode"]').forEach(r => r.addEventListener('change', onChange));
+    return () => {
+      rulesEl.removeEventListener('change', onChange);
+      grainEl.removeEventListener('change', onChange);
+      scaleEl.removeEventListener('input', onChange);
+    };
+  }, [tweaks.colorMode]);
+
+  // Tweaks panel toggle
+  React.useEffect(() => {
+    window.addEventListener('message', (e) => {
+      if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel')?.classList.add('active');
+      if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel')?.classList.remove('active');
+    });
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+  }, []);
+
+  const paperStyle = {
+    maxWidth: '1400px',
+    margin: '0 auto',
+    background: mode.bg,
+    color: mode.fg,
+    border: `1px solid ${mode.fg}`,
+    borderTop: `4px solid ${mode.fg}`,
+    minHeight: '100vh',
+  };
+
+  return (
+    <div className="snap-scroll">
+      <div style={paperStyle}>
+      <Masthead tweaks={tweaks} />
+      <OpEd tweaks={tweaks} />
+      <TechDesk tweaks={tweaks} />
+      <BusinessPages tweaks={tweaks} />
+      <LabReport tweaks={tweaks} />
+      <PhotoDesk tweaks={tweaks} />
+      <BooksReview tweaks={tweaks} />
+      <Travel tweaks={tweaks} />
+      <OffDuty tweaks={tweaks} />
+      <Classifieds tweaks={tweaks} />
+      <Footer tweaks={tweaks} />
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+</body>
+</html>
