@@ -128,7 +128,7 @@ const Classifieds = ({ tweaks }) => {
             fontFamily: '"Source Serif 4", serif',
             fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', lineHeight: 1.6,
           }}>
-            The PR Gazette · Chennai · Est. 2019 · Vol. PR · No. 27
+            The PR Gazette · Chennai · Est. 1998 · Vol. PR · No. 27
           </div>
           <a href="mailto:hello@prasannar.com" style={{
             fontFamily: '"Playfair Display", serif',
@@ -147,7 +147,7 @@ const Classifieds = ({ tweaks }) => {
           </a>
         </div>
       </div>
-      <SectionFiller watermark="CONTACT" footnote="Classifieds · p. 10 · hello@prasannar.com · Chennai · Est. 2019" page="10" />
+      <SectionFiller watermark="CONTACT" footnote="Classifieds · p. 10 · hello@prasannar.com · Chennai · Est. 1998" page="10" />
     </section>
   );
 };

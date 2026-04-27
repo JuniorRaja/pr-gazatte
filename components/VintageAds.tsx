@@ -32,7 +32,7 @@ export function AdCustomSoftware() {
       </p>
       <OrnamentalRule />
       <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8.5px', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--accent)' }}>Inquiries: hello@prasannar.com</div>
-      <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', textAlign: 'center', color: 'var(--sepia)', marginTop: '6px', letterSpacing: '.08em' }}>Est. 2019 · Chennai, India · Six Years of Production-Proven Work</div>
+      <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', textAlign: 'center', color: 'var(--sepia)', marginTop: '6px', letterSpacing: '.08em' }}>Est. 1998 · Chennai, India · Six Years of Production-Proven Work</div>
     </AdFrame>
   )
 }

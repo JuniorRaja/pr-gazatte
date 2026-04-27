@@ -54,7 +54,7 @@ const Footer = ({ tweaks }) => {
         {[
           {
             heading: 'The Paper',
-            lines: ['The PR Gazette', 'Vol. PR · No. 27', 'Chennai · April 2026', 'Est. 2019'],
+            lines: ['The PR Gazette', 'Vol. PR · No. 27', 'Chennai', 'Est. 1998'],
           },
           {
             heading: 'The Editor',

@@ -106,7 +106,7 @@ const AdCustomSoftware = () => (
       fontSize: '7px', textAlign: 'center',
       color: 'var(--sepia)', marginTop: '6px',
       letterSpacing: '.08em',
-    }}>Est. 2019 · Chennai, India · Six Years of Production-Proven Work</div>
+    }}>Est. 1998 · Chennai, India · Six Years of Production-Proven Work</div>
   </AdFrame>
 );
 

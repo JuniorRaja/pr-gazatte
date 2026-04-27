@@ -1,5 +1,9 @@
 import SectionFiller from '@/components/SectionFiller'
 import MobileNav from '@/components/MobileNav'
+import WeatherWidget from '@/components/WeatherWidget'
+
+const DAYS = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
+const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
 
 const navItems = ['Op-Ed', 'Tech', 'Career', 'Lab', 'Photos', 'Books', 'Travel', 'Hobbies', 'Contact']
 
@@ -23,24 +27,27 @@ const index = [
 ]
 
 export default function Masthead() {
+  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
+  const dateStr = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
+
   return (
     <header style={{ borderBottom: '3px solid var(--fg)' }}>
       {/* Top nav strip */}
       <div style={{ borderBottom: '1px solid var(--fg)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 32px', fontSize: '10px', fontFamily: '"JetBrains Mono", monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fg)' }}>
         <span style={{ color: 'var(--accent)', fontWeight: 700 }}>★ FIRST EDITION</span>
-        <nav style={{ display: 'flex', gap: '20px' }}>
+        <nav className="hidden md:flex" style={{ gap: '20px' }}>
           {navItems.map(item => (
             <a key={item} href={`#${item.toLowerCase()}`} style={{ textDecoration: 'none', color: 'var(--fg)' }}>{item}</a>
           ))}
         </nav>
-        <span style={{ display: 'flex' }}>hello@prasannar.com</span>
-        <MobileNav />
+        <span className="hidden md:flex">hello@prasannar.com</span>
+        <span className="md:hidden"><MobileNav /></span>
       </div>
 
       {/* Date / Vol / Title strip */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', padding: '10px 32px 8px', borderBottom: '1px solid rgba(14,14,12,0.25)' }}>
         <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.05em', color: 'var(--fg)' }}>
-          <div style={{ fontWeight: 700 }}>WEDNESDAY, APRIL 23, 2026</div>
+          <div style={{ fontWeight: 700 }}>{dateStr}</div>
           <div style={{ marginTop: 2 }}>Vol. PR · No. 27 · Chennai Edition</div>
         </div>
         <div style={{ textAlign: 'center' }}>
@@ -51,11 +58,7 @@ export default function Masthead() {
             ◆ &nbsp; Independent · Opinionated · Occasionally Correct &nbsp; ◆
           </div>
         </div>
-        <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', textAlign: 'right', color: 'var(--fg)' }}>
-          <div style={{ fontWeight: 700, color: 'var(--accent)' }}>WEATHER</div>
-          <div>Chennai · 32°C</div>
-          <div>Humid · Winds SW</div>
-        </div>
+        <WeatherWidget />
       </div>
 
       {/* Red + black rule */}
