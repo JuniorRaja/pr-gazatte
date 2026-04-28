@@ -1,6 +1,6 @@
 import SectionFiller from '@/components/SectionFiller'
 import { getMonthYear } from '@/utils/date'
-import { AdCustomSoftware } from '@/components/VintageAds'
+import { AdCustomSoftware, AdTender } from '@/components/VintageAds'
 import { skills, bars } from '@/content/skills.mdx'
 
 function dirColor(dir: string) {
@@ -90,6 +90,7 @@ export default function TechDesk() {
               </div>
             ))}
           </div>
+          <div style={{ marginTop: '20px' }}><AdTender /></div>
         </div>
       </div>
       <SectionFiller watermark="STACK" footnote={`Tech Desk · p. 3 · Full-stack index updated ${getMonthYear()}`} page="3" accent="var(--accent)" />
