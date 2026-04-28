@@ -98,16 +98,16 @@ body::after {
 }
 
 .ticker-track {
-  animation: tickerScroll 30s linear infinite;
+  animation: tickerScroll 50s linear infinite !important;
 }
 
 .ticker-track:hover {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ticker-track {
-    animation: none;
+    animation: none !important;
   }
 }
 

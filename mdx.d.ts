@@ -4,9 +4,13 @@ declare module '*.mdx' {
   export default MDXContent
 
   // content/skills.mdx
-  export const skills: { name: string; level: string; dir: string }[]
-  export const bars: { name: string; pct: number; trend: string }[]
-  export const tickerItems: { name: string; level: string; dir: string }[]
+  export const stocks: {
+    sym: string; name: string; sector: string; ltp: number; chg: number;
+    pctChg: number; vol: string; hi52: number; lo52: number; level: string;
+  }[]
+  export const indices: {
+    name: string; value: number; chg: number; sparkline: number[];
+  }[]
 
   // content/career.mdx
   export const timeline: { date: string; title: string; org: string; body: string }[]
