@@ -74,7 +74,7 @@ export default function Classifieds() {
         {/* Bottom CTA bar */}
         <div style={{ borderTop: '2px solid var(--fg)', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', lineHeight: 1.6 }}>
-            The PR Gazette · Chennai · Est. 1998 · Vol. PR · No. 27
+            The PR Gazette · Chennai · Est. 1998 · Vol. PR · No. 69
           </div>
           <a href="mailto:hello@prasannar.com" className="cta-btn" style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 700, color: '#F4EFE6', padding: '12px 28px', textDecoration: 'none', letterSpacing: '.02em', display: 'inline-block' }}>
             Write to the Editor →

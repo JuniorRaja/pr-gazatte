@@ -84,7 +84,7 @@ const Masthead = ({ tweaks }) => {
       }}>
         <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.05em', color: '#0E0E0C' }}>
           <div style={{ fontWeight: 700 }}>{getFormattedDate()}</div>
-          <div style={{ marginTop: 2 }}>Vol. PR · No. 27 · Chennai Edition</div>
+          <div style={{ marginTop: 2 }}>Vol. PR · No. 69 · Chennai Edition</div>
         </div>
 
         <div style={{ textAlign: 'center' }}>
@@ -179,7 +179,7 @@ const Masthead = ({ tweaks }) => {
               marginBottom: '8px',
             }}>Quick Facts</div>
             {[
-              ['Role', 'Deputy PM + Engineer'],
+              ['Role', 'Proj Manager + Engineer'],
               ['Location', 'Chennai, India'],
               ['Experience', '6.5 years'],
               ['Team', '8 direct reports'],
@@ -330,7 +330,7 @@ const Masthead = ({ tweaks }) => {
           </div>
         </div>
       </div>
-      <SectionFiller watermark="GAZETTE" footnote={`Vol. PR · No. 27 · Chennai Edition · ${getMonthYear()}`} page="1" />
+      <SectionFiller watermark="GAZETTE" footnote={`Vol. PR · No. 69 · Chennai Edition · ${getMonthYear()}`} page="1" />
     </header>
   );
 };
