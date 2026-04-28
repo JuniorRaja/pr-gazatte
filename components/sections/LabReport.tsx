@@ -22,6 +22,11 @@ function StatusBadge({ label, color }: { label: string; color: string }) {
 export default function LabReport() {
   return (
     <section id="lab" style={{ borderBottom: '2px solid var(--fg)' }}>
+      <style>{`
+        .lab-link { text-decoration: underline; transition: color 0.15s, font-size 0.15s; }
+        .lab-link:hover { color: var(--accent) !important; font-size: 11px !important; }
+      `}</style>
+
       {/* Banner */}
       <div style={{ background: 'var(--accent)', color: '#F4EFE6', padding: '5px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Lab Report · Page 5</span>
@@ -38,10 +43,10 @@ export default function LabReport() {
       {/* Title block */}
       <div style={{ padding: '28px 32px 0' }}>
         <h2 style={{ fontFamily: display, fontSize: 'clamp(36px, 5vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 6px' }}>
-          The <span style={{ color: 'var(--accent)' }}>Garage.</span>
+          The <span style={{ color: 'var(--accent)' }}>Lab.</span>
         </h2>
         <p style={{ fontFamily: display, fontSize: 'clamp(14px, 2vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', margin: '0 0 20px' }}>
-          Where things get built. Some see daylight. Some teach lessons. All were worth it.
+          Where hypotheses meet hardware. Some experiments ship. Some teach lessons. All were worth it.
         </p>
       </div>
 
@@ -50,7 +55,7 @@ export default function LabReport() {
 
         {/* ═══ LEFT — Projects ═══ */}
         <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '0 32px 28px' }}>
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.18em', marginBottom: '16px' }}>
+          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Field Reports · Active Experiments
           </div>
 
@@ -65,31 +70,21 @@ export default function LabReport() {
           {/* Project cards */}
           {projects.map((p, i) => (
             <div key={p.name} style={{ borderTop: '1px solid rgba(14,14,12,0.18)', padding: '18px 0', ...(i === projects.length - 1 ? { borderBottom: '1px solid rgba(14,14,12,0.18)' } : {}) }}>
-              {/* Header row */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4px' }}>
-                <div style={{ fontFamily: display, fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.2 }}>{p.name}</div>
-                <StatusBadge label={p.status} color={p.statusColor} />
+              {/* Header row: title + tags/links + status badge */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4px', gap: '10px' }}>
+                <div style={{ fontFamily: display, fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.2, flexShrink: 0 }}>{p.name}</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', flex: 1, justifyContent: 'flex-end' }}>
+                  {p.tags.map(t => (
+                    <span key={t} style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.04em' }}>#{t.replace(/\s+/g, '')}</span>
+                  ))}
+                  {p.links.map(l => (
+                    <a key={l.label} href={l.href} className="lab-link" style={{ fontFamily: mono, fontSize: '9px', fontWeight: 700, color: 'var(--fg)', textDecoration: 'underline', textTransform: 'uppercase', letterSpacing: '.08em' }}>↗ {l.label}</a>
+                  ))}
+                  <StatusBadge label={p.status} color={p.statusColor} />
+                </div>
               </div>
               <div style={{ fontFamily: serif, fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', marginBottom: '10px' }}>{p.subtitle}</div>
-              <p style={{ fontFamily: serif, fontSize: '13.5px', lineHeight: 1.68, color: 'var(--fg)', margin: '0 0 10px' }}>{p.body}</p>
-
-              {/* Tags */}
-              {p.tags.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
-                  {p.tags.map(t => (
-                    <span key={t} style={{ fontFamily: serif, fontSize: '11px', fontStyle: 'italic', color: 'var(--fg)', letterSpacing: '.02em' }}>{t}</span>
-                  ))}
-                </div>
-              )}
-
-              {/* Links */}
-              {p.links.length > 0 && (
-                <div style={{ display: 'flex', gap: '16px' }}>
-                  {p.links.map(l => (
-                    <a key={l.label} href={l.href} style={{ fontFamily: mono, fontSize: '10px', fontWeight: 700, color: 'var(--fg)', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '.08em' }}>{l.label}</a>
-                  ))}
-                </div>
-              )}
+              <p style={{ fontFamily: serif, fontSize: '13.5px', lineHeight: 1.68, color: 'var(--fg)', margin: 0 }}>{p.body}</p>
 
               {/* Footnote (for WIP) */}
               {p.footnote && (
@@ -108,7 +103,7 @@ export default function LabReport() {
 
         {/* ═══ RIGHT — Infrastructure ═══ */}
         <div style={{ padding: '0 32px 28px' }}>
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.18em', marginBottom: '16px' }}>
+          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Infrastructure Dispatch · Always On
           </div>
 
@@ -140,7 +135,7 @@ export default function LabReport() {
           ))}
 
           {/* Stack at a glance */}
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.18em', marginTop: '24px', marginBottom: '12px' }}>
+          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginTop: '24px', marginBottom: '12px' }}>
             Stack at a Glance
           </div>
           {stack.map(([k, v]) => (
