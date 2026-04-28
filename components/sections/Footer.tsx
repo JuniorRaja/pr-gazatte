@@ -1,3 +1,4 @@
+import { getMonthYear } from '@/utils/date'
 const colophonCols = [
   {
     heading: 'Published By',
@@ -13,7 +14,7 @@ const colophonCols = [
   },
   {
     heading: 'Edition',
-    lines: ['Vol. I, No. 1', 'April 2026', 'All rights reserved'],
+    lines: ['Vol. I, No. 1', getMonthYear(), 'All rights reserved'],
   },
 ]
 
@@ -64,7 +65,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div style={{ borderTop: '1px solid rgba(244,239,230,0.12)', padding: '10px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 2026</span>
+        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 1998</span>
         <div style={{ display: 'flex', gap: '20px' }}>
           {['Op-Ed', 'Tech', 'Career', 'Lab', 'Photos', 'Books', 'Travel', 'Off Duty', 'Contact'].map(link => (
             <span key={link} style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.3)', letterSpacing: '.08em', textTransform: 'uppercase', cursor: 'pointer' }}>{link}</span>

@@ -1,3 +1,8 @@
+function getFormattedShortDate() {
+  const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
+  const now = new Date()
+  return `${MONTHS[now.getMonth()].slice(0, 3)} ${now.getDate()}, ${now.getFullYear()}`
+}
 
 const OpEd = ({ tweaks }) => {
   const { showRules = true } = tweaks || {};
@@ -145,7 +150,7 @@ const OpEd = ({ tweaks }) => {
             fontSize: '10px',
             color: '#B8A792',
           }}>
-            <span>April 23, 2026</span>
+            <span>{getFormattedShortDate()}</span>
             <span style={{ color: '#C1272D' }}>Continued on p. 3 →</span>
           </div>
         </div>

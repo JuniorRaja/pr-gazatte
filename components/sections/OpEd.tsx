@@ -1,4 +1,5 @@
 import SectionFiller from '@/components/SectionFiller'
+import { getFormattedShortDate } from '@/utils/date'
 import { AdTender } from '@/components/VintageAds'
 
 const tags = ['Career', 'Technology', 'Identity', 'First Person']
@@ -55,7 +56,7 @@ export default function OpEd() {
             </p>
           </div>
           <div style={{ marginTop: '20px', borderTop: '1px solid var(--fg)', paddingTop: '8px', display: 'flex', justifyContent: 'space-between', fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--sepia)' }}>
-            <span>April 23, 2026</span>
+            <span>{getFormattedShortDate()}</span>
             <span style={{ color: 'var(--accent)' }}>Continued on p. 3 →</span>
           </div>
         </div>

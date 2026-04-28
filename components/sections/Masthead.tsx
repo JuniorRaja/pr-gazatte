@@ -1,6 +1,7 @@
 import SectionFiller from '@/components/SectionFiller'
 import MobileNav from '@/components/MobileNav'
 import WeatherWidget from '@/components/WeatherWidget'
+import { getMonthYear } from '@/utils/date'
 
 const DAYS = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
 const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
@@ -118,7 +119,7 @@ export default function Masthead() {
           </div>
         </div>
       </div>
-      <SectionFiller watermark="GAZETTE" footnote="Vol. PR · No. 27 · Chennai Edition · April 2026" page="1" />
+      <SectionFiller watermark="GAZETTE" footnote={`Vol. PR · No. 27 · Chennai Edition · ${getMonthYear()}`} page="1" />
     </header>
   )
 }

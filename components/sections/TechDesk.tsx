@@ -1,4 +1,5 @@
 import SectionFiller from '@/components/SectionFiller'
+import { getMonthYear } from '@/utils/date'
 import { AdCustomSoftware } from '@/components/VintageAds'
 import { skills, bars } from '@/content/skills.mdx'
 
@@ -91,7 +92,7 @@ export default function TechDesk() {
           </div>
         </div>
       </div>
-      <SectionFiller watermark="STACK" footnote="Tech Desk · p. 3 · Full-stack index updated April 2026" page="3" accent="var(--accent)" />
+      <SectionFiller watermark="STACK" footnote={`Tech Desk · p. 3 · Full-stack index updated ${getMonthYear()}`} page="3" accent="var(--accent)" />
     </section>
   )
 }

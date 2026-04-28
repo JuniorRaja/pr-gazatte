@@ -1,3 +1,8 @@
+function getMonthYear() {
+  const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
+  const now = new Date()
+  return `${MONTHS[now.getMonth()]} ${now.getFullYear()}`
+}
 
 const TechDesk = ({ tweaks }) => {
   const { showRules = true } = tweaks || {};
@@ -199,7 +204,7 @@ const TechDesk = ({ tweaks }) => {
           </div>
         </div>
       </div>
-      <SectionFiller watermark="STACK" footnote="Tech Desk · p. 3 · Full-stack index updated April 2026" page="3" accent="var(--red)" />
+      <SectionFiller watermark="STACK" footnote={`Tech Desk · p. 3 · Full-stack index updated ${getMonthYear()}`} page="3" accent="var(--red)" />
     </section>
   );
 };

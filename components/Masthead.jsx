@@ -1,3 +1,15 @@
+function getFormattedDate() {
+  const DAYS = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
+  const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
+  const now = new Date()
+  return `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
+}
+
+function getMonthYear() {
+  const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
+  const now = new Date()
+  return `${MONTHS[now.getMonth()]} ${now.getFullYear()}`
+}
 
 const Masthead = ({ tweaks }) => {
   const { showRules = true } = tweaks || {};
@@ -71,7 +83,7 @@ const Masthead = ({ tweaks }) => {
         borderBottom: '1px solid rgba(14,14,12,0.25)',
       }}>
         <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.05em', color: '#0E0E0C' }}>
-          <div style={{ fontWeight: 700 }}>WEDNESDAY, APRIL 23, 2026</div>
+          <div style={{ fontWeight: 700 }}>{getFormattedDate()}</div>
           <div style={{ marginTop: 2 }}>Vol. PR · No. 27 · Chennai Edition</div>
         </div>
 
@@ -318,7 +330,7 @@ const Masthead = ({ tweaks }) => {
           </div>
         </div>
       </div>
-      <SectionFiller watermark="GAZETTE" footnote="Vol. PR · No. 27 · Chennai Edition · April 2026" page="1" />
+      <SectionFiller watermark="GAZETTE" footnote={`Vol. PR · No. 27 · Chennai Edition · ${getMonthYear()}`} page="1" />
     </header>
   );
 };
