@@ -1,10 +1,94 @@
+export const projects = [
+  {
+    name: 'HushKey',
+    status: 'Live',
+    statusColor: '#2a7a3b',
+    subtitle: 'Zero-knowledge password manager · PWA',
+    body: "Your passwords go in. Nobody else's eyes come out. Encrypted client-side, stored nowhere it shouldn't be. Built because trusting a SaaS with your secrets felt like a contradiction in terms.",
+    tags: ['PWA', 'zero-knowledge', 'encryption'],
+    links: [
+      { label: 'GitHub', href: '#' },
+      { label: 'Live', href: '#' },
+    ],
+  },
+  {
+    name: 'TG · AI RAG Chatbot',
+    status: 'R&D',
+    statusColor: 'var(--accent)',
+    subtitle: 'Telegram bot · Cloudflare stack',
+    body: 'A Telegram bot with a long memory. Cloudflare Workers handle the compute, D1 stores the data, KV caches the fast bits, and Vectorize does the thinking. An experiment in building AI infra without spending like one.',
+    tags: ['Cloudflare Workers', 'Vector DB', 'D1', 'KV'],
+    links: [
+      { label: 'GitHub', href: '#' },
+    ],
+  },
+  {
+    name: 'TG · Kiro CLI',
+    status: 'WIP',
+    statusColor: 'var(--sepia)',
+    subtitle: 'Telegram CLI tool',
+    body: 'Still under the hood. The kind of project that starts as a convenience script and ends up becoming something worth naming. Details forthcoming.',
+    tags: [],
+    links: [],
+    footnote: 'Details when it\u2019s ready.',
+  },
+  {
+    name: 'PR-Verse',
+    status: 'Archived',
+    statusColor: 'var(--sepia)',
+    subtitle: 'Old portfolio · The site that was',
+    body: 'Every builder deserves a fossil record. This was version one \u2014 before the newspaper, before the garage. Kept alive as proof that taste is a direction, not a destination.',
+    tags: [],
+    links: [
+      { label: 'GitHub', href: '#' },
+      { label: 'View', href: '#' },
+    ],
+  },
+]
+
+export const services = [
+  {
+    name: 'n8n',
+    desc: 'Workflow automation. Self-hosted Zapier \u2014 without the bill or the data leaks.',
+    url: 'n8n.prasannar.com',
+  },
+  {
+    name: 'AFFiNE',
+    desc: "Docs, whiteboards, tasks. The Notion alternative that doesn\u2019t know your business.",
+    url: 'affine.prasannar.com',
+  },
+  {
+    name: 'Netdata',
+    desc: 'Privacy-first analytics. Server Vitals tracked \u2014 E2E server monitoring.',
+    url: 'infra.prasannar.com',
+  },
+  {
+    name: 'Umami',
+    desc: 'Privacy-first analytics. Web Vitals tracked \u2014 no Google, no cookies, no guilt.',
+    url: 'analytics.prasannar.com',
+  },
+  {
+    name: 'Portainer',
+    desc: 'Container management. Private-only via Tailscale. The cockpit nobody else sees.',
+    url: 'Tailscale VPN only',
+  },
+]
+
+export const stack = [
+  ['Reverse proxy', "Nginx + Certbot (Let\u2019s Encrypt)"],
+  ['DNS', 'Cloudflare'],
+  ['Private network', 'Tailscale'],
+  ['Backup', 'OCI Object Storage · Daily · 7d'],
+  ['Public exposure', 'Port 80 & 443 only'],
+]
+
 export const running = [
-  ['▶ OCI ARM Compute',    'Always-on compute'],
-  ['▶ Docker Swarm',       'Containerised workloads'],
-  ['▶ Cloudflare Workers', 'Edge serverless functions'],
-  ['▶ RAG Chatbot',        'D1 + Vectorize + LLM pipeline'],
-  ['▶ Gitea Forge',        'Private Git hosting'],
-  ['▶ Uptime Monitor',     'Multi-endpoint alerting'],
+  ['\u25B6 OCI ARM Compute',    'Always-on compute'],
+  ['\u25B6 Docker Swarm',       'Containerised workloads'],
+  ['\u25B6 Cloudflare Workers', 'Edge serverless functions'],
+  ['\u25B6 RAG Chatbot',        'D1 + Vectorize + LLM pipeline'],
+  ['\u25B6 Gitea Forge',        'Private Git hosting'],
+  ['\u25B6 Uptime Monitor',     'Multi-endpoint alerting'],
 ]
 
 export const learning = ['Kubernetes', 'Kafka', 'Go', 'Rust']

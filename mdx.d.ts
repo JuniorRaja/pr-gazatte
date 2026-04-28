@@ -19,6 +19,13 @@ declare module '*.mdx' {
   // content/lab.mdx
   export const running: [string, string][]
   export const learning: string[]
+  export const projects: {
+    name: string; status: string; statusColor: string; subtitle: string;
+    body: string; tags: string[]; links: { label: string; href: string }[];
+    footnote?: string;
+  }[]
+  export const services: { name: string; desc: string; url: string }[]
+  export const stack: [string, string][]
 
   // content/photos.mdx
   export const spreads: { issue: string; title: string; subtitle: string; date: string; lead: string; color: string }[]
