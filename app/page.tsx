@@ -9,10 +9,25 @@ import Travel from '@/components/sections/Travel'
 import OffDuty from '@/components/sections/OffDuty'
 import Classifieds from '@/components/sections/Classifieds'
 import Footer from '@/components/sections/Footer'
+import SectionTracker from '@/components/SectionTracker'
+
+const SECTION_IDS = [
+  'op-ed',
+  'tech',
+  'career',
+  'lab',
+  'photos',
+  'books',
+  'travel',
+  'hobbies',
+  'contact',
+  'footer',
+]
 
 export default function Home() {
   return (
     <main>
+      <SectionTracker sectionIds={SECTION_IDS} />
       <Masthead />
       <OpEd />
       <TechDesk />
