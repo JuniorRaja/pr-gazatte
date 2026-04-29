@@ -51,12 +51,12 @@ export default function BooksReview() {
               <div key={h} style={{ background: 'var(--fg)', color: 'var(--bg)', fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.1em', textTransform: 'uppercase', padding: '6px 10px' }}>{h}</div>
             ))}
             {recentlyRead.map(book => (
-              <>
-                <div key={`${book.title}-t`} style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"Playfair Display", serif', fontSize: '12px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>{book.title}</div>
-                <div key={`${book.title}-a`} style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"Source Serif 4", serif', fontSize: '11px', fontStyle: 'italic', color: 'var(--sepia)', display: 'flex', alignItems: 'center' }}>{book.author}</div>
-                <div key={`${book.title}-g`} style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.08em', display: 'flex', alignItems: 'center' }}>{book.genre}</div>
-                <div key={`${book.title}-r`} style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"JetBrains Mono", monospace', fontSize: '11px', color: '#c7a830', display: 'flex', alignItems: 'center' }}>{'★'.repeat(book.rating)}{'☆'.repeat(5 - book.rating)}</div>
-              </>
+              <div key={book.title} style={{ contents: 'contents' }}>
+                <div style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"Playfair Display", serif', fontSize: '12px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>{book.title}</div>
+                <div style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"Source Serif 4", serif', fontSize: '11px', fontStyle: 'italic', color: 'var(--sepia)', display: 'flex', alignItems: 'center' }}>{book.author}</div>
+                <div style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.08em', display: 'flex', alignItems: 'center' }}>{book.genre}</div>
+                <div style={{ background: 'var(--bg)', padding: '8px 10px', fontFamily: '"JetBrains Mono", monospace', fontSize: '11px', color: '#c7a830', display: 'flex', alignItems: 'center' }}>{'★'.repeat(book.rating)}{'☆'.repeat(5 - book.rating)}</div>
+              </div>
             ))}
           </div>
           <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.68, color: 'var(--fg)', margin: 0 }}>
