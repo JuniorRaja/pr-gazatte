@@ -116,6 +116,105 @@ body::after {
   filter: grayscale(0.85) sepia(0.4) contrast(1.15) brightness(0.88);
 }
 
+/* Lighter vintage filter for PhotoDesk */
+.np-filter-light {
+  filter: grayscale(0.65) sepia(0.35) contrast(1.12) brightness(0.88);
+}
+
+/* Remove filter — "Show Original Colors" */
+.np-filter-off {
+  filter: none !important;
+}
+
+/* ── Photo skeleton (newspaper-themed loading placeholder) ───── */
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes skeletonPulse {
+    0%, 100% { opacity: 0.7; }
+  }
+}
+
+.photo-skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #d8d0bc;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(14,14,12,0.06) 0px,
+      rgba(14,14,12,0.06) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(14,14,12,0.06) 0px,
+      rgba(14,14,12,0.06) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  animation: skeletonPulse 1.8s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-skeleton::after {
+  content: 'DEVELOPING...';
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: rgba(14,14,12,0.35);
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+/* ── Lightbox overlay ────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(14, 14, 12, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes lightboxEnter {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes lightboxExit {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.96); }
+}
+
+.lightbox-enter {
+  animation: lightboxEnter 0.22s ease-out forwards;
+}
+
+.lightbox-exit {
+  animation: lightboxExit 0.18s ease-in forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-enter,
+  .lightbox-exit {
+    animation: none;
+  }
+}
+
 /* Classifieds — contact link hover */
 .contact-link { transition: padding-left 0.15s; }
 .contact-link:hover { padding-left: 4px; }
