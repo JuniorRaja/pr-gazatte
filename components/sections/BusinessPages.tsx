@@ -59,10 +59,17 @@ export default function BusinessPages() {
           ))}
 
           {/* Education */}
-          <div style={{ marginTop: '16px', border: '1px solid rgba(14,14,12,0.2)', padding: '12px', background: 'rgba(193,39,45,0.04)' }}>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '6px' }}>Education</div>
-            <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 700, color: 'var(--fg)' }}>B.E. Computer Science</div>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--sepia)', marginTop: '4px' }}>Chennai · 2019</div>
+          <div style={{ marginTop: '16px', border: '1px solid rgba(14,14,12,0.2)', background: 'rgba(193,39,45,0.04)', position: 'relative', overflow: 'hidden' }}>
+            {/* Topper badge */}
+            <div style={{ background: 'var(--accent)', padding: '4px 12px', display: 'flex', alignItems: 'center', gap: '6px', borderBottom: '1px solid rgba(193,39,45,0.3)' }}>
+              <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: '#F4EFE6', textTransform: 'uppercase', letterSpacing: '.15em', fontWeight: 700 }}>★ First Class Distinction</span>
+            </div>
+            <div style={{ padding: '10px 12px' }}>
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '6px' }}>Education</div>
+              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--fg)', fontWeight: 600, marginTop: '3px', letterSpacing: '.03em' }}>Bachelor of Science</div>
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--sepia)', marginTop: '4px' }}>Chennai · 2019</div>
+            </div>
           </div>
 
         </div>
