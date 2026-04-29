@@ -22,8 +22,15 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
 
       // Update URL without triggering scroll or adding to history
       const url = new URL(window.location.href)
-      url.hash = newHash
-      window.history.replaceState(null, '', url.toString())
+      if (newHash === '') {
+        // Clear hash completely for home section
+        url.hash = ''
+        const urlWithoutHash = url.toString().replace('#', '')
+        window.history.replaceState(null, '', urlWithoutHash)
+      } else {
+        url.hash = newHash
+        window.history.replaceState(null, '', url.toString())
+      }
     }
 
     const debouncedUpdateHash = (hash: string) => {
@@ -33,6 +40,12 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
       timeoutRef.current = setTimeout(() => {
         updateHash(hash)
       }, 300)
+    }
+
+    // Check if we're at the top of the page
+    const checkIfAtTop = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      return scrollTop < 100 // Consider top if within 100px of the top
     }
 
     // Track which sections are currently visible
@@ -67,6 +80,9 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
           if (mostVisibleSection) {
             debouncedUpdateHash(mostVisibleSection)
           }
+        } else if (checkIfAtTop()) {
+          // No sections visible and we're at the top - clear hash to show home
+          debouncedUpdateHash('')
         }
       },
       {
@@ -75,6 +91,13 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
         threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // multiple thresholds for accuracy
       }
     )
+
+    // Handle scroll events to detect when at top
+    const handleScroll = () => {
+      if (checkIfAtTop() && visibleSections.size === 0) {
+        debouncedUpdateHash('')
+      }
+    }
 
     // Observe all sections
     const elements: Element[] = []
@@ -86,6 +109,9 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
       }
     })
 
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
     // Cleanup
     return () => {
       if (timeoutRef.current) {
@@ -93,6 +119,7 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
       }
       elements.forEach((element) => observer.unobserve(element))
       observer.disconnect()
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [sectionIds])
 
