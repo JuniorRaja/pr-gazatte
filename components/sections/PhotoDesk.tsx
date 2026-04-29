@@ -15,11 +15,6 @@ const mono = '"JetBrains Mono", monospace'
 const serif = '"Source Serif 4", serif'
 const display = '"Playfair Display", serif'
 
-const editorsNote = [
-  "Every photographer believes they have an eye. Most of them are right — it's just pointing at brunch.",
-  "This desk operates on a different principle: if you're going to haul a camera across five albums, the least you can do is notice something the guidebook didn't mention. A door hinge in Prague. The way a macro lens turns a dewdrop into a cathedral. The specific silence of a minimal frame when everything unnecessary has been removed.",
-]
-
 interface ImageState {
   [key: string]: boolean
 }
