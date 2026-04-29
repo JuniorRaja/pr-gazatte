@@ -17,10 +17,8 @@ function windDir(deg: number) {
 
 export default async function WeatherWidget() {
   try {
-    console.log('[WeatherWidget] Fetching:', WEATHER_URL)
     const res = await fetch(WEATHER_URL, { next: { revalidate: 1800 } })
     const data = await res.json()
-    console.log('[WeatherWidget] Response:', JSON.stringify(data.current))
     const c = data.current
     const desc = WMO_DESC[c.weather_code] ?? 'Unknown'
     const dir = windDir(c.wind_direction_10m)
@@ -32,8 +30,7 @@ export default async function WeatherWidget() {
         <div>{desc} · Winds {dir}</div>
       </div>
     )
-  } catch (err) {
-    console.error('[WeatherWidget] Error:', err)
+  } catch {
     return (
       <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', textAlign: 'right', color: 'var(--fg)' }}>
         <div style={{ fontWeight: 700, color: 'var(--accent)' }}>WEATHER</div>
