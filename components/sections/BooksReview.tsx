@@ -311,7 +311,7 @@ export default function BooksReview() {
 
       {/* ── Section bar ── */}
       <div style={{
-        background: 'var(--fg)', color: 'var(--bg)',
+        background: 'var(--accent)', color: '#F4EFE6',
         padding: '5px 32px',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
       }}>
