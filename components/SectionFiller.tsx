@@ -23,9 +23,16 @@ export default function SectionFiller({ watermark, footnote, page, accent = 'var
           <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: accent, opacity: 0.2 }} />
           <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: accent, opacity: 0.1 }} />
         </div>
-        {page && (
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8.5px', color: 'rgba(14,14,12,0.3)', letterSpacing: '.1em' }}>— p. {page} —</div>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ position: 'relative', width: '28px', height: '14px', flexShrink: 0 }}>
+            {(['#00AFEC', '#EC008C', '#FFF200', '#1a1a1a'] as const).map((color, i) => (
+              <div key={color} style={{ position: 'absolute', width: '10px', height: '10px', borderRadius: '50%', background: color, opacity: 0.45, top: '2px', left: `${i * 6}px`, mixBlendMode: 'multiply' }} />
+            ))}
+          </div>
+          {page && (
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8.5px', color: 'rgba(14,14,12,0.3)', letterSpacing: '.1em' }}>— p. {page} —</div>
+          )}
+        </div>
       </div>
     </div>
   )
