@@ -28,7 +28,15 @@ declare module '*.mdx' {
   export const stack: [string, string][]
 
   // content/photos.mdx
-  export const spreads: { issue: string; title: string; subtitle: string; date: string; lead: string; color: string }[]
+  export const meta: {
+    sectionBar: string
+    kicker: string
+    pullQuote: string
+    headerQuote: string
+    contactSheetCaption: string
+    sectionFillerFootnote: string
+  }
+  export const editorsNote: string[]
 
   // content/books.mdx
   export const currentlyReading: { title: string; author: string; pct: number; genre: string }[]
