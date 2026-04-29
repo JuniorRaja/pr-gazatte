@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const tags = ['Career', 'Technology', 'Identity', 'First Person']
 const coverage = [
-  '→ Six years of FinTech engineering',
+  '→ Seven plus years of FinTech engineering',
   '→ Team leadership & project delivery',
   '→ Self-hosted infrastructure projects',
   '→ Photography across 9 countries',

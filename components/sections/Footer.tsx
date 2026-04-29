@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from 'react'
 const colophonCols = [
   { heading: 'Published By',    lines: ['Prasanna Rajendran', 'Editor, Engineer, PM', 'Chennai, India'] },
   { heading: 'Technical Stack', lines: ['Next.js 15 · React 19', 'TypeScript · Tailwind v4', 'Cloudflare Pages'] },
-  { heading: 'Design',          lines: ['Playfair Display', 'Source Serif 4 · JetBrains Mono', 'Newsprint palette'] },
+  { heading: 'Colophon',        lines: ['An independent publication.', 'All opinions are those of the Editor.', 'Printed on recycled electrons.'] },
   { heading: 'Edition',         lines: ['Vol. I, No. 1', getMonthYear(), 'All rights reserved'] },
 ]
 
@@ -46,7 +46,7 @@ export default function Footer() {
 
   return (
     <footer id="footer" style={{ background: 'var(--fg)', color: 'var(--bg)' }}>
-      {/* CMYK registration dots */}
+      {/* CMYK registration dots
       <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '8px 20px 4px', gap: '6px', borderBottom: '1px solid rgba(244,239,230,0.1)' }}>
         {[['#00AFEC', 'C'], ['#EC008C', 'M'], ['#FFF200', 'Y'], ['#000000', 'K']].map(([color, label]) => (
           <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
@@ -54,7 +54,7 @@ export default function Footer() {
             <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'rgba(244,239,230,0.4)', letterSpacing: '.05em' }}>{label}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* 4-column colophon */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', columnGap: 0, padding: '0 32px', borderBottom: '1px solid rgba(244,239,230,0.1)' }}>
@@ -103,8 +103,21 @@ export default function Footer() {
       <div style={{ borderTop: '1px solid rgba(244,239,230,0.12)', padding: '10px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 1998</span>
         <div style={{ display: 'flex', gap: '20px' }}>
-          {['Op-Ed', 'Tech', 'Career', 'Lab', 'Photos', 'Books', 'Travel', 'Off Duty', 'Contact'].map(link => (
-            <span key={link} style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.3)', letterSpacing: '.08em', textTransform: 'uppercase', cursor: 'pointer' }}>{link}</span>
+          {[
+            { label: 'Op-Ed',    href: '#op-ed'   },
+            { label: 'Tech',     href: '#tech'     },
+            { label: 'Career',   href: '#career'   },
+            { label: 'Lab',      href: '#lab'      },
+            { label: 'Photos',   href: '#photos'   },
+            { label: 'Books',    href: '#books'    },
+            { label: 'Travel',   href: '#travel'   },
+            { label: 'Off Duty', href: '#hobbies'  },
+            { label: 'Contact',  href: '#contact'  },
+          ].map(({ label, href }) => (
+            <a key={label} href={href} style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.3)', letterSpacing: '.08em', textTransform: 'uppercase', textDecoration: 'none' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'rgba(244,239,230,0.75)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(244,239,230,0.3)')}
+            >{label}</a>
           ))}
         </div>
         <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>VOL. I · NO. 1</span>
