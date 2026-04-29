@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import SectionFiller from '@/components/SectionFiller'
 
 const contacts = [
@@ -10,9 +11,8 @@ const contacts = [
 const status = [
   ['Location',   'Chennai, India'],
   ['Role',       'Dy. PM + Engineer'],
-  ['Team size',  '8 direct reports'],
+  ['Years',      '7+ in FinTech Solutions'],
   ['Open to',    'Interesting offers'],
-  ['Notice',     'Negotiable'],
 ]
 
 export default function Classifieds() {
@@ -20,35 +20,48 @@ export default function Classifieds() {
     <section id="contact" style={{ borderBottom: '3px solid var(--fg)' }}>
       <div style={{ background: 'var(--fg)', color: '#F4EFE6', padding: '5px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Contact · Page 10</span>
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px' }}>HIRE · REACH · CONNECT</span>
+        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px' }}>DON&apos;T BE A STRANGER</span>
       </div>
 
       <div style={{ padding: '40px 32px 36px' }}>
-        {/* 3-col with 1px dividers */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr 1px 1fr', gap: 0, marginBottom: '36px' }}>
+        {/* 4-col: editorial | divider | reach+status | divider | photo */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1px 1fr 1px 1fr 1px 1.2fr', gap: 0, marginBottom: '36px' }}>
 
-          {/* Col 1 — What I Do */}
-          <div style={{ paddingRight: '36px' }}>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What I Do</div>
-            <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 16px' }}>
-              Lead teams.<br />Ship software.<br />Solve problems.
+          {/* Col 1 — Editor's note */}
+          <div style={{ paddingRight: '28px' }}>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Say Hello.</div>
+            <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 20px' }}>
+              Drop a line.<br /><span style={{ color: 'var(--accent)' }}>Make contact.</span>
             </h3>
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '14px', lineHeight: 1.7, color: 'var(--fg)', margin: 0 }}>
-              6.5 years in FinTech. Deputy PM with hands-on engineering. Available for serious conversations.
-            </p>
+            <blockquote style={{ margin: '0', padding: '14px 16px', borderLeft: '3px solid var(--accent)', background: 'rgba(193,39,45,0.04)' }}>
+              <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.72, fontStyle: 'italic', color: 'var(--fg)', margin: '0 0 10px' }}>
+                &ldquo;Prasanna Rajendran does not have a dramatic origin story. No garage startup, no dropout mythology. Just a man in Chennai who got very good at one thing, then quietly got good at several others.&rdquo;
+              </p>
+              <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.72, fontStyle: 'italic', color: 'var(--fg)', margin: 0 }}>
+                &ldquo;The code still compiles. The curiosity never shipped a bug.&rdquo;
+              </p>
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.12em', marginTop: '10px' }}>— The Editor</div>
+            </blockquote>
           </div>
 
           {/* Divider */}
           <div style={{ background: 'rgba(14,14,12,0.15)' }} />
 
           {/* Col 2 — Reach Me */}
-          <div style={{ padding: '0 36px' }}>
+          <div style={{ padding: '0 20px' }}>
             <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Reach Me</div>
             {contacts.map(({ label, value, href, primary }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="contact-link" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid rgba(14,14,12,0.1)', padding: '10px 0', textDecoration: 'none' }}>
-                <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
-                <span style={{ fontFamily: primary ? '"Playfair Display", serif' : '"JetBrains Mono", monospace', fontSize: primary ? '15px' : '11px', fontWeight: primary ? 700 : 400, color: primary ? 'var(--accent)' : 'var(--fg)' }}>{value}</span>
-              </a>
+              primary
+                ? <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="contact-link" style={{ display: 'flex', flexDirection: 'column', borderBottom: '1px solid rgba(14,14,12,0.1)', padding: '8px 0', textDecoration: 'none', gap: '2px' }}>
+                    <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
+                    <span style={{ fontFamily: '"Playfair Display", serif', fontSize: '13px', fontWeight: 700, color: 'var(--accent)' }}>{value}</span>
+                  </a>
+                : <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="social-link">
+                    <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
+                    <span className="social-value" style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--fg)', transition: 'color 0.15s' }}>
+                      {value}<span className="social-arrow">↗</span>
+                    </span>
+                  </a>
             ))}
           </div>
 
@@ -56,29 +69,46 @@ export default function Classifieds() {
           <div style={{ background: 'rgba(14,14,12,0.15)' }} />
 
           {/* Col 3 — Current Status */}
-          <div style={{ paddingLeft: '36px' }}>
+          <div style={{ padding: '0 20px' }}>
             <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Current Status</div>
             {status.map(([k, v]) => (
-              <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dotted rgba(14,14,12,0.15)', padding: '8px 0' }}>
-                <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.08em' }}>{k}</span>
-                <span style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', color: 'var(--fg)', fontWeight: 600 }}>{v}</span>
+              <div key={k} style={{ display: 'flex', flexDirection: 'column', borderBottom: '1px dotted rgba(14,14,12,0.15)', padding: '8px 0', gap: '2px' }}>
+                <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.08em' }}>{k}</span>
+                <span style={{ fontFamily: '"Source Serif 4", serif', fontSize: '12px', color: 'var(--fg)', fontWeight: 600 }}>{v}</span>
               </div>
             ))}
-            <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2a7a3b', flexShrink: 0 }} />
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: '#2a7a3b', fontWeight: 700, letterSpacing: '.08em' }}>AVAILABLE FOR CONVERSATIONS</div>
+            <div style={{ marginTop: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2a7a3b', flexShrink: 0 }} />
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: '#2a7a3b', fontWeight: 700, letterSpacing: '.06em' }}>AVAILABLE</div>
+            </div>
+            <a href="mailto:hello@prasannar.com" className="cta-btn" style={{ display: 'block', marginTop: '16px', fontFamily: '"Playfair Display", serif', fontSize: '13px', fontWeight: 700, color: '#F4EFE6', padding: '10px 16px', textDecoration: 'none', letterSpacing: '.02em', textAlign: 'center' }}>
+              Write to the Editor →
+            </a>
+          </div>
+
+          {/* Divider */}
+          <div style={{ background: 'rgba(14,14,12,0.15)' }} />
+
+          {/* Col 4 — Photo */}
+          <div style={{ position: 'relative', minHeight: '320px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
+            <Image
+              src="/pr-contact-still.png"
+              alt="Prasanna Rajendran"
+              fill
+              style={{ objectFit: 'cover', filter: 'grayscale(0.85) sepia(0.4) contrast(1.1) brightness(0.88)' }}
+            />
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.7))', padding: '24px 10px 8px' }}>
+              <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.75)', letterSpacing: '.08em' }}>Prasanna R. · Chennai</span>
             </div>
           </div>
+
         </div>
 
-        {/* Bottom CTA bar */}
-        <div style={{ borderTop: '2px solid var(--fg)', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {/* Bottom colophon bar */}
+        <div style={{ borderTop: '2px solid var(--fg)', paddingTop: '20px' }}>
           <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', lineHeight: 1.6 }}>
             The PR Gazette · Chennai · Est. 1998 · Vol. PR · No. 69
           </div>
-          <a href="mailto:hello@prasannar.com" className="cta-btn" style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 700, color: '#F4EFE6', padding: '12px 28px', textDecoration: 'none', letterSpacing: '.02em', display: 'inline-block' }}>
-            Write to the Editor →
-          </a>
         </div>
       </div>
 
