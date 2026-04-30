@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import SectionFiller from '@/components/SectionFiller'
+import SectionFlag from '@/components/SectionFlag'
 import { timeline, numbers } from '@/content/career.mdx'
 
 const filingMeta = [
@@ -20,17 +21,13 @@ export default function BusinessPages() {
   return (
     <section id="career" style={{ borderBottom: '2px solid var(--fg)' }}>
 
-      {/* Section bar */}
-      <div style={{ background: 'var(--fg)', color: 'var(--bg)', padding: '5px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Business · Page 4</span>
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px' }}>THE CAREER BEAT</span>
-      </div>
+      <SectionFlag pageLabel="Business · Page 4" subtitle="The Career Beat" />
 
-      {/* 3-column grid: narrow sidebar | timeline | editorial+photo */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 3fr 2fr', columnGap: 0 }}>
+      {/* 3-column grid → responsive */}
+      <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1.5fr 3fr 2fr', columnGap: 0 }}>
 
         {/* LEFT — Label + headline + filing meta + numbers */}
-        <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '28px 24px', display: 'flex', flexDirection: 'column' }}>
+        <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)', display: 'flex', flexDirection: 'column' }}>
 
           <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Annual Report · FY 2019–Present

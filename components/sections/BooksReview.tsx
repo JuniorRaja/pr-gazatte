@@ -296,6 +296,19 @@ export default function BooksReview() {
         .br-book-row:hover { cursor: default; }
 
         /* ── Responsive ── */
+        .br-flag { padding: 5px 16px; }
+        .br-left-col { padding: 20px 16px; }
+        .br-table-container { padding: 0 16px; }
+        @media (min-width: 640px) {
+          .br-flag { padding: 5px 24px; }
+          .br-left-col { padding: 20px 24px; }
+          .br-table-container { padding: 0 24px; }
+        }
+        @media (min-width: 1024px) {
+          .br-flag { padding: 5px 32px; }
+          .br-left-col { padding: 20px 28px 20px 32px; }
+          .br-table-container { padding: 0 32px; }
+        }
         @media (max-width: 960px) {
           .br-outer { grid-template-columns: 1fr !important; }
           .br-photo-right { display: none !important; }
@@ -310,9 +323,8 @@ export default function BooksReview() {
       `}</style>
 
       {/* ── Section bar ── */}
-      <div style={{
+      <div className="br-flag" style={{
         background: 'var(--accent)', color: '#F4EFE6',
-        padding: '5px 32px',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
       }}>
         <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Culture &amp; Character · The Reading Life</span>
@@ -331,7 +343,7 @@ export default function BooksReview() {
       >
 
         {/* ══ LEFT — headline + writing only ══ */}
-        <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '20px 28px 20px 32px' }}>
+        <div className="br-left-col" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
 
           {/* ── Headline + deck ── */}
           <h2 style={{
@@ -480,7 +492,7 @@ export default function BooksReview() {
       </div>
 
       {/* ── Full-width: divider + 3-col book table ── */}
-      <div style={{ padding: '0 32px 0' }}>
+      <div className="br-table-container">
 
           {/* ── Section divider ── */}
           <div style={{

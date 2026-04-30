@@ -97,6 +97,12 @@ body::after {
   100% { transform: translateX(-50%); }
 }
 
+/* PR Stock Exchange ticker animation */
+@keyframes prTickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .ticker-track {
   animation: tickerScroll 50s linear infinite !important;
 }
@@ -260,11 +266,175 @@ body::after {
 /* Classifieds — CTA button */
 .cta-btn { background: var(--fg); transition: background 0.15s; }
 .cta-btn:hover { background: var(--accent); }
-/* Responsive header layout */
-@media (max-width: 768px) {
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE UTILITIES
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Breakpoint Documentation ──
+   - Mobile:  < 640px  (sm breakpoint)
+   - Tablet:  640px - 1024px (sm to lg)
+   - Desktop: > 1024px (lg+)
+   
+   Tailwind v4 default breakpoints:
+   - sm: 640px
+   - md: 768px
+   - lg: 1024px
+   - xl: 1280px
+   - 2xl: 1536px
+   ────────────────────────────── */
+
+/* ── Responsive Typography ────────────────────────────────────── */
+
+/* Body text: 16px on mobile for readability, 15px on tablet, 14px on desktop for newspaper compactness */
+body {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+@media (min-width: 640px) {
+  body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* Responsive text size utilities */
+.text-body-mobile { font-size: 16px; line-height: 1.65; }
+.text-body-tablet { font-size: 15px; line-height: 1.6; }
+.text-body-desktop { font-size: 14px; line-height: 1.6; }
+
+/* Headline scaling utilities */
+.headline-lg { font-size: clamp(28px, 5vw, 48px); }
+.headline-md { font-size: clamp(22px, 4vw, 36px); }
+.headline-sm { font-size: clamp(18px, 3vw, 28px); }
+
+/* Label/meta text scaling */
+.text-label { font-size: clamp(10px, 1.5vw, 11px); }
+.text-meta { font-size: clamp(9px, 1.2vw, 10px); }
+
+/* ── Responsive Spacing ───────────────────────────────────────── */
+
+/* Section padding: 16px mobile, 24px tablet, 32px desktop */
+.section-padding-x {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 640px) {
+  .section-padding-x {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding-x {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Vertical spacing utilities */
+.section-padding-y {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+@media (min-width: 640px) {
+  .section-padding-y {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding-y {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+/* Content spacing */
+.content-spacing > * + * {
+  margin-top: 16px;
+}
+
+@media (min-width: 640px) {
+  .content-spacing > * + * {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-spacing > * + * {
+    margin-top: 24px;
+  }
+}
+
+/* ── Touch-Friendly Utilities ─────────────────────────────────── */
+
+/* Minimum touch target size: 44x44px (WCAG AAA) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Touch target with padding (for buttons/links with text) */
+.touch-target-padded {
+  padding: 12px 16px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tap highlight color (iOS/Android) */
+* {
+  -webkit-tap-highlight-color: rgba(139, 34, 35, 0.15);
+}
+
+/* ── Responsive Grid Layouts ──────────────────────────────────── */
+
+/* Generic responsive grid: multi-column → single column */
+.responsive-grid-auto {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .responsive-grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid-auto {
+    gap: 24px;
+  }
+}
+
+/* Responsive header/masthead layout */
+.responsive-grid {
+  display: grid;
+  gap: 0;
+}
+
+@media (max-width: 1023px) {
   .responsive-grid {
     grid-template-columns: 1fr !important;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto;
   }
   
   .responsive-grid > div {
@@ -274,5 +444,181 @@ body::after {
   
   .responsive-grid > div:last-child {
     border-bottom: none !important;
+  }
+}
+
+/* 2-column grid: mobile single, tablet/desktop 2-col */
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .responsive-grid-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* 3-column grid: mobile single, tablet 2-col, desktop 3-col */
+.responsive-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .responsive-grid-3 {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+/* ── Responsive Images ────────────────────────────────────────── */
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Constrain image max-width on larger screens */
+.responsive-img-constrained {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ── Stack Utilities ──────────────────────────────────────────── */
+
+/* Force vertical stacking on mobile */
+.stack-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .stack-mobile {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+/* Always stack vertically */
+.stack-always {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .stack-always {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stack-always {
+    gap: 24px;
+  }
+}
+
+/* ── Hide/Show Utilities ──────────────────────────────────────── */
+
+/* Already using Tailwind utilities (hidden, md:flex, etc.) but adding explicit ones */
+.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hide-mobile {
+    display: block;
+  }
+}
+
+.hide-desktop {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .hide-desktop {
+    display: none;
+  }
+}
+
+.show-mobile-only {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .show-mobile-only {
+    display: none;
+  }
+}
+
+/* ── Form Input Utilities ─────────────────────────────────────── */
+
+/* Prevent iOS zoom on input focus (16px minimum) */
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  input,
+  textarea,
+  select {
+    font-size: 14px;
+  }
+}
+
+/* Form spacing */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sepia);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(14, 14, 12, 0.2);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-source-serif), Georgia, serif;
+  min-height: 44px;
+}
+
+/* ── Responsive Border Utilities ──────────────────────────────── */
+
+/* Remove borders on mobile to reduce clutter */
+.border-desktop-only {
+  border: none;
+}
+
+@media (min-width: 1024px) {
+  .border-desktop-only {
+    border: 1px solid rgba(14, 14, 12, 0.2);
   }
 }

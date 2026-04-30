@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', background: 'var(--bg)', color: 'var(--fg)', border: '1px solid var(--fg)', borderTop: '4px solid var(--fg)', minHeight: '100vh' }}>
+        <div className="max-w-[1400px] mx-auto bg-[var(--bg)] text-[var(--fg)] border-t-4 border-t-[var(--fg)] min-h-screen md:border md:border-[var(--fg)] md:border-t-4">
           {children}
         </div>
       </body>

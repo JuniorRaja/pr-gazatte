@@ -101,6 +101,26 @@ export default function PhotoDesk() {
           transition: opacity .15s;
         }
         .pd-orig-btn:hover { opacity: 1; }
+        /* Responsive padding */
+        .pd-flag { padding: 5px 16px; }
+        .pd-headline-strip { padding: 16px 16px 14px; }
+        .pd-pull-quote { padding: 10px 16px; }
+        .pd-col-left { padding: 16px 16px 20px; }
+        .pd-col-right { padding: 16px; }
+        @media (min-width: 640px) {
+          .pd-flag { padding: 5px 24px; }
+          .pd-headline-strip { padding: 18px 24px 15px; }
+          .pd-pull-quote { padding: 12px 24px; }
+          .pd-col-left { padding: 20px 24px 24px; }
+          .pd-col-right { padding: 20px 20px; }
+        }
+        @media (min-width: 1024px) {
+          .pd-flag { padding: 5px 32px; }
+          .pd-headline-strip { padding: 20px 32px 16px; }
+          .pd-pull-quote { padding: 12px 32px; }
+          .pd-col-left { padding: 24px 32px 28px; }
+          .pd-col-right { padding: 24px 24px; }
+        }
         @media (max-width: 900px) {
           .pd-body { grid-template-columns: 1fr !important; }
           .pd-col-left { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.2) !important; }
@@ -113,13 +133,13 @@ export default function PhotoDesk() {
       `}</style>
 
       {/* ── Section bar ──────────────────────────────────────── */}
-      <div style={{ background: 'var(--fg)', color: 'var(--bg)', padding: '5px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="pd-flag" style={{ background: 'var(--fg)', color: 'var(--bg)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>{meta.sectionBar}</span>
         <span style={{ fontFamily: mono, fontSize: '10px' }}>THE PHOTO DESK</span>
       </div>
 
       {/* ── Full-width headline strip ────────────────────────── */}
-      <div style={{ borderBottom: '3px double var(--fg)', padding: '20px 32px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '32px', flexWrap: 'wrap' }}>
+      <div className="pd-headline-strip" style={{ borderBottom: '3px double var(--fg)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '32px', flexWrap: 'wrap' }}>
         <div style={{ flex: 1, minWidth: '260px' }}>
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.2em', marginBottom: '8px' }}>{meta.kicker}</div>
           <h2 style={{ fontFamily: display, fontSize: 'clamp(30px, 4.5vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.025em', color: 'var(--fg)', margin: 0 }}>
@@ -132,7 +152,7 @@ export default function PhotoDesk() {
       </div>
 
       {/* ── Pull quote strip ─────────────────────────────────── */}
-      <div style={{ borderBottom: '1px solid rgba(14,14,12,0.15)', padding: '12px 32px', display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(14,14,12,0.03)' }}>
+      <div className="pd-pull-quote" style={{ borderBottom: '1px solid rgba(14,14,12,0.15)', display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(14,14,12,0.03)' }}>
         <span style={{ fontFamily: mono, fontSize: '18px', color: 'var(--accent)', lineHeight: 1, flexShrink: 0 }}>"</span>
         <p style={{ fontFamily: serif, fontSize: '13px', fontStyle: 'italic', lineHeight: 1.6, color: 'var(--fg)', margin: 0, opacity: 0.85 }}>
           {meta.pullQuote}
@@ -143,7 +163,7 @@ export default function PhotoDesk() {
       <div className="pd-body" style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', columnGap: 0 }}>
 
         {/* ═══ LEFT — Magazine spread + navigation ═══ */}
-        <div className="pd-col-left" style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '24px 32px 28px' }}>
+        <div className="pd-col-left" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
 
           {/* Pill indicators */}
           <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '16px' }}>
@@ -297,7 +317,7 @@ export default function PhotoDesk() {
         </div>
 
         {/* ═══ RIGHT — Editor's Note > Album Index ═══ */}
-        <div style={{ padding: '24px 24px', display: 'flex', flexDirection: 'column' }}>
+        <div className="pd-col-right" style={{ display: 'flex', flexDirection: 'column' }}>
 
           {/* Editor's Note */}
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Editor&apos;s Note</div>

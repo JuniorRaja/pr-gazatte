@@ -215,7 +215,7 @@ export default function TechDesk() {
       <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr 220px', columnGap: 0 }}>
 
         {/* ════ LEFT — Analyst's Note + Trading Guide ════ */}
-        <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '24px 20px' }}>
+        <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>Markets Summary</div>
           <h2 style={{ fontFamily: display, fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 900, lineHeight: 1.05, color: 'var(--fg)', margin: '0 0 12px' }}>
             The <span style={{ color: 'var(--accent)' }}>Stack</span><br />Report.
@@ -250,11 +250,11 @@ export default function TechDesk() {
         </div>
 
         {/* ════ CENTER — Index Cards + Stock Tables ════ */}
-        <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '24px 20px' }}>
+        <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
 
-          {/* Index cards — 4 across */}
+          {/* Index cards — 4 across desktop, 2 across mobile */}
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Market Indices</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: 'rgba(14,14,12,0.12)', border: '1px solid rgba(14,14,12,0.12)', marginBottom: '20px' }}>
+          <div className="responsive-grid-auto" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1px', background: 'rgba(14,14,12,0.12)', border: '1px solid rgba(14,14,12,0.12)', marginBottom: '20px' }}>
             {indices.map(idx => (
               <div key={idx.name} style={{ background: 'var(--bg)', padding: '12px 14px' }}>
                 <div style={{ fontFamily: mono, fontSize: '11px', color: 'var(--accent)', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>{idx.name}</div>
@@ -269,8 +269,8 @@ export default function TechDesk() {
             ))}
           </div>
 
-          {/* Side-by-side stock tables */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 20px' }}>
+          {/* Side-by-side stock tables → stack on mobile */}
+          <div className="stack-mobile" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
             <StockTable items={stocks.slice(0, half)} label="Blue Chips &amp; Large Caps" flashMap={flashMap} />
             <StockTable items={stocks.slice(half)} label="Mid Caps &amp; New Listings" flashMap={flashMap} />
           </div>
@@ -284,7 +284,7 @@ export default function TechDesk() {
         </div>
 
         {/* ════ RIGHT — Movers, IPOs, Sector ════ */}
-        <div style={{ padding: '24px 18px' }}>
+        <div className="section-padding-x section-padding-y">
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Top Gainers</div>
           {topGainers.map((s, i) => (
             <div key={s.sym} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: i < topGainers.length - 1 ? '1px solid rgba(14,14,12,0.06)' : 'none' }}>

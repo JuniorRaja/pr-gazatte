@@ -1,4 +1,5 @@
 import SectionFiller from '@/components/SectionFiller'
+import SectionFlag from '@/components/SectionFlag'
 import { projects, services, stack } from '@/content/lab.mdx'
 
 const mono  = '"JetBrains Mono", monospace'
@@ -27,34 +28,30 @@ export default function LabReport() {
         .lab-link:hover { color: var(--accent) !important; font-size: 11px !important; }
       `}</style>
 
-      {/* Banner */}
-      <div style={{ background: 'var(--accent)', color: '#F4EFE6', padding: '5px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Lab Report · Page 5</span>
-        <span style={{ fontFamily: mono, fontSize: '10px' }}>SELF-HOSTING · SERVERS · INFRASTRUCTURE</span>
-      </div>
+      <SectionFlag pageLabel="Lab Report · Page 5" subtitle="Self-Hosting · Servers · Infrastructure" bgColor="var(--accent)" />
 
       {/* Subhead strip */}
-      <div style={{ borderBottom: '1px solid rgba(14,14,12,0.2)', padding: '8px 32px', textAlign: 'center' }}>
-        <span style={{ fontFamily: serif, fontSize: '13px', fontStyle: 'italic', color: 'var(--fg)' }}>
+      <div className="section-padding-x" style={{ borderBottom: '1px solid rgba(14,14,12,0.2)', paddingTop: '8px', paddingBottom: '8px', textAlign: 'center' }}>
+        <span style={{ fontFamily: serif, fontSize: 'clamp(12px, 2.5vw, 13px)', fontStyle: 'italic', color: 'var(--fg)' }}>
           Dispatches from the garage — where things get built, broken, and occasionally shipped
         </span>
       </div>
 
       {/* Title block */}
-      <div style={{ padding: '28px 32px 0' }}>
-        <h2 style={{ fontFamily: display, fontSize: 'clamp(36px, 5vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 6px' }}>
+      <div className="section-padding-x" style={{ paddingTop: '28px', paddingBottom: 0 }}>
+        <h2 style={{ fontFamily: display, fontSize: 'clamp(32px, 6vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 6px' }}>
           The <span style={{ color: 'var(--accent)' }}>Lab.</span>
         </h2>
-        <p style={{ fontFamily: display, fontSize: 'clamp(14px, 2vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', margin: '0 0 20px' }}>
+        <p style={{ fontFamily: display, fontSize: 'clamp(14px, 2.5vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', margin: '0 0 20px' }}>
           Where hypotheses meet hardware. Some experiments ship. Some teach lessons. All were worth it.
         </p>
       </div>
 
-      {/* Two-column body */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 0 }}>
+      {/* Two-column body → single on mobile */}
+      <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 0 }}>
 
         {/* ═══ LEFT — Projects ═══ */}
-        <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '0 32px 28px' }}>
+        <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Field Reports · Active Experiments
           </div>
