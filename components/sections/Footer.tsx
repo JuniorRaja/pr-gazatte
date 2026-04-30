@@ -46,23 +46,53 @@ export default function Footer() {
 
   return (
     <footer id="footer" style={{ background: 'var(--fg)', color: 'var(--bg)' }}>
-      {/* CMYK registration dots
-      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '8px 20px 4px', gap: '6px', borderBottom: '1px solid rgba(244,239,230,0.1)' }}>
-        {[['#00AFEC', 'C'], ['#EC008C', 'M'], ['#FFF200', 'Y'], ['#000000', 'K']].map(([color, label]) => (
-          <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: color, border: '1px solid rgba(244,239,230,0.2)', flexShrink: 0 }} />
-            <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'rgba(244,239,230,0.4)', letterSpacing: '.05em' }}>{label}</span>
-          </div>
-        ))}
-      </div> */}
+      <style>{`
+        .ft-colophon {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          column-gap: 0;
+          padding: 0 32px;
+          border-bottom: 1px solid rgba(244,239,230,0.1);
+        }
+        .ft-col-item {
+          padding: 20px 28px;
+          border-right: 1px solid rgba(244,239,230,0.12);
+        }
+        .ft-col-item:first-child { padding-left: 0; }
+        .ft-col-item:last-child { padding-right: 0; border-right: none; }
+        .ft-bottom-bar {
+          border-top: 1px solid rgba(244,239,230,0.12);
+          padding: 10px 32px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .ft-nav-links { display: flex; gap: 20px; }
+        @media (max-width: 767px) {
+          .ft-col-tech { display: none; }
+          .ft-col-edition { display: none; }
+          .ft-colophon { grid-template-columns: 1fr 1fr; padding: 0 16px; }
+          .ft-col-item { padding: 14px 8px; }
+          .ft-col-item:first-child { padding-left: 0; }
+          .ft-col-item:last-child { padding-right: 0; border-right: none; }
+          .ft-col-heading { font-size: 7px !important; letter-spacing: .08em !important; margin-bottom: 6px !important; }
+          .ft-col-line { font-size: 10px !important; line-height: 1.6 !important; }
+          .ft-bottom-bar { padding: 10px 16px; flex-direction: column; gap: 10px; text-align: center; }
+          .ft-nav-links { flex-wrap: wrap; gap: 12px; justify-content: center; }
+        }
+        @media (min-width: 640px) and (max-width: 767px) {
+          .ft-colophon { padding: 0 24px; }
+          .ft-bottom-bar { padding: 10px 24px; }
+        }
+      `}</style>
 
       {/* 4-column colophon */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', columnGap: 0, padding: '0 32px', borderBottom: '1px solid rgba(244,239,230,0.1)' }}>
-        {colophonCols.map((col, i) => (
-          <div key={col.heading} style={{ borderRight: i < 3 ? '1px solid rgba(244,239,230,0.12)' : 'none', padding: '20px 0', paddingRight: i < 3 ? '28px' : 0, paddingLeft: i > 0 ? '28px' : 0 }}>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', marginBottom: '10px', borderBottom: '1px solid rgba(139,34,35,0.4)', paddingBottom: '6px' }}>{col.heading}</div>
+      <div className="ft-colophon">
+        {colophonCols.map((col) => (
+          <div key={col.heading} className={`ft-col-item${col.heading === 'Technical Stack' ? ' ft-col-tech' : col.heading === 'Edition' ? ' ft-col-edition' : ''}`}>
+            <div className="ft-col-heading" style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', marginBottom: '10px', borderBottom: '1px solid rgba(139,34,35,0.4)', paddingBottom: '6px' }}>{col.heading}</div>
             {col.lines.map(line => (
-              <div key={line} style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', color: 'rgba(244,239,230,0.75)', lineHeight: 1.8 }}>{line}</div>
+              <div key={line} className="ft-col-line" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', color: 'rgba(244,239,230,0.75)', lineHeight: 1.8 }}>{line}</div>
             ))}
           </div>
         ))}
@@ -100,9 +130,9 @@ export default function Footer() {
       <div style={{ borderTop: '1px solid rgba(244,239,230,0.2)', margin: '0 32px' }} />
 
       {/* Bottom bar */}
-      <div style={{ borderTop: '1px solid rgba(244,239,230,0.12)', padding: '10px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="ft-bottom-bar">
         <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 1998</span>
-        <div style={{ display: 'flex', gap: '20px' }}>
+        <div className="ft-nav-links">
           {[
             { label: 'Op-Ed',    href: '#op-ed'   },
             { label: 'Tech',     href: '#tech'     },
