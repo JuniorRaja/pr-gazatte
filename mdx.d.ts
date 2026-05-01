@@ -44,7 +44,8 @@ declare module '*.mdx' {
   export const genres: { name: string; pct: number; color: string }[]
 
   // content/travel.mdx
-  export const countries: { name: string; region: string; year: string; stamp: string }[]
+  export const countries: { name: string; code: string; year: string; region: string; body: string }[]
+  export const upcomingCountries: { name: string; year: string; region: string; body: string }[]
 
   // content/hobbies.mdx
   export const columns: { slug: string; body: string; note: string | null }[]

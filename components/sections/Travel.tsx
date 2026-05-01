@@ -1,273 +1,723 @@
+'use client'
+
+import { useState, useEffect, useCallback, useRef } from 'react'
 import NpImage from '@/components/NpImage'
 import SectionFiller from '@/components/SectionFiller'
-import { countries } from '@/content/travel.mdx'
+import { countries, upcomingCountries } from '@/content/travel.mdx'
+import { getFormattedShortDate } from '@/utils/date'
 
-const europeCities = [
-  { city: 'Warsaw',    country: 'PL' },
-  { city: 'Bratislava', country: 'SK' },
-  { city: 'Prague',    country: 'CZ' },
-  { city: 'Vienna',    country: 'AT' },
-  { city: 'Budapest',  country: 'HU' },
-  { city: 'Ljubljana', country: 'SI' },
-]
-
-const shortDispatches = [
-  {
-    date: 'Jan 2023',
-    title: 'The Engineered Island.',
-    body: 'Marina Bay against Galle Fort — the January assignment was a study in contrast. One island engineered to perfection; the other, ancient and salt-worn.',
-    image: 'https://picsum.photos/seed/singapore-marina/320/180',
-    caption: 'Marina Bay · Singapore',
-  },
-  {
-    date: 'Jun 2023',
-    title: 'Galle Fort & the Ancient Coast.',
-    body: 'Sri Lanka in June. The light is heavy. The coast at Galle feels like a different century. The contrast with Singapore, five months earlier, was precisely the point.',
-    image: null,
-    caption: null,
-  },
-  {
-    date: '2023',
-    title: 'First Southern Hemisphere Assignment.',
-    body: 'Antipodean light is different. The birds are louder. Filed with confidence this was not the last visit.',
-    image: 'https://picsum.photos/seed/sydney-harbour/320/180',
-    caption: null,
-  },
-]
-
-function StampDots() {
-  return (
-    <div style={{ position: 'absolute', top: '-4px', left: 0, right: 0, display: 'flex', justifyContent: 'space-between', padding: '0 4px' }}>
-      {Array.from({ length: 7 }).map((_, j) => (
-        <div key={j} style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--bg)', border: '1px solid var(--fg)', flexShrink: 0 }} />
-      ))}
-    </div>
-  )
-}
+const mono = '"JetBrains Mono", monospace'
+const serif = '"Source Serif 4", serif'
+const display = '"Playfair Display", serif'
 
 export default function Travel() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const advance = useCallback(() => {
+    setActiveIndex(prev => (prev + 1) % countries.length)
+  }, [])
+
+  useEffect(() => {
+    if (paused) return
+    timerRef.current = setInterval(advance, 5000)
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [paused, advance])
+
+  const handleDotClick = (i: number) => {
+    setActiveIndex(i)
+    setPaused(true)
+  }
+
+  const active = countries[activeIndex]
+
   return (
     <section id="travel" style={{ borderBottom: '2px solid var(--fg)' }}>
       <style>{`
-        .tv-flag { padding: 5px 16px; }
-        .tv-headline-strip { padding: 16px 16px 14px; flex-wrap: wrap; }
-        .tv-headline-quote { border-left: 3px solid var(--accent); padding-left: 16px; opacity: 0.8; }
-        .tv-main-grid { display: grid; grid-template-columns: 140px 1fr 1fr 220px; column-gap: 0; min-height: 600px; }
-        .tv-passport-col { border-right: 2px solid var(--fg); padding: 20px 14px; background: rgba(14,14,12,0.025); }
-        .tv-lead-col { padding: 24px 20px; }
-        .tv-body-copy { columns: 2; column-gap: 24px; column-rule: 1px solid rgba(14,14,12,0.15); }
-        .tv-photo-strip { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2px; height: 200px; }
-        .tv-city-bar { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid rgba(14,14,12,0.2); padding-top: 10px; gap: 1px; }
-        .tv-dispatches-col { padding: 24px 18px; }
-        .tv-bottom-strip { border-top: 3px double var(--fg); background: var(--fg); display: grid; grid-template-columns: repeat(3, 1fr); padding: 16px 32px; align-items: center; }
-        .tv-bottom-quote { text-align: right; }
-
-        @media (min-width: 640px) {
-          .tv-flag { padding: 5px 24px; }
-          .tv-headline-strip { padding: 18px 24px 15px; }
-          .tv-bottom-strip { padding: 16px 24px; }
+        /* ── Layout ── */
+        .tv-header { display: flex; justify-content: space-between; align-items: center; }
+        .tv-headline-zone {
+          display: grid;
+          grid-template-columns: 1fr 160px;
+          gap: 24px;
+          align-items: start;
         }
-        @media (min-width: 1024px) {
-          .tv-flag { padding: 5px 32px; }
-          .tv-headline-strip { padding: 20px 32px 16px; }
-          .tv-lead-col { padding: 24px 28px; }
-          .tv-bottom-strip { padding: 16px 32px; }
+        .tv-row1 {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          gap: 0;
+        }
+        .tv-row2 {
+          display: grid;
+          grid-template-columns: 3fr 1fr;
+          gap: 0;
+        }
+        .tv-col-rule { border-right: 1px solid rgba(14,14,12,0.18); }
+        .tv-hr { border: none; border-top: 1px solid rgba(14,14,12,0.18); margin: 0; }
+        .tv-hr-strong { border: none; border-top: 1px solid rgba(14,14,12,0.35); margin: 0; }
+
+        /* ── Timeline (vintage) ── */
+        .tv-timeline-container { position: relative; margin: 20px 0 0; padding: 0 12px; }
+
+        /* Main horizontal rail — cuts through dots */
+        .tv-timeline-rail {
+          position: absolute;
+          top: 9px; /* vertically center on the 18px dot */
+          left: 0;
+          right: 0;
+          height: 0;
+          border-top: 1.5px solid var(--fg);
+          z-index: 0;
+        }
+        /* Double-line effect below */
+        .tv-timeline-rail::after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          left: 0;
+          right: 0;
+          height: 0;
+          border-top: 0.5px solid rgba(14,14,12,0.2);
         }
 
-        @media (max-width: 767px) {
-          .tv-headline-quote { display: none; }
-          .tv-main-grid { grid-template-columns: 1fr; }
-          .tv-passport-col { border-right: none; border-bottom: 2px solid var(--fg); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
-          .tv-passport-col > div { display: inline-flex; flex-direction: row; align-items: center; gap: 10px; padding: 6px 10px; margin-bottom: 0 !important; }
-          .tv-lead-col { padding: 20px 16px; border-right: none !important; }
-          .tv-body-copy { columns: 1; }
-          .tv-photo-strip { grid-template-columns: 1fr 1fr; height: 140px; }
-          .tv-photo-strip > div:last-child { display: none; }
-          .tv-city-bar { grid-template-columns: repeat(3, 1fr); }
-          .tv-dispatches-col { padding: 20px 16px; }
-          .tv-bottom-strip { grid-template-columns: 1fr; padding: 20px 16px; gap: 16px; }
-          .tv-bottom-quote { text-align: left; }
+        /* Decorative curls at each end */
+        .tv-timeline-curl-left,
+        .tv-timeline-curl-right {
+          position: absolute;
+          top: -4px;
+          width: 20px;
+          height: 14px;
+          z-index: 1;
+        }
+        .tv-timeline-curl-left { left: -6px; }
+        .tv-timeline-curl-right { right: -6px; }
+
+        /* Tick marks between dots */
+        .tv-timeline-ticks {
+          position: absolute;
+          top: 5px;
+          left: 0;
+          right: 0;
+          display: flex;
+          justify-content: space-between;
+          z-index: 0;
+          pointer-events: none;
+        }
+        .tv-timeline-tick {
+          width: 1px;
+          height: 8px;
+          background: rgba(14,14,12,0.12);
+        }
+
+        .tv-timeline {
+          position: relative;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding: 0;
+          z-index: 2;
+        }
+        .tv-dot-wrap {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          cursor: pointer;
+          padding: 0 4px;
+          background: transparent;
+          border: none;
+          flex: 1;
+        }
+        .tv-dot {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          border: 2px solid var(--fg);
+          background: var(--bg);
+          transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+          position: relative;
+          box-shadow: 0 0 0 3px var(--bg);
+        }
+        /* Inner pip for inactive dots */
+        .tv-dot::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: var(--fg);
+          transform: translate(-50%, -50%);
+          opacity: 0.3;
+          transition: opacity 0.2s;
+        }
+        .tv-dot.active {
+          background: var(--accent);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent);
+        }
+        .tv-dot.active::after { opacity: 0; }
+        .tv-dot-label {
+          font-family: ${mono};
+          font-size: 8px;
+          text-transform: uppercase;
+          letter-spacing: .08em;
+          color: var(--fg);
+          margin-top: 8px;
+          white-space: nowrap;
+        }
+        .tv-dot-year {
+          font-family: ${mono};
+          font-size: 7px;
+          color: var(--sepia);
+          margin-top: 1px;
+        }
+        .tv-dot-wrap:hover .tv-dot:not(.active) {
+          border-color: var(--accent);
+          box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(139,34,35,0.2);
+        }
+        .tv-dot-wrap:hover .tv-dot:not(.active)::after { opacity: 0.6; }
+
+        /* ── Stat stamps ── */
+        .tv-stamp { padding: 10px 14px; text-align: center; }
+        .tv-stamp-num { font-family: ${display}; font-size: 28px; font-weight: 900; line-height: 1; color: var(--bg); }
+        .tv-stamp-label { font-family: ${mono}; font-size: 7px; letter-spacing: .15em; text-transform: uppercase; color: var(--bg); margin-top: 4px; opacity: 0.85; }
+
+        /* ── Planned badge ── */
+        .tv-planned-badge {
+          font-family: ${mono};
+          font-size: 7px;
+          font-weight: 700;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+          color: var(--accent);
+          border: 1.5px solid var(--accent);
+          padding: 2px 6px;
+          transform: rotate(4deg);
+          display: inline-block;
+          background: rgba(139,34,35,0.06);
+        }
+
+        /* ── Upcoming card ── */
+        .tv-upcoming-card {
+          border: 1px solid rgba(14,14,12,0.25);
+          padding: 16px;
+          background: rgba(184,167,146,0.06);
+          position: relative;
+          margin-bottom: 16px;
+        }
+
+        /* ── Portrait placeholder ── */
+        .tv-portrait {
+          width: 100%;
+          height: 100%;
+          min-height: 320px;
+          background: var(--sepia);
+          opacity: 0.15;
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+          .tv-row1 { grid-template-columns: 1fr 1fr; }
+          .tv-row1-portrait { display: none; }
+          .tv-row2 { grid-template-columns: 1fr; }
+          .tv-row2-sidebar { border-left: none !important; border-top: 1px solid rgba(14,14,12,0.18); }
         }
         @media (max-width: 639px) {
-          .tv-photo-strip { grid-template-columns: 1fr; height: auto; }
-          .tv-photo-strip > div { height: 140px; }
-          .tv-photo-strip > div:last-child { display: block; }
-          .tv-city-bar { grid-template-columns: repeat(2, 1fr); }
+          .tv-headline-zone { grid-template-columns: 1fr; }
+          .tv-stamps-col { display: flex; flex-direction: row !important; gap: 8px; }
+          .tv-stamps-col .tv-stamp { flex: 1; min-width: 0; }
+          .tv-row1 { grid-template-columns: 1fr; }
+          .tv-row1 > div { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.18); }
+          .tv-row1 > div:last-child { border-bottom: none; }
+          .tv-row2 { grid-template-columns: 1fr; }
+          .tv-row2 > div { min-width: 0; overflow-wrap: break-word; word-break: break-word; }
+          .tv-row2-sidebar { border-left: none !important; border-top: 1px solid rgba(14,14,12,0.18); }
+          .tv-upcoming-card { overflow-wrap: break-word; word-break: break-word; }
+          .tv-timeline-container { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-left: -4px; margin-right: -4px; padding: 0 4px; }
+          .tv-timeline { min-width: 460px; }
+          .tv-dot-label { font-size: 7px; letter-spacing: .04em; }
+          .tv-dot { width: 14px; height: 14px; }
+          .tv-dot::after { width: 3px; height: 3px; }
+          .tv-timeline-rail { top: 7px; }
+          .tv-timeline-curl-left, .tv-timeline-curl-right { top: -6px; }
         }
       `}</style>
 
-      {/* Section flag */}
-      <div className="tv-flag" style={{ background: 'var(--fg)', color: '#F4EFE6', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Travel · Page 8</span>
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px' }}>FOREIGN CORRESPONDENTS · FIELD DISPATCHES</span>
+      {/* ═══ Section Header ═══ */}
+      <hr className="tv-hr-strong" />
+      <div className="tv-header section-padding-x" style={{ padding: '6px 16px', background: 'var(--fg)', color: 'var(--bg)' }}>
+        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.15em', textTransform: 'uppercase', fontWeight: 700 }}>
+          Trails &amp; Borders · The Travel Record
+        </span>
+        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.1em' }}>
+          Page 8
+        </span>
       </div>
+      <hr className="tv-hr-strong" />
 
-      {/* Full-width headline strip */}
-      <div className="tv-headline-strip" style={{ borderBottom: '3px double var(--fg)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '32px' }}>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.2em', marginBottom: '8px' }}>The Foreign Desk · Annual Dispatch</div>
-          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(30px, 4.5vw, 64px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.025em', color: 'var(--fg)', margin: 0 }}>
-            Nine Stamps.<br />Three Continents.<br />
-            <span style={{ color: 'var(--accent)' }}>One Correspondent.</span>
+      {/* ═══ Headline Zone ═══ */}
+      <div className="tv-headline-zone section-padding-x" style={{ padding: '28px 16px 24px' }}>
+        <div>
+          <h2 style={{
+            fontFamily: display,
+            fontSize: 'clamp(30px, 5vw, 52px)',
+            fontWeight: 900,
+            lineHeight: 1.02,
+            letterSpacing: '-0.025em',
+            color: 'var(--fg)',
+            margin: '0 0 14px',
+          }}>
+            A Man in Motion.<br />
+            <span style={{ color: 'var(--accent)' }}>And the World Still Has More to Show.</span>
           </h2>
+          <p style={{
+            fontFamily: serif,
+            fontSize: '14px',
+            fontStyle: 'italic',
+            lineHeight: 1.65,
+            color: 'var(--fg)',
+            maxWidth: '560px',
+            margin: 0,
+            opacity: 0.8,
+          }}>
+            He plans the flight. The rest, he figures out on arrival. Seven countries in, the method hasn&apos;t failed him yet — it&apos;s just produced better stories than any guidebook could have written.
+          </p>
         </div>
-        <div className="tv-headline-quote" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '14px', fontStyle: 'italic', lineHeight: 1.65, color: 'var(--fg)', maxWidth: '320px', flexShrink: 0 }}>
-          From the Tatra ridgelines of Central Europe to the engineered island of Singapore and the antipodean light of Australia — the beat continues.
+
+        {/* Stat stamps */}
+        <div className="tv-stamps-col" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <div className="tv-stamp" style={{ background: 'var(--fg)' }}>
+            <div className="tv-stamp-num">7</div>
+            <div className="tv-stamp-label">Countries Visited</div>
+          </div>
+          <div className="tv-stamp" style={{ background: 'var(--accent)' }}>
+            <div className="tv-stamp-num">2</div>
+            <div className="tv-stamp-label">Planned This Year</div>
+          </div>
+          <div className="tv-stamp" style={{ background: '#6b5a48' }}>
+            <div className="tv-stamp-num">4</div>
+            <div className="tv-stamp-label">Continents Touched</div>
+          </div>
         </div>
       </div>
 
-      {/* Main 4-column grid */}
-      <div className="tv-main-grid">
+      <hr className="tv-hr" style={{ marginLeft: '16px', marginRight: '16px' }} />
 
-        {/* Col 1 — Passport stamps */}
-        <div className="tv-passport-col">
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.2em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px', textAlign: 'center' }}>Passport</div>
+      {/* ═══ Row 1 — Three Columns ═══ */}
+      <div className="tv-row1">
 
-          {countries.map((c, i) => (
-            <div key={c.name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px solid var(--fg)', outline: '1px solid var(--fg)', outlineOffset: '3px', padding: '8px 6px 6px', position: 'relative', background: i % 3 === 0 ? 'rgba(139,34,35,0.04)' : 'transparent', marginBottom: '10px' }}>
-              <StampDots />
-              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '22px', fontWeight: 900, lineHeight: 1, color: i % 4 === 1 ? 'var(--accent)' : 'var(--fg)', letterSpacing: '.05em' }}>{c.stamp}</div>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', textTransform: 'uppercase', letterSpacing: '.1em', color: 'var(--fg)', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>{c.name}</div>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'var(--sepia)', marginTop: '2px' }}>{c.year}</div>
-            </div>
-          ))}
-
-          {/* Japan — pending */}
-          <div style={{ border: '2px dashed var(--accent)', padding: '8px 6px 6px', textAlign: 'center', opacity: 0.6 }}>
-            <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '22px', fontWeight: 900, color: 'var(--accent)', lineHeight: 1 }}>JP</div>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', textTransform: 'uppercase', color: 'var(--accent)', marginTop: '4px', letterSpacing: '.08em' }}>JAPAN</div>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'var(--accent)', marginTop: '2px' }}>PENDING</div>
+        {/* Col 1 — Portrait Photo */}
+        <div className="tv-col-rule tv-row1-portrait" style={{ padding: '20px 16px', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ position: 'relative', width: '100%', flex: 1, minHeight: '460px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
+            <NpImage
+              src="/pr-travel-still.png"
+              alt="Somewhere between borders — Europe, 2023"
+              fill
+              sizes="(max-width: 960px) 100vw, 33vw"
+            />
+          </div>
+          <div style={{
+            fontFamily: serif,
+            fontSize: '10px',
+            fontStyle: 'italic',
+            color: 'var(--sepia)',
+            marginTop: '8px',
+            lineHeight: 1.5,
+          }}>
+            Somewhere between borders — Europe, 2023
           </div>
         </div>
 
-        {/* Col 2+3 — Lead story: Central Europe */}
-        <div className="tv-lead-col" style={{ gridColumn: 'span 2', borderRight: '1px solid rgba(14,14,12,0.2)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px' }}>
-            Lead Dispatch · Central Europe · Sep–Nov 2023
-          </div>
+        {/* Col 2 — The Traveller */}
+        <div className="tv-col-rule" style={{ padding: '20px 20px' }}>
+          <div style={{
+            fontFamily: mono,
+            fontSize: '9px',
+            letterSpacing: '.2em',
+            textTransform: 'uppercase',
+            color: 'var(--accent)',
+            borderBottom: '1px solid rgba(14,14,12,0.2)',
+            paddingBottom: '4px',
+            marginBottom: '14px',
+          }}>The Traveller</div>
 
-          <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(22px, 3vw, 40px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--fg)', margin: 0 }}>
-            Six Nations in One Autumn.<br />
-            <span style={{ fontStyle: 'italic', fontWeight: 700, color: 'var(--accent)' }}>Filed Without Incident.</span>
-          </h3>
-
-          {/* Country dateline tags */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-            {['Poland', 'Slovakia', 'Czech Republic', 'Austria', 'Hungary', 'Slovenia'].map(c => (
-              <span key={c} style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', background: 'var(--fg)', color: 'var(--bg)', padding: '2px 8px', letterSpacing: '.06em', textTransform: 'uppercase' }}>{c}</span>
-            ))}
-          </div>
-
-          {/* Photo strip */}
-          <div className="tv-photo-strip">
-            <div style={{ overflow: 'hidden', position: 'relative' }}>
-              <NpImage src="https://picsum.photos/seed/europe-castle/480/300" alt="Bratislava Castle Hill" fill sizes="(max-width: 900px) 100vw, 480px" />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.65))', padding: '16px 8px 6px', zIndex: 1 }}>
-                <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.85)', letterSpacing: '.06em' }}>Bratislava Castle Hill · Slovakia</div>
-              </div>
-            </div>
-            <div style={{ overflow: 'hidden', position: 'relative' }}>
-              <NpImage src="https://picsum.photos/seed/tatras-ridge/240/300" alt="Tatras" fill sizes="240px" />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.65))', padding: '10px 6px 4px', zIndex: 1 }}>
-                <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'rgba(244,239,230,0.8)' }}>Tatras · Poland</div>
-              </div>
-            </div>
-            <div style={{ overflow: 'hidden', position: 'relative' }}>
-              <NpImage src="https://picsum.photos/seed/vienna-arcade/240/300" alt="Vienna" fill sizes="240px" />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.65))', padding: '10px 6px 4px', zIndex: 1 }}>
-                <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'rgba(244,239,230,0.8)' }}>Arcades · Vienna</div>
-              </div>
-            </div>
-          </div>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--sepia)', fontStyle: 'italic', textAlign: 'center', borderBottom: '1px solid rgba(14,14,12,0.12)', paddingBottom: '12px' }}>
-            Above, left to right: Bratislava Castle Hill · Tatras Ridgeline · Viennese Arcades — Photographs by the Correspondent, Autumn 2023
-          </div>
+          <p className="drop-cap" style={{
+            fontFamily: serif,
+            fontSize: '13px',
+            lineHeight: 1.72,
+            color: 'var(--fg)',
+            margin: '0 0 12px',
+            textAlign: 'justify',
+          }}>
+            He travels alone. Not out of preference for solitude — though he&apos;ll admit he doesn&apos;t mind it — but because solo travel is the only format that forces genuine decisions. Every wrong turn is his. Every right one too. The discomfort of not knowing the language, not knowing the exit, not knowing what that dish actually is — that&apos;s not a bug in the experience. That&apos;s the experience.
+          </p>
+          <p style={{
+            fontFamily: serif,
+            fontSize: '13px',
+            lineHeight: 1.72,
+            color: 'var(--fg)',
+            margin: '0 0 16px',
+            textAlign: 'justify',
+          }}>
+            Seven countries across three years. The pace is not frantic. He&apos;s not chasing a number. But the number keeps growing anyway, quietly, the way good habits do.
+          </p>
 
           {/* Pull quote */}
-          <blockquote style={{ margin: 0, padding: '12px 18px', borderLeft: '4px solid var(--accent)', background: 'rgba(139,34,35,0.04)' }}>
-            <p style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(15px, 2vw, 20px)', fontStyle: 'italic', fontWeight: 700, lineHeight: 1.35, color: 'var(--fg)', margin: 0 }}>
-              &ldquo;Thermal baths in Budapest. Castle hills in Bratislava. The Tatras in cloud. The contrast is the itinerary.&rdquo;
-            </p>
-          </blockquote>
-
-          {/* Body copy — 2 columns */}
-          <div className="tv-body-copy">
-            <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '14px', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 12px' }}>
-              Six countries in one autumn was not planned as a sweep — it evolved into one. From Warsaw&apos;s reconstructed grandeur to Ljubljana&apos;s compact beauty, each capital offered a different texture of Central European history. The Tatras ridge in Poland was the physical high point. Budapest&apos;s thermal baths, the sensory one.
-            </p>
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '14px', lineHeight: 1.72, color: 'var(--fg)', margin: 0 }}>
-              The train network made it possible. The weather made it memorable. Filed from Vienna on the last leg, this correspondent notes: the architecture argues with itself across every border, and that argument is the most interesting thing about Central Europe.
+          <div style={{ borderTop: '1.5px solid var(--accent)', borderBottom: '1.5px solid var(--accent)', padding: '10px 0', margin: '0' }}>
+            <p style={{
+              fontFamily: serif,
+              fontSize: '14px',
+              fontStyle: 'italic',
+              lineHeight: 1.5,
+              color: 'var(--accent)',
+              margin: 0,
+              textAlign: 'center',
+            }}>
+              &ldquo;The passport fills up the same way the bookshelf does — one deliberate choice at a time.&rdquo;
             </p>
           </div>
+        </div>
 
-          {/* City dateline bar */}
-          <div className="tv-city-bar">
-            {europeCities.map(({ city, country }) => (
-              <div key={city} style={{ textAlign: 'center', padding: '4px 0' }}>
-                <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 900, color: 'var(--fg)' }}>{country}</div>
-                <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.06em' }}>{city}</div>
+        {/* Col 3 — The Method */}
+        <div style={{ padding: '20px 20px' }}>
+          <div style={{
+            fontFamily: mono,
+            fontSize: '9px',
+            letterSpacing: '.2em',
+            textTransform: 'uppercase',
+            color: 'var(--accent)',
+            borderBottom: '1px solid rgba(14,14,12,0.2)',
+            paddingBottom: '4px',
+            marginBottom: '14px',
+          }}>The Method</div>
+
+          <p style={{
+            fontFamily: serif,
+            fontSize: '13px',
+            lineHeight: 1.72,
+            color: 'var(--fg)',
+            margin: '0 0 12px',
+            textAlign: 'justify',
+          }}>
+            The approach is mid-range and curious. Not backpacker-spartan, not resort-comfortable. He books a decent place to sleep, leaves the days open, and lets the city decide what happens next. Street food over restaurant menus. Public transit over taxis. Conversations over itineraries.
+          </p>
+          <p style={{
+            fontFamily: serif,
+            fontSize: '13px',
+            lineHeight: 1.72,
+            color: 'var(--fg)',
+            margin: '0 0 12px',
+            textAlign: 'justify',
+          }}>
+            Europe came in a single sweep — five countries, one route, one summer. Asia arrived in fragments: Singapore first, crisp and efficient; Sri Lanka next, slower, louder, warmer in every sense of the word.
+          </p>
+          <p style={{
+            fontFamily: serif,
+            fontSize: '13px',
+            lineHeight: 1.72,
+            color: 'var(--fg)',
+            margin: 0,
+            textAlign: 'justify',
+          }}>
+            Each country left something behind. Not souvenirs. Something less packable — a reference point, a new unit of measurement for what normal can look like.
+          </p>
+        </div>
+
+        {/* Col 4 — Next Departures (duplicate for preview) */}
+        <div style={{ padding: '20px 20px' }}>
+          <div style={{
+            fontFamily: mono,
+            fontSize: '9px',
+            letterSpacing: '.2em',
+            textTransform: 'uppercase',
+            color: 'var(--accent)',
+            borderBottom: '1px solid rgba(14,14,12,0.2)',
+            paddingBottom: '4px',
+            marginBottom: '14px',
+          }}>
+            Next Departures · 2026
+          </div>
+
+          <p style={{
+            fontFamily: serif,
+            fontSize: '12px',
+            fontStyle: 'italic',
+            lineHeight: 1.6,
+            color: 'var(--fg)',
+            margin: '0 0 16px',
+          }}>
+            Two countries confirmed in his mind. The tickets may not exist yet. The intent does.
+          </p>
+
+          {upcomingCountries.map(c => (
+            <div key={`row1-${c.name}`} className="tv-upcoming-card">
+              <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                <span className="tv-planned-badge">Planned</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Col 4 — Short dispatches */}
-        <div className="tv-dispatches-col" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {shortDispatches.map((d, i) => (
-            <div key={i}>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.12em', borderBottom: '1px solid var(--accent)', paddingBottom: '3px', marginBottom: '8px' }}>Dispatch · {d.date}</div>
-              {d.image && (
-                <div style={{ overflow: 'hidden', height: i === 0 ? '90px' : '80px', marginBottom: '8px', position: 'relative' }}>
-                  <NpImage src={d.image} alt={d.title} fill sizes="220px" />
-                  {d.caption && (
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.6))', padding: '10px 6px 4px', zIndex: 1 }}>
-                      <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '7px', color: 'rgba(244,239,230,0.85)' }}>{d.caption}</div>
-                    </div>
-                  )}
-                </div>
-              )}
-              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 700, lineHeight: 1.25, color: 'var(--fg)', marginBottom: '6px' }}>{d.title}</div>
-              <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '12.5px', lineHeight: 1.6, color: 'var(--fg)', margin: 0 }}>{d.body}</p>
-              {i < shortDispatches.length - 1 && <div style={{ height: '1px', background: 'rgba(14,14,12,0.15)', marginTop: '20px' }} />}
+              <h4 style={{
+                fontFamily: display,
+                fontSize: '18px',
+                fontWeight: 900,
+                lineHeight: 1.15,
+                color: 'var(--fg)',
+                margin: '0 0 2px',
+              }}>
+                {c.name}
+              </h4>
+              <div style={{
+                fontFamily: mono,
+                fontSize: '8px',
+                letterSpacing: '.1em',
+                textTransform: 'uppercase',
+                color: 'var(--accent)',
+                marginBottom: '8px',
+              }}>
+                {c.year} · {c.region}
+              </div>
+              <p style={{
+                fontFamily: serif,
+                fontSize: '12px',
+                lineHeight: 1.6,
+                color: 'var(--fg)',
+                margin: 0,
+              }}>
+                {c.body}
+              </p>
             </div>
           ))}
+        </div>
+      </div>
 
-          {/* Japan WANTED notice */}
-          <div style={{ border: '2px solid var(--fg)', padding: '12px', textAlign: 'center', background: 'rgba(139,34,35,0.03)' }}>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '.2em', color: 'var(--accent)', marginBottom: '6px' }}>⚑ WANTED NOTICE ⚑</div>
-            <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '18px', fontWeight: 900, lineHeight: 1.1, color: 'var(--fg)', marginBottom: '6px' }}>Japan.<br />Long Overdue.</div>
-            <div style={{ height: '1px', background: 'rgba(14,14,12,0.2)', margin: '8px 0' }} />
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '11.5px', lineHeight: 1.55, color: 'var(--fg)', margin: '0 0 8px', fontStyle: 'italic' }}>
-              Tokyo · Kyoto · Osaka — target destinations. The railway system alone warrants the trip.
+      <hr className="tv-hr" style={{ marginLeft: '16px', marginRight: '16px' }} />
+
+      {/* ═══ Row 2 — Two Columns ═══ */}
+      <div className="tv-row2">
+
+        {/* Left — Landscape photo + Timeline */}
+        <div className="tv-col-rule" style={{ padding: '20px 20px' }}>
+
+          {/* Landscape photo */}
+          <div style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)', marginBottom: '6px' }}>
+            <NpImage
+              src="https://picsum.photos/seed/prague-old-town/800/400"
+              alt="Old Town, Prague-route — Central Europe, 2023"
+              fill
+              sizes="(max-width: 960px) 100vw, 700px"
+            />
+          </div>
+          <div style={{
+            fontFamily: serif,
+            fontSize: '10px',
+            fontStyle: 'italic',
+            color: 'var(--sepia)',
+            marginBottom: '16px',
+          }}>
+            Old Town, Prague-route — Central Europe, 2023
+          </div>
+
+          {/* Timeline label */}
+          <div style={{
+            fontFamily: mono,
+            fontSize: '9px',
+            letterSpacing: '.15em',
+            textTransform: 'uppercase',
+            color: 'var(--sepia)',
+            marginBottom: '4px',
+          }}>
+            Travel Record · 2022 – 2023 · Tap any country to read
+          </div>
+
+          {/* Interactive timeline */}
+          <div className="tv-timeline-container">
+            {/* Decorative rail that cuts through dots */}
+            <div className="tv-timeline-rail" aria-hidden="true" />
+
+            {/* Left curl ornament */}
+            <svg className="tv-timeline-curl-left" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+              <path d="M18 7 C14 7, 12 2, 8 2 C4 2, 2 7, 2 7 C2 7, 4 12, 8 12 C10 12, 11 10, 11 9" stroke="var(--fg)" strokeWidth="1.2" fill="none" />
+              <circle cx="18" cy="7" r="1.5" fill="var(--fg)" />
+            </svg>
+
+            {/* Right curl ornament */}
+            <svg className="tv-timeline-curl-right" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+              <path d="M2 7 C6 7, 8 2, 12 2 C16 2, 18 7, 18 7 C18 7, 16 12, 12 12 C10 12, 9 10, 9 9" stroke="var(--fg)" strokeWidth="1.2" fill="none" />
+              <circle cx="2" cy="7" r="1.5" fill="var(--fg)" />
+            </svg>
+
+            <div className="tv-timeline" role="tablist" aria-label="Travel timeline">
+              {countries.map((c, i) => (
+                <button
+                  key={c.code}
+                  className="tv-dot-wrap"
+                  onClick={() => handleDotClick(i)}
+                  role="tab"
+                  aria-selected={i === activeIndex}
+                  aria-label={`${c.name}, ${c.year}`}
+                >
+                  <div className={`tv-dot${i === activeIndex ? ' active' : ''}`} />
+                  <div className="tv-dot-label" style={{ color: i === activeIndex ? 'var(--accent)' : 'var(--fg)', fontWeight: i === activeIndex ? 700 : 400 }}>
+                    {c.name}
+                  </div>
+                  <div className="tv-dot-year">{c.year}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Active country write-up */}
+          <div role="tabpanel" style={{ marginTop: '20px', minHeight: '120px' }}>
+            <h3 style={{
+              fontFamily: display,
+              fontSize: 'clamp(20px, 3vw, 28px)',
+              fontWeight: 900,
+              lineHeight: 1.1,
+              color: 'var(--fg)',
+              margin: '0 0 4px',
+            }}>
+              {active.name}
+            </h3>
+            <div style={{
+              fontFamily: mono,
+              fontSize: '9px',
+              letterSpacing: '.1em',
+              textTransform: 'uppercase',
+              color: 'var(--sepia)',
+              marginBottom: '10px',
+            }}>
+              {active.year} · {active.region}
+            </div>
+            <p style={{
+              fontFamily: serif,
+              fontSize: '13px',
+              lineHeight: 1.72,
+              color: 'var(--fg)',
+              margin: '0 0 10px',
+              maxWidth: '640px',
+            }}>
+              {active.body}
             </p>
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--accent)', letterSpacing: '.1em' }}>STATUS: OPEN ASSIGNMENT · 2025</div>
+            <div style={{
+              fontFamily: serif,
+              fontSize: '10px',
+              fontStyle: 'italic',
+              color: 'var(--sepia)',
+              textAlign: 'right',
+            }}>
+              — tap another country on the timeline
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Dark bottom strip */}
-      <div className="tv-bottom-strip">
-        <div>
-          <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 900, color: 'var(--bg)', lineHeight: 1 }}>9 Countries.</div>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.45)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '4px' }}>Stamps collected as of press date</div>
-        </div>
-        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-          {[['Europe', '6'], ['Asia', '2'], ['Oceania', '1']].map(([cont, n]) => (
-            <div key={cont} style={{ textAlign: 'center' }}>
-              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '28px', fontWeight: 900, color: 'var(--bg)', lineHeight: 1 }}>{n}</div>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.4)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{cont}</div>
+        {/* Right — Upcoming Sidebar */}
+        <div className="tv-row2-sidebar" style={{ padding: '20px 20px', borderLeft: '1px solid rgba(14,14,12,0.18)' }}>
+          <div style={{
+            fontFamily: mono,
+            fontSize: '9px',
+            letterSpacing: '.2em',
+            textTransform: 'uppercase',
+            color: 'var(--accent)',
+            borderBottom: '1px solid rgba(14,14,12,0.2)',
+            paddingBottom: '4px',
+            marginBottom: '14px',
+          }}>
+            Next Departures · 2026
+          </div>
+
+          <p style={{
+            fontFamily: serif,
+            fontSize: '12px',
+            fontStyle: 'italic',
+            lineHeight: 1.6,
+            color: 'var(--fg)',
+            margin: '0 0 16px',
+          }}>
+            Two countries confirmed in his mind. The tickets may not exist yet. The intent does.
+          </p>
+
+          {/* Upcoming country cards */}
+          {upcomingCountries.map(c => (
+            <div key={c.name} className="tv-upcoming-card">
+              <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                <span className="tv-planned-badge">Planned</span>
+              </div>
+              <h4 style={{
+                fontFamily: display,
+                fontSize: '18px',
+                fontWeight: 900,
+                lineHeight: 1.15,
+                color: 'var(--fg)',
+                margin: '0 0 2px',
+              }}>
+                {c.name}
+              </h4>
+              <div style={{
+                fontFamily: mono,
+                fontSize: '8px',
+                letterSpacing: '.1em',
+                textTransform: 'uppercase',
+                color: 'var(--accent)',
+                marginBottom: '8px',
+              }}>
+                {c.year} · {c.region}
+              </div>
+              <p style={{
+                fontFamily: serif,
+                fontSize: '12px',
+                lineHeight: 1.6,
+                color: 'var(--fg)',
+                margin: 0,
+              }}>
+                {c.body}
+              </p>
             </div>
           ))}
-        </div>
-        <div className="tv-bottom-quote">
-          <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', fontStyle: 'italic', color: 'rgba(244,239,230,0.6)', lineHeight: 1.5 }}>
-            &ldquo;The beat continues.<br />Japan is next.&rdquo;
+
+          {/* After That */}
+          <div style={{ marginTop: '8px' }}>
+            <div style={{
+              fontFamily: mono,
+              fontSize: '9px',
+              letterSpacing: '.2em',
+              textTransform: 'uppercase',
+              color: 'var(--accent)',
+              borderBottom: '1px solid rgba(14,14,12,0.2)',
+              paddingBottom: '4px',
+              marginBottom: '10px',
+            }}>
+              After That
+            </div>
+            <p style={{
+              fontFamily: serif,
+              fontSize: '12px',
+              fontStyle: 'italic',
+              lineHeight: 1.6,
+              color: 'var(--fg)',
+              margin: 0,
+            }}>
+              The list after these two is unwritten. He prefers it that way. A blank itinerary is the most honest kind.
+            </p>
           </div>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.3)', marginTop: '6px' }}>— P.R., Foreign Correspondent</div>
         </div>
       </div>
 
-      <SectionFiller watermark="TRAVEL" footnote="Travel · p. 8 · 9 countries dispatched · Japan: open assignment · 2023 season" page="8" />
+      {/* ═══ Footer ═══ */}
+      <hr className="tv-hr" style={{ marginLeft: '16px', marginRight: '16px' }} />
+      <div className="section-padding-x" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px', flexWrap: 'wrap', gap: '8px' }}>
+        <span style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--sepia)' }}>
+          Trails &amp; Borders · Travel Section · Annual Review
+        </span>
+        <span style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.1em', color: 'var(--sepia)' }}>
+          {getFormattedShortDate()} · Page 8
+        </span>
+      </div>
+
+      <SectionFiller watermark="TRAVEL" footnote="Trails & Borders · 7 countries dispatched · 2 planned · Annual Review" page="8" />
     </section>
   )
 }
