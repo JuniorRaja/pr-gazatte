@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import NpImage from '@/components/NpImage'
 import SectionFiller from '@/components/SectionFiller'
 import { countries, upcomingCountries } from '@/content/travel.mdx'
-import { getFormattedShortDate } from '@/utils/date'
 
 const mono = '"JetBrains Mono", monospace'
 const serif = '"Source Serif 4", serif'
@@ -39,9 +38,9 @@ export default function Travel() {
         .tv-header { display: flex; justify-content: space-between; align-items: center; }
         .tv-headline-zone {
           display: grid;
-          grid-template-columns: 1fr 160px;
-          gap: 24px;
-          align-items: start;
+          grid-template-columns: 6fr 2fr;
+          gap: 28px;
+          align-items: center;
         }
         .tv-row1 {
           display: grid;
@@ -181,10 +180,6 @@ export default function Travel() {
         }
         .tv-dot-wrap:hover .tv-dot:not(.active)::after { opacity: 0.6; }
 
-        /* ── Stat stamps ── */
-        .tv-stamp { padding: 10px 14px; text-align: center; }
-        .tv-stamp-num { font-family: ${display}; font-size: 28px; font-weight: 900; line-height: 1; color: var(--bg); }
-        .tv-stamp-label { font-family: ${mono}; font-size: 7px; letter-spacing: .15em; text-transform: uppercase; color: var(--bg); margin-top: 4px; opacity: 0.85; }
 
         /* ── Planned badge ── */
         .tv-planned-badge {
@@ -230,8 +225,6 @@ export default function Travel() {
         }
         @media (max-width: 639px) {
           .tv-headline-zone { grid-template-columns: 1fr; }
-          .tv-stamps-col { display: flex; flex-direction: row !important; gap: 8px; }
-          .tv-stamps-col .tv-stamp { flex: 1; min-width: 0; }
           .tv-row1 { grid-template-columns: 1fr; }
           .tv-row1 > div { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.18); }
           .tv-row1 > div:last-child { border-bottom: none; }
@@ -274,63 +267,50 @@ export default function Travel() {
             margin: '0 0 14px',
           }}>
             A Man in Motion.<br />
-            <span style={{ color: 'var(--accent)' }}>And the World Still Has More to Show.</span>
+            <span style={{ color: 'var(--accent)' }}>Across Lands, Carrying Stories Forward.</span>
           </h2>
-          <p style={{
-            fontFamily: serif,
-            fontSize: '14px',
-            fontStyle: 'italic',
-            lineHeight: 1.65,
-            color: 'var(--fg)',
-            maxWidth: '560px',
-            margin: 0,
-            opacity: 0.8,
-          }}>
-            He plans the flight. The rest, he figures out on arrival. Seven countries in, the method hasn&apos;t failed him yet — it&apos;s just produced better stories than any guidebook could have written.
-          </p>
         </div>
 
-        {/* Stat stamps */}
-        <div className="tv-stamps-col" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <div className="tv-stamp" style={{ background: 'var(--fg)' }}>
-            <div className="tv-stamp-num">7</div>
-            <div className="tv-stamp-label">Countries Visited</div>
-          </div>
-          <div className="tv-stamp" style={{ background: 'var(--accent)' }}>
-            <div className="tv-stamp-num">2</div>
-            <div className="tv-stamp-label">Planned This Year</div>
-          </div>
-          <div className="tv-stamp" style={{ background: '#6b5a48' }}>
-            <div className="tv-stamp-num">4</div>
-            <div className="tv-stamp-label">Continents Touched</div>
-          </div>
-        </div>
+        {/* Headline byline — right side */}
+        <p style={{
+          fontFamily: serif,
+          fontSize: '14px',
+          fontStyle: 'italic',
+          lineHeight: 1.65,
+          color: 'var(--fg)',
+          margin: 0,
+          opacity: 0.8,
+          borderLeft: '3px solid var(--accent)',
+          paddingLeft: '16px',
+        }}>
+          He plans the flight. The rest, he figures out on arrival. Seven countries in, the method hasn&apos;t failed him yet — it&apos;s just produced better stories than any guidebook could have written.
+        </p>
       </div>
 
-      <hr className="tv-hr" style={{ marginLeft: '16px', marginRight: '16px' }} />
+      {/* ── Stats quote strip ── */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(14,14,12,0.03)', borderTop: '1px solid rgba(14,14,12,0.15)', borderBottom: '1px solid rgba(14,14,12,0.15)', padding: '12px 16px' }}>
+        <span style={{ fontFamily: mono, fontSize: '20px', color: 'var(--accent)', lineHeight: 1, flexShrink: 0 }}>&ldquo;</span>
+        <p style={{ fontFamily: serif, fontSize: '13px', fontStyle: 'italic', lineHeight: 1.6, color: 'var(--fg)', margin: 0, opacity: 0.85 }}>
+          Seven countries across four continents — two more on the horizon for 2026. The count is not the point. But it keeps growing anyway.
+        </p>
+        <span style={{ fontFamily: mono, fontSize: '20px', color: 'var(--accent)', lineHeight: 1, flexShrink: 0, alignSelf: 'flex-end' }}>&rdquo;</span>
+      </div>
 
       {/* ═══ Row 1 — Three Columns ═══ */}
       <div className="tv-row1">
 
         {/* Col 1 — Portrait Photo */}
-        <div className="tv-col-rule tv-row1-portrait" style={{ padding: '20px 16px', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ position: 'relative', width: '100%', flex: 1, minHeight: '460px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
+        <div className="tv-col-rule tv-row1-portrait" style={{ padding: '20px 16px' }}>
+          <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '460px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
             <NpImage
               src="/pr-travel-still.png"
               alt="Somewhere between borders — Europe, 2023"
               fill
               sizes="(max-width: 960px) 100vw, 33vw"
             />
-          </div>
-          <div style={{
-            fontFamily: serif,
-            fontSize: '10px',
-            fontStyle: 'italic',
-            color: 'var(--sepia)',
-            marginTop: '8px',
-            lineHeight: 1.5,
-          }}>
-            Somewhere between borders — Europe, 2023
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.65))', padding: '24px 10px 8px' }}>
+              <span style={{ fontFamily: mono, fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Somewhere between borders — Europe, 2023</span>
+            </div>
           </div>
         </div>
 
@@ -369,12 +349,12 @@ export default function Travel() {
           </p>
 
           {/* Pull quote */}
-          <div style={{ borderTop: '1.5px solid var(--accent)', borderBottom: '1.5px solid var(--accent)', padding: '10px 0', margin: '0' }}>
+          <div style={{ borderTop: '1.5px solid var(--accent)', borderBottom: '1.5px solid var(--accent)', padding: '10px 0', marginTop: '16px' }}>
             <p style={{
               fontFamily: serif,
-              fontSize: '14px',
+              fontSize: '13px',
               fontStyle: 'italic',
-              lineHeight: 1.5,
+              lineHeight: 1.55,
               color: 'var(--accent)',
               margin: 0,
               textAlign: 'center',
@@ -385,7 +365,7 @@ export default function Travel() {
         </div>
 
         {/* Col 3 — The Method */}
-        <div style={{ padding: '20px 20px' }}>
+        <div className="tv-col-rule" style={{ padding: '20px 20px' }}>
           <div style={{
             fontFamily: mono,
             fontSize: '9px',
@@ -429,7 +409,7 @@ export default function Travel() {
           </p>
         </div>
 
-        {/* Col 4 — Next Departures (duplicate for preview) */}
+        {/* Col 4 — Dispatches Filed */}
         <div style={{ padding: '20px 20px' }}>
           <div style={{
             fontFamily: mono,
@@ -439,56 +419,28 @@ export default function Travel() {
             color: 'var(--accent)',
             borderBottom: '1px solid rgba(14,14,12,0.2)',
             paddingBottom: '4px',
-            marginBottom: '14px',
           }}>
-            Next Departures · 2026
+            Dispatches Filed
           </div>
 
-          <p style={{
-            fontFamily: serif,
-            fontSize: '12px',
-            fontStyle: 'italic',
-            lineHeight: 1.6,
-            color: 'var(--fg)',
-            margin: '0 0 16px',
-          }}>
-            Two countries confirmed in his mind. The tickets may not exist yet. The intent does.
-          </p>
-
-          {upcomingCountries.map(c => (
-            <div key={`row1-${c.name}`} className="tv-upcoming-card">
-              <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
-                <span className="tv-planned-badge">Planned</span>
+          {countries.map((c, i) => (
+            <div key={c.code} style={{ borderBottom: '1px solid rgba(14,14,12,0.1)', padding: '10px 0' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                  <span style={{ fontFamily: mono, fontSize: '8px', color: 'var(--accent)', flexShrink: 0, minWidth: '16px' }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span style={{ fontFamily: display, fontSize: '14px', fontWeight: 700, lineHeight: 1.2, color: 'var(--fg)' }}>
+                    {c.name}
+                  </span>
+                </div>
+                <span style={{ fontFamily: mono, fontSize: '8px', color: 'var(--sepia)', letterSpacing: '.06em', flexShrink: 0 }}>
+                  {c.year}
+                </span>
               </div>
-              <h4 style={{
-                fontFamily: display,
-                fontSize: '18px',
-                fontWeight: 900,
-                lineHeight: 1.15,
-                color: 'var(--fg)',
-                margin: '0 0 2px',
-              }}>
-                {c.name}
-              </h4>
-              <div style={{
-                fontFamily: mono,
-                fontSize: '8px',
-                letterSpacing: '.1em',
-                textTransform: 'uppercase',
-                color: 'var(--accent)',
-                marginBottom: '8px',
-              }}>
-                {c.year} · {c.region}
+              <div style={{ fontFamily: mono, fontSize: '8px', color: 'var(--sepia)', letterSpacing: '.08em', paddingLeft: '24px', marginTop: '3px' }}>
+                {c.region}
               </div>
-              <p style={{
-                fontFamily: serif,
-                fontSize: '12px',
-                lineHeight: 1.6,
-                color: 'var(--fg)',
-                margin: 0,
-              }}>
-                {c.body}
-              </p>
             </div>
           ))}
         </div>
@@ -598,7 +550,6 @@ export default function Travel() {
               lineHeight: 1.72,
               color: 'var(--fg)',
               margin: '0 0 10px',
-              maxWidth: '640px',
             }}>
               {active.body}
             </p>
@@ -616,6 +567,7 @@ export default function Travel() {
 
         {/* Right — Upcoming Sidebar */}
         <div className="tv-row2-sidebar" style={{ padding: '20px 20px', borderLeft: '1px solid rgba(14,14,12,0.18)' }}>
+
           <div style={{
             fontFamily: mono,
             fontSize: '9px',
@@ -704,17 +656,6 @@ export default function Travel() {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* ═══ Footer ═══ */}
-      <hr className="tv-hr" style={{ marginLeft: '16px', marginRight: '16px' }} />
-      <div className="section-padding-x" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px', flexWrap: 'wrap', gap: '8px' }}>
-        <span style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--sepia)' }}>
-          Trails &amp; Borders · Travel Section · Annual Review
-        </span>
-        <span style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.1em', color: 'var(--sepia)' }}>
-          {getFormattedShortDate()} · Page 8
-        </span>
       </div>
 
       <SectionFiller watermark="TRAVEL" footnote="Trails & Borders · 7 countries dispatched · 2 planned · Annual Review" page="8" />
