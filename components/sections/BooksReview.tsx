@@ -336,7 +336,7 @@ export default function BooksReview() {
         className="br-outer"
         style={{
           display: 'grid',
-          gridTemplateColumns: '3fr 2fr',
+          gridTemplateColumns: '3fr 1fr',
           alignItems: 'stretch',
           borderBottom: '1px solid rgba(14,14,12,0.2)',
         }}
@@ -392,16 +392,16 @@ export default function BooksReview() {
                 marginRight: '22px',
               }}
             >
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--sepia)', borderBottom: '0.5px solid rgba(14,14,12,0.2)', paddingBottom: '4px', marginBottom: '10px' }}>The habit</div>
-              <p className="drop-cap" style={{ fontFamily: serif, fontSize: '11.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '8px' }}>
+              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The habit</div>
+              <p className="drop-cap" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '8px' }}>
                 He does not read on schedule. He reads the way some people think — in bursts, in margins, in the ten minutes before a meeting where a decent idea might still show up. The book is always somewhere nearby. Sometimes it is open. Sometimes it is just watching.
               </p>
-              <p style={{ fontFamily: serif, fontSize: '11.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
+              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 The habit formed not in school but in the years after, when answers stopped arriving pre-packaged and questions started arriving faster. A book became the cheapest form of a very expensive conversation.
               </p>
 
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--sepia)', borderBottom: '0.5px solid rgba(14,14,12,0.2)', paddingBottom: '4px', marginBottom: '10px' }}>What gets chosen</div>
-              <p style={{ fontFamily: serif, fontSize: '11.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '12px' }}>
+              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What gets chosen</div>
+              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '12px' }}>
                 The shelf leans non-fiction without being cold. History. Systems. The psychology of decisions. The occasional biography of someone who built something and survived it. Fiction makes a rare appearance — usually when a colleague insists, or when the nonfiction starts sounding too much like itself.
               </p>
               <div style={{
@@ -421,18 +421,18 @@ export default function BooksReview() {
 
             {/* Right editorial */}
             <div>
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--sepia)', borderBottom: '0.5px solid rgba(14,14,12,0.2)', paddingBottom: '4px', marginBottom: '10px' }}>What stays</div>
-              <p style={{ fontFamily: serif, fontSize: '11.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
+              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What stays</div>
+              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 The books that earn a permanent place are not the easiest to finish. They are the ones that left a sentence behind — something that surfaced weeks later in a code review, a retrospective, a late-night architecture discussion where the right framing suddenly mattered.
               </p>
 
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--sepia)', borderBottom: '0.5px solid rgba(14,14,12,0.2)', paddingBottom: '4px', marginBottom: '10px' }}>The system</div>
-              <p style={{ fontFamily: serif, fontSize: '11.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
+              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The system</div>
+              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 There is no colour-coding, no reading tracker, no Goodreads profile updated with military precision. The system is simpler: start, finish if it earns it, remember what matters. Dog-eared pages over highlights — a highlight is for someone else. The folded corner is a private agreement between reader and page.
               </p>
 
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--sepia)', borderBottom: '0.5px solid rgba(14,14,12,0.2)', paddingBottom: '4px', marginBottom: '10px' }}>What comes next</div>
-              <p style={{ fontFamily: serif, fontSize: '11.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify' }}>
+              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What comes next</div>
+              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify' }}>
                 Five are waiting. The to-read list is shorter than it has ever been — not because curiosity has narrowed, but because the bar has quietly raised itself. A book earns its place by being mentioned twice by people whose judgment has already proven expensive to ignore.
               </p>
             </div>
