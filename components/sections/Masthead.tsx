@@ -62,18 +62,8 @@ export default function Masthead() {
 
       {/* Date / Vol / Title strip - stack on mobile */}
       <div className="section-padding-x" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: '10px', paddingBottom: '8px', borderBottom: '1px solid rgba(14,14,12,0.25)', gap: '12px' }}>
-        {/* Date & Volume - top on mobile */}
-        <div className="md:hidden" style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.05em', color: 'var(--fg)', textAlign: 'center' }}>
-          <div style={{ fontWeight: 700 }}>{dateStr}</div>
-          <div style={{ marginTop: 2 }}>Vol. PR · No. 69</div>
-        </div>
-        
-        {/* Desktop: date left, title center, weather right */}
-        <div className="hidden md:flex" style={{ width: '100%', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.05em', color: 'var(--fg)' }}>
-            <div style={{ fontWeight: 700 }}>{dateStr}</div>
-            <div style={{ marginTop: 2 }}>Vol. PR · No. 69 · </div>
-          </div>
+        {/* Desktop: title center, date left + weather right below */}
+        <div className="hidden md:block" style={{ width: '100%' }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(52px, 9vw, 110px)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.02em', color: 'var(--fg)', userSelect: 'none' }}>
               THE PR GAZETTE
@@ -82,22 +72,32 @@ export default function Masthead() {
               ◆ &nbsp; Independent · Opinionated · Occasionally Correct &nbsp; ◆
             </div>
           </div>
-          <WeatherWidget />
-        </div>
-        
-        {/* Mobile: larger title */}
-        <div className="md:hidden" style={{ textAlign: 'center', width: '100%' }}>
-          <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(38px, 12vw, 72px)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.02em', color: 'var(--fg)', userSelect: 'none' }}>
-            THE PR GAZETTE
-          </div>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(7px, 2vw, 9px)', letterSpacing: '0.2em', color: 'var(--fg)', marginTop: '8px', textTransform: 'uppercase' }}>
-            ◆ Independent · Opinionated ◆
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '8px' }}>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.05em', color: 'var(--fg)' }}>
+              <div style={{ fontWeight: 700 }}>{dateStr}</div>
+              <div style={{ marginTop: 2 }}>Vol. PR · No. 69</div>
+            </div>
+            <WeatherWidget />
           </div>
         </div>
         
-        {/* Weather widget mobile - below title */}
-        <div className="md:hidden">
-          <WeatherWidget />
+        {/* Mobile: title, then date left + weather right below */}
+        <div className="md:hidden" style={{ width: '100%' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(38px, 12vw, 72px)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.02em', color: 'var(--fg)', userSelect: 'none' }}>
+              THE PR GAZETTE
+            </div>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(7px, 2vw, 9px)', letterSpacing: '0.2em', color: 'var(--fg)', marginTop: '8px', textTransform: 'uppercase' }}>
+              ◆ Independent · Opinionated ◆
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '8px' }}>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.05em', color: 'var(--fg)' }}>
+              <div style={{ fontWeight: 700 }}>{dateStr}</div>
+              <div style={{ marginTop: 2 }}>Vol. PR · No. 69</div>
+            </div>
+            <WeatherWidget />
+          </div>
         </div>
       </div>
 

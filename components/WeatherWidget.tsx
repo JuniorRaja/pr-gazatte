@@ -27,7 +27,6 @@ export default async function WeatherWidget() {
       <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', textAlign: 'right', color: 'var(--fg)' }}>
         <div style={{ fontWeight: 700, color: 'var(--accent)' }}>WEATHER</div>
         <div>Chennai · {Math.round(c.temperature_2m)}°C</div>
-        <div>{desc} · Winds {dir}</div>
       </div>
     )
   } catch {
