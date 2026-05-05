@@ -30,14 +30,14 @@ export default function OpEd() {
           <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', letterSpacing: '.1em', textTransform: 'uppercase', marginTop: '6px' }}>Editor-in-Chief</div>
           
           {/* Portrait - responsive height */}
-          <div className="hide-mobile" style={{ marginTop: '20px', height: 'clamp(300px, 50vh, 600px)', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
+          <div style={{ marginTop: '20px', height: 'clamp(300px, 50vh, 600px)', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
             <Image src="/pr-oped-still.png" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
           </div>
         </div>
 
         {/* Centre - Main content */}
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
-          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(24px, 5vw, 48px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 20px', borderBottom: '2px solid var(--fg)', paddingBottom: '16px' }}>
+          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 20px', borderBottom: '2px solid var(--fg)', paddingBottom: '16px' }}>
             A Person,<br /><span style={{ color: 'var(--accent)' }}>Not a Résumé.</span>
           </h2>
           
@@ -72,14 +72,14 @@ export default function OpEd() {
           </p>
           <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--sepia)' }}>— P.R., Editor</div>
           
-          <div style={{ marginTop: '24px', border: '1px solid rgba(14,14,12,0.2)', padding: '14px', background: 'rgba(184,167,146,0.08)' }}>
+          <div className="hide-mobile" style={{ marginTop: '24px', border: '1px solid rgba(14,14,12,0.2)', padding: '14px', background: 'rgba(184,167,146,0.08)' }}>
             <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '8px' }}>Filed under</div>
             {tags.map(tag => (
               <div key={tag} style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--fg)', borderBottom: '1px dotted rgba(14,14,12,0.15)', padding: '4px 0' }}>{tag}</div>
             ))}
           </div>
           
-          <div style={{ marginTop: '28px', borderTop: '1px solid rgba(14,14,12,0.15)', paddingTop: '16px' }}>
+          <div className="hide-mobile" style={{ marginTop: '28px', borderTop: '1px solid rgba(14,14,12,0.15)', paddingTop: '16px' }}>
             <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(12px, 2.5vw, 13px)', fontWeight: 700, color: 'var(--fg)', marginBottom: '10px', letterSpacing: '.02em' }}>What This Paper Covers</div>
             {coverage.map((item, i) => (
               <div key={i} style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(11px, 2.2vw, 12px)', lineHeight: 1.55, color: 'var(--fg)', padding: '4px 0', borderBottom: '1px dotted rgba(14,14,12,0.1)' }}>{item}</div>
