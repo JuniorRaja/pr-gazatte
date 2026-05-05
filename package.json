@@ -21,6 +21,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "caniuse-lite": "^1.0.30001791",
     "tailwindcss": "^4.1.4",
     "typescript": "^5"
   }
