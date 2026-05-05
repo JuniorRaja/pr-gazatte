@@ -445,6 +445,11 @@ body {
   .responsive-grid > div:last-child {
     border-bottom: none !important;
   }
+  
+  /* Mobile layout reordering: Center → Right → Left */
+  .responsive-grid > div:nth-child(1) { order: 3; } /* Left (Index) → 3rd */
+  .responsive-grid > div:nth-child(2) { order: 1; } /* Center (Headline) → 1st */
+  .responsive-grid > div:nth-child(3) { order: 2; } /* Right (About) → 2nd */
 }
 
 /* 2-column grid: mobile single, tablet/desktop 2-col */

@@ -44,7 +44,7 @@ export default function Masthead() {
   const randomHeadline = headlines[Math.floor(Math.random() * headlines.length)]
   const headlineParts = randomHeadline.split('. ')
   const lastPart = headlineParts.pop()
-  const firstParts = headlineParts.join('. ') + (headlineParts.length > 0 ? '.' : '')
+  const firstParts = headlineParts.length > 0 ? headlineParts.join('. ') + '.' : ''
 
   return (
     <header style={{ borderBottom: '3px solid var(--fg)' }}>
@@ -116,8 +116,22 @@ export default function Masthead() {
               <span style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(12px, 2.5vw, 13px)', color: 'var(--fg)', lineHeight: 1.4 }}>{t}</span>
             </div>
           ))}
-          {/* Quick Facts */}
-          <div style={{ marginTop: '20px', borderTop: '1px solid rgba(14,14,12,0.2)', paddingTop: '14px' }}>
+          
+          {/* Featured Inside */}
+          <div style={{ marginTop: '24px', borderTop: '2px solid var(--fg)', paddingTop: '14px' }}>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>Featured Inside</div>
+            
+            {/* Tech Feature */}
+            <div>
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(9px, 2vw, 10px)', color: 'var(--accent)', fontWeight: 700, marginBottom: '4px' }}>p.3 · Tech</div>
+              <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(14px, 3vw, 16px)', fontWeight: 700, lineHeight: 1.2, color: 'var(--fg)', margin: '0 0 6px' }}>The Stack Report.</h3>
+              <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(11px, 2.3vw, 12px)', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 6px' }}>.NET, gRPC, Redis, YARP. Built by a man who ships first and documents when the fire is out.</p>
+              <a href="#tech" style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textDecoration: 'none', fontStyle: 'italic' }}>Continue reading → p.3</a>
+            </div>
+          </div>
+          
+          {/* Quick Facts - hidden on mobile */}
+          <div className="hidden md:block" style={{ marginTop: '20px', borderTop: '1px solid rgba(14,14,12,0.2)', paddingTop: '14px' }}>
             <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--sepia)', marginBottom: '8px' }}>Quick Facts</div>
             {quickFacts.map(([k, v]) => (
               <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dotted rgba(14,14,12,0.15)', padding: '5px 0', fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(9px, 2vw, 10px)' }}>
@@ -134,12 +148,7 @@ export default function Masthead() {
             <h1 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(24px, 5.5vw, 54px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 16px', borderBottom: '2px solid var(--fg)', paddingBottom: '16px' }}>
               {firstParts && (
                 <>
-                  {firstParts.split('.').map((part, index) => (
-                    <span key={index}>
-                      {part.trim()}.
-                      {index < firstParts.split('.').length - 2 && <br />}
-                    </span>
-                  ))}
+                  {firstParts}
                   <br />
                 </>
               )}
@@ -148,9 +157,25 @@ export default function Masthead() {
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 3vw, 16px)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 16px', borderBottom: '1px solid rgba(14,14,12,0.15)', paddingBottom: '16px' }}>
               PR leads an eight-person FinTech team by day, ships POCs by night, and reverse-engineers perfumes on the weekend.
             </p>
-            <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: 0 }}>
-              Prasanna Rajendran has spent seven + years inside the machinery of non-banking finance — writing the code, then leading the team that writes the code, then fighting the fires that break out when code meets production. This is his front page.
+            <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
+              Prasanna Rajendran has spent seven years inside the machinery of non-banking finance — writing the code, then leading the team that writes the code, then fighting the fires that break out when code meets production. This is his front page.
             </p>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
+              He is the kind of person who fixes the bug before filing the ticket. Who reads the RFC on a Sunday not because anyone asked, but because something about it felt unresolved at dinner. Who leads an eight-person team with the calm of someone who has seen every flavour of production chaos and learned, somewhere around year four, that panic is the least efficient response.
+            </p>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0' }}>
+              He keeps a bookshelf that has opinions. He drinks coffee that he has also researched. He has certifications in things most people have not heard of and is quietly working on a few more. None of this is the résumé. All of it is the person.
+            </p>
+            
+            {/* Highlighted Quote */}
+            <blockquote style={{ margin: '24px 0 0', padding: '20px', background: 'rgba(139, 34, 35, 0.08)', borderLeft: '4px solid var(--accent)', borderTop: '1px solid rgba(139, 34, 35, 0.2)', borderBottom: '1px solid rgba(139, 34, 35, 0.2)' }}>
+              <p style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(15px, 3.2vw, 18px)', fontStyle: 'italic', lineHeight: 1.6, color: 'var(--fg)', margin: '0 0 12px', fontWeight: 600 }}>
+                &quot;I have never once finished learning something and thought — that&apos;s enough. Curiosity is not a trait. It is the only operating system I have never considered upgrading.&quot;
+              </p>
+              <footer style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(9px, 2vw, 10px)', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                — Prasanna Rajendran · Editor-in-Chief
+              </footer>
+            </blockquote>
           </div>
           <div style={{ marginTop: '20px', borderTop: '1px solid var(--fg)', paddingTop: '8px', fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(9px, 2vw, 10px)', color: 'var(--accent)', fontStyle: 'italic' }}>
             Continued on Op-Ed, p. 2 →
@@ -164,10 +189,23 @@ export default function Masthead() {
             Prasanna Rajendran has spent the better part of a decade inside the circuitry of non-banking finance—first writing code, then shaping the systems around it, and eventually taking responsibility for what happens when those systems meet the real world. 
           </p>
           {/* Portrait */}
-          <div style={{ marginTop: '20px', flex: 1, minHeight: '150px', maxHeight: '300px', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
-            <Image src="/pr-masthead-still.png" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
+          <div style={{ marginTop: '20px', flex: 1, minHeight: '400px', maxHeight: '400px', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }} className="md:min-h-[150px] md:max-h-[300px]">
+            <Image src="/pr-masthead-still-profes.png" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', objectPosition: 'center 20%', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.6))', padding: '12px 8px 6px' }}>
               <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>
+            </div>
+          </div>
+          
+          {/* Featured Inside */}
+          <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '2px solid var(--fg)' }}>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>Featured Inside</div>
+            
+            {/* Books Feature */}
+            <div>
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(9px, 2vw, 10px)', color: 'var(--accent)', fontWeight: 700, marginBottom: '4px' }}>p.7 · Books</div>
+              <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(14px, 3vw, 16px)', fontWeight: 700, lineHeight: 1.2, color: 'var(--fg)', margin: '0 0 6px' }}>The Bookshelf Speaks First.</h3>
+              <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(11px, 2.3vw, 12px)', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 6px' }}>47 books and counting. Three open right now. The shelf is not a display — it is a working document.</p>
+              <a href="#books" style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textDecoration: 'none', fontStyle: 'italic' }}>Continue reading → p.7</a>
             </div>
           </div>
         </div>
