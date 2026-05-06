@@ -225,15 +225,16 @@ export default function Travel() {
         }
         @media (max-width: 639px) {
           .tv-headline-zone { grid-template-columns: 1fr; }
+          .tv-headline-quote { display: none; }
           .tv-row1 { grid-template-columns: 1fr; }
           .tv-row1 > div { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.18); }
           .tv-row1 > div:last-child { border-bottom: none; }
+          .tv-row1-method { display: none; }
           .tv-row2 { grid-template-columns: 1fr; }
           .tv-row2 > div { min-width: 0; overflow-wrap: break-word; word-break: break-word; }
           .tv-row2-sidebar { border-left: none !important; border-top: 1px solid rgba(14,14,12,0.18); }
           .tv-upcoming-card { overflow-wrap: break-word; word-break: break-word; }
-          .tv-timeline-container { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-left: -4px; margin-right: -4px; padding: 0 4px; }
-          .tv-timeline { min-width: 460px; }
+          .tv-timeline-container { display: none; }
           .tv-dot-label { font-size: 7px; letter-spacing: .04em; }
           .tv-dot { width: 14px; height: 14px; }
           .tv-dot::after { width: 3px; height: 3px; }
@@ -272,7 +273,7 @@ export default function Travel() {
         </div>
 
         {/* Headline byline — right side */}
-        <p style={{
+        <p className="tv-headline-quote" style={{
           fontFamily: serif,
           fontSize: '14px',
           fontStyle: 'italic',
@@ -365,7 +366,7 @@ export default function Travel() {
         </div>
 
         {/* Col 3 — The Method */}
-        <div className="tv-col-rule" style={{ padding: '20px 20px' }}>
+        <div className="tv-col-rule tv-row1-method" style={{ padding: '20px 20px' }}>
           <div style={{
             fontFamily: mono,
             fontSize: '9px',
@@ -424,22 +425,32 @@ export default function Travel() {
           </div>
 
           {countries.map((c, i) => (
-            <div key={c.code} style={{ borderBottom: '1px solid rgba(14,14,12,0.1)', padding: '10px 0' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px' }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                  <span style={{ fontFamily: mono, fontSize: '8px', color: 'var(--accent)', flexShrink: 0, minWidth: '16px' }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+            <div key={c.code} style={{ borderBottom: '1px solid rgba(14,14,12,0.1)', padding: '12px 0', display: 'flex', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+                <span style={{ fontFamily: mono, fontSize: '11px', fontWeight: 700, color: 'var(--accent)', lineHeight: 1 }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <img 
+                  src={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png`}
+                  srcSet={`https://flagcdn.com/w80/${c.code.toLowerCase()}.png 2x`}
+                  width="40"
+                  height="30"
+                  alt={`${c.name} flag`}
+                  style={{ flexShrink: 0, border: '0.5px solid rgba(14,14,12,0.15)', filter: 'sepia(0.15) opacity(0.9)' }}
+                />
+              </div>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px' }}>
                   <span style={{ fontFamily: display, fontSize: '14px', fontWeight: 700, lineHeight: 1.2, color: 'var(--fg)' }}>
                     {c.name}
                   </span>
+                  <span style={{ fontFamily: mono, fontSize: '10px', fontWeight: 600, color: 'var(--fg)', letterSpacing: '.04em', flexShrink: 0 }}>
+                    {c.year}
+                  </span>
                 </div>
-                <span style={{ fontFamily: mono, fontSize: '8px', color: 'var(--sepia)', letterSpacing: '.06em', flexShrink: 0 }}>
-                  {c.year}
-                </span>
-              </div>
-              <div style={{ fontFamily: mono, fontSize: '8px', color: 'var(--sepia)', letterSpacing: '.08em', paddingLeft: '24px', marginTop: '3px' }}>
-                {c.region}
+                <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.08em', textTransform: 'uppercase' }}>
+                  {c.region}
+                </div>
               </div>
             </div>
           ))}
@@ -598,16 +609,26 @@ export default function Travel() {
               <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
                 <span className="tv-planned-badge">Planned</span>
               </div>
-              <h4 style={{
-                fontFamily: display,
-                fontSize: '18px',
-                fontWeight: 900,
-                lineHeight: 1.15,
-                color: 'var(--fg)',
-                margin: '0 0 2px',
-              }}>
-                {c.name}
-              </h4>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+                <img 
+                  src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
+                  srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+                  width="20"
+                  height="15"
+                  alt={`${c.name} flag`}
+                  style={{ flexShrink: 0, border: '0.5px solid rgba(14,14,12,0.15)', filter: 'sepia(0.15) opacity(0.9)' }}
+                />
+                <h4 style={{
+                  fontFamily: display,
+                  fontSize: '18px',
+                  fontWeight: 900,
+                  lineHeight: 1.15,
+                  color: 'var(--fg)',
+                  margin: 0,
+                }}>
+                  {c.name}
+                </h4>
+              </div>
               <div style={{
                 fontFamily: mono,
                 fontSize: '8px',
