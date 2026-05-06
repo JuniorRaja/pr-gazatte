@@ -20,6 +20,7 @@ const nextConfig = {
         hostname: 'picsum.photos',
       },
     ],
+    qualities: [75, 80, 85, 90, 95, 100],
   },
 }
 

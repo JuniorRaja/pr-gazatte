@@ -26,12 +26,20 @@ export default function PhotoDesk() {
   const [lightbox, setLightbox] = useState<{ albumIndex: number; photoIndex: number } | null>(null)
   const [showOriginal, setShowOriginal] = useState(false)
   const [loaded, setLoaded] = useState<ImageState>({})
+  
+  // Initialize with random cover index for first album
+  const getRandomIndex = (albumIndex: number) => {
+    return Math.floor(Math.random() * albums[albumIndex].sequences.length)
+  }
+  
+  const [coverIndex, setCoverIndex] = useState<number>(() => getRandomIndex(0))
 
   const go = (delta: number) => {
     if (flipping) return
     const next = (current + delta + albums.length) % albums.length
     setDir(delta)
     setFlipping(true)
+    setCoverIndex(getRandomIndex(next))
     setTimeout(() => {
       setCurrent(next)
       setFlipping(false)
@@ -42,6 +50,7 @@ export default function PhotoDesk() {
     if (flipping || i === current) return
     setDir(i > current ? 1 : -1)
     setFlipping(true)
+    setCoverIndex(getRandomIndex(i))
     setTimeout(() => {
       setCurrent(i)
       setFlipping(false)
@@ -129,6 +138,7 @@ export default function PhotoDesk() {
           .pd-bottom-nav { flex-wrap: wrap; gap: 8px; justify-content: center !important; }
           .pd-bottom-nav .pd-nav-label { display: none; }
           .pd-orig-btn { display: none; }
+          .pd-header-quote { display: none !important; }
         }
       `}</style>
 
@@ -146,7 +156,7 @@ export default function PhotoDesk() {
             The <span style={{ color: 'var(--accent)' }}>Photo</span> Desk.
           </h2>
         </div>
-        <div style={{ fontFamily: serif, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.65, color: 'var(--fg)', maxWidth: '340px', flexShrink: 0, borderLeft: '3px solid var(--accent)', paddingLeft: '16px', opacity: 0.8 }}>
+        <div className="pd-header-quote" style={{ fontFamily: serif, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.65, color: 'var(--fg)', maxWidth: '340px', flexShrink: 0, borderLeft: '3px solid var(--accent)', paddingLeft: '16px', opacity: 0.8 }}>
           {meta.headerQuote}
         </div>
       </div>
@@ -217,7 +227,7 @@ export default function PhotoDesk() {
 
                 {/* Hero image — priority loaded, clickable */}
                 <button
-                  onClick={() => openLightbox(current, 0)}
+                  onClick={() => openLightbox(current, coverIndex)}
                   aria-label={`Open ${album.title} in lightbox`}
                   style={{ display: 'block', width: '100%', padding: 0, border: `1px solid ${album.color}`, marginBottom: '14px', position: 'relative', overflow: 'hidden', height: '340px', cursor: 'zoom-in', background: 'transparent' }}
                 >
@@ -225,7 +235,7 @@ export default function PhotoDesk() {
                     <PhotoSkeleton style={{ position: 'absolute', inset: 0 }} />
                   )}
                   <NpImage
-                    src={getPhotoUrl(album, 0, 'medium')}
+                    src={getPhotoUrl(album, coverIndex, 'medium')}
                     alt={`${album.title} — featured photo`}
                     fill
                     sizes="(max-width: 900px) 100vw, 480px"
@@ -255,32 +265,36 @@ export default function PhotoDesk() {
               <div style={{ fontFamily: mono, fontSize: '8px', letterSpacing: '.15em', textTransform: 'uppercase', color: '#7a6a5a', borderBottom: '1px solid rgba(14,14,12,0.2)', paddingBottom: '6px', marginBottom: '12px' }}>Contact Sheet · {album.title}</div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', flex: 1, marginBottom: '12px' }}>
-                {[1, 2, 3, 4].map((pi) => {
-                  const imgKey = `contact-${album.slug}-${pi}`
-                  const hasPhoto = pi < album.sequences.length
-                  return (
-                    <button
-                      key={pi}
-                      className="pd-contact-cell"
-                      onClick={() => hasPhoto && openLightbox(current, pi)}
-                      aria-label={hasPhoto ? `Open ${album.title} photo ${pi + 1} in lightbox` : undefined}
-                      disabled={!hasPhoto}
-                      style={{
-                        background: '#D8D0BC',
-                        border: '1px solid rgba(14,14,12,0.15)',
-                        display: 'flex', flexDirection: 'column',
-                        overflow: 'hidden', padding: 0,
-                        cursor: hasPhoto ? 'zoom-in' : 'default',
-                      }}
-                    >
-                      <div style={{ flex: 1, minHeight: '75px', overflow: 'hidden', position: 'relative' }}>
-                        {!loaded[imgKey] && hasPhoto && (
-                          <PhotoSkeleton style={{ position: 'absolute', inset: 0 }} />
-                        )}
-                        {hasPhoto && (
+                {(() => {
+                  // Get next 4 photos after the cover image (excluding the cover)
+                  const contactPhotos = album.sequences
+                    .map((_, idx) => idx)
+                    .filter(idx => idx !== coverIndex)
+                    .slice(0, 4)
+                  
+                  return contactPhotos.map((photoIdx, displayIdx) => {
+                    const imgKey = `contact-${album.slug}-${photoIdx}`
+                    return (
+                      <button
+                        key={photoIdx}
+                        className="pd-contact-cell"
+                        onClick={() => openLightbox(current, photoIdx)}
+                        aria-label={`Open ${album.title} photo ${photoIdx + 1} in lightbox`}
+                        style={{
+                          background: '#D8D0BC',
+                          border: '1px solid rgba(14,14,12,0.15)',
+                          display: 'flex', flexDirection: 'column',
+                          overflow: 'hidden', padding: 0,
+                          cursor: 'zoom-in',
+                        }}
+                      >
+                        <div style={{ flex: 1, minHeight: '75px', overflow: 'hidden', position: 'relative' }}>
+                          {!loaded[imgKey] && (
+                            <PhotoSkeleton style={{ position: 'absolute', inset: 0 }} />
+                          )}
                           <NpImage
-                            src={getPhotoUrl(album, pi, 'medium')}
-                            alt={`${album.title} — photo ${pi + 1}`}
+                            src={getPhotoUrl(album, photoIdx, 'medium')}
+                            alt={`${album.title} — photo ${photoIdx + 1}`}
                             fill
                             sizes="(max-width: 900px) 50vw, 200px"
                             quality={80}
@@ -288,15 +302,15 @@ export default function PhotoDesk() {
                             className={filterClass}
                             onLoad={() => markLoaded(imgKey)}
                           />
-                        )}
-                        <div style={{ position: 'absolute', top: '3px', left: '4px', fontFamily: mono, fontSize: '7px', color: 'rgba(244,239,230,0.7)', background: 'rgba(14,14,12,0.4)', padding: '1px 4px', pointerEvents: 'none' }}>{pi + 1}</div>
-                      </div>
-                      <div style={{ padding: '4px 6px', borderTop: '1px solid rgba(14,14,12,0.1)' }}>
-                        <div style={{ fontFamily: mono, fontSize: '7px', color: '#5a4a3a' }}>{album.title}</div>
-                      </div>
-                    </button>
-                  )
-                })}
+                          <div style={{ position: 'absolute', top: '3px', left: '4px', fontFamily: mono, fontSize: '7px', color: 'rgba(244,239,230,0.7)', background: 'rgba(14,14,12,0.4)', padding: '1px 4px', pointerEvents: 'none' }}>{photoIdx + 1}</div>
+                        </div>
+                        <div style={{ padding: '4px 6px', borderTop: '1px solid rgba(14,14,12,0.1)' }}>
+                          <div style={{ fontFamily: mono, fontSize: '7px', color: '#5a4a3a' }}>{album.title}</div>
+                        </div>
+                      </button>
+                    )
+                  })
+                })()}
               </div>
 
               <div style={{ fontFamily: serif, fontSize: '10px', fontStyle: 'italic', color: '#7a6a5a', lineHeight: 1.5, borderTop: '1px solid rgba(14,14,12,0.15)', paddingTop: '8px' }}>
