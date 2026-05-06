@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import SectionFiller from '@/components/SectionFiller'
 import NpImage from '@/components/NpImage'
@@ -26,13 +26,18 @@ export default function PhotoDesk() {
   const [lightbox, setLightbox] = useState<{ albumIndex: number; photoIndex: number } | null>(null)
   const [showOriginal, setShowOriginal] = useState(false)
   const [loaded, setLoaded] = useState<ImageState>({})
+  const [coverIndex, setCoverIndex] = useState<number>(0)
+  const [isClient, setIsClient] = useState(false)
   
-  // Initialize with random cover index for first album
+  // Only randomize on client side after hydration
+  useEffect(() => {
+    setIsClient(true)
+    setCoverIndex(Math.floor(Math.random() * albums[0].sequences.length))
+  }, [])
+  
   const getRandomIndex = (albumIndex: number) => {
     return Math.floor(Math.random() * albums[albumIndex].sequences.length)
   }
-  
-  const [coverIndex, setCoverIndex] = useState<number>(() => getRandomIndex(0))
 
   const go = (delta: number) => {
     if (flipping) return
