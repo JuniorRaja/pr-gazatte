@@ -37,8 +37,8 @@ export default function OffDuty() {
 
       <div className="od-inner">
         <div className="od-headline" style={{ borderBottom: '2px solid var(--fg)', paddingBottom: '12px', marginBottom: '24px' }}>
-          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(26px, 3.5vw, 46px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: 0 }}>
-            The Hobbies Column.
+          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(26px, 3.5vw, 48px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: 0 }}>
+            The <span style={{ color: 'var(--accent)' }}>Hobbies</span> Column.
           </h2>
           <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', fontStyle: 'italic', color: 'var(--sepia)' }}>
             A person is more than their job title.

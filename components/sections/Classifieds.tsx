@@ -382,7 +382,7 @@ export default function Classifieds() {
         {/* Bottom colophon bar */}
         <div style={{ borderTop: '2px solid var(--fg)', paddingTop: '6px', marginTop: '-28px' }}>
           <div style={{ fontFamily: serif, fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', lineHeight: 1.6 }}>
-            The PR Gazette · Chennai · Est. 1998 · Vol. PR · No. 69
+            The PR Gazette · Chennai · Est. 1998
           </div>
         </div>
       </div>
