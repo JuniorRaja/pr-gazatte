@@ -26,6 +26,13 @@ export default function LabReport() {
       <style>{`
         .lab-link { text-decoration: underline; transition: color 0.15s, font-size 0.15s; }
         .lab-link:hover { color: var(--accent) !important; font-size: 11px !important; }
+        .lab-left-col { border-right: 1px solid rgba(14,14,12,0.2); }
+        .lab-right-col { padding-top: 24px; padding-bottom: 28px; }
+        @media (max-width: 639px) {
+          .lab-left-col { border-right: none; border-bottom: 1px solid rgba(14,14,12,0.2); }
+          .lab-right-col { padding-top: 24px; padding-bottom: 24px; }
+          .responsive-grid-2 { grid-template-columns: 1fr !important; gap: 0 !important; }
+        }
       `}</style>
 
       <SectionFlag pageLabel="Lab Report · Page 5" subtitle="Self-Hosting · Servers · Infrastructure" bgColor="var(--accent)" />
@@ -48,17 +55,17 @@ export default function LabReport() {
       </div>
 
       {/* Two-column body → single on mobile */}
-      <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 0 }}>
+      <div className="responsive-grid-2" style={{ display: 'grid' }}>
 
         {/* ═══ LEFT — Projects ═══ */}
-        <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
+        <div className="section-padding-x section-padding-y lab-left-col">
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Field Reports · Active Experiments
           </div>
 
           {/* Sub-headline */}
-          <h3 style={{ fontFamily: display, fontSize: 'clamp(22px, 3vw, 34px)', fontWeight: 900, lineHeight: 1.05, color: 'var(--fg)', margin: '0 0 4px' }}>
-            Built by one.<br />Runs in production.
+          <h3 style={{ fontFamily: display, fontSize: '28px', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'var(--fg)', margin: '0 0 4px' }}>
+            <span style={{ color: 'var(--accent)' }}>Built by one.</span><br />Runs in production.
           </h3>
           <p style={{ fontFamily: display, fontSize: '13px', fontStyle: 'italic', color: 'var(--fg)', margin: '0 0 24px', lineHeight: 1.5 }}>
             No agency. No team. Just a terminal and a deadline self-imposed.
@@ -67,18 +74,19 @@ export default function LabReport() {
           {/* Project cards */}
           {projects.map((p, i) => (
             <div key={p.name} style={{ borderTop: '1px solid rgba(14,14,12,0.18)', padding: '18px 0', ...(i === projects.length - 1 ? { borderBottom: '1px solid rgba(14,14,12,0.18)' } : {}) }}>
-              {/* Header row: title + tags/links + status badge */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4px', gap: '10px' }}>
-                <div style={{ fontFamily: display, fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.2, flexShrink: 0 }}>{p.name}</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', flex: 1, justifyContent: 'flex-end' }}>
-                  {p.tags.map(t => (
-                    <span key={t} style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.04em' }}>#{t.replace(/\s+/g, '')}</span>
-                  ))}
-                  {p.links.map(l => (
-                    <a key={l.label} href={l.href} className="lab-link" style={{ fontFamily: mono, fontSize: '9px', fontWeight: 700, color: 'var(--fg)', textDecoration: 'underline', textTransform: 'uppercase', letterSpacing: '.08em' }}>↗ {l.label}</a>
-                  ))}
-                  <StatusBadge label={p.status} color={p.statusColor} />
-                </div>
+              {/* Header row: title + status badge */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '6px', gap: '10px', flexWrap: 'wrap' }}>
+                <div style={{ fontFamily: display, fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.2 }}>{p.name}</div>
+                <StatusBadge label={p.status} color={p.statusColor} />
+              </div>
+              {/* Tags and links row */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                {p.tags.map(t => (
+                  <span key={t} style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.04em' }}>#{t.replace(/\s+/g, '')}</span>
+                ))}
+                {p.links.map(l => (
+                  <a key={l.label} href={l.href} className="lab-link" style={{ fontFamily: mono, fontSize: '9px', fontWeight: 700, color: 'var(--fg)', textDecoration: 'underline', textTransform: 'uppercase', letterSpacing: '.08em' }}>↗ {l.label}</a>
+                ))}
               </div>
               <div style={{ fontFamily: serif, fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', marginBottom: '10px' }}>{p.subtitle}</div>
               <p style={{ fontFamily: serif, fontSize: '13.5px', lineHeight: 1.68, color: 'var(--fg)', margin: 0 }}>{p.body}</p>
@@ -99,13 +107,13 @@ export default function LabReport() {
         </div>
 
         {/* ═══ RIGHT — Infrastructure ═══ */}
-        <div style={{ padding: '0 32px 28px' }}>
+        <div className="section-padding-x lab-right-col">
           <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Infrastructure Dispatch · Always On
           </div>
 
-          <h3 style={{ fontFamily: display, fontSize: 'clamp(22px, 3vw, 34px)', fontWeight: 900, lineHeight: 1.05, color: 'var(--fg)', margin: '0 0 4px' }}>
-            One VM.<br />Zero excuses.
+          <h3 style={{ fontFamily: display, fontSize: '28px', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'var(--fg)', margin: '0 0 4px' }}>
+            <span style={{ color: 'var(--accent)' }}>One VM.</span><br />Zero excuses.
           </h3>
           <p style={{ fontFamily: mono, fontSize: '10px', color: 'var(--sepia)', letterSpacing: '.04em', margin: '0 0 24px', lineHeight: 1.6 }}>
             OCI Singapore · ARM · Ubuntu 24 · 200GB · Running since day one.
@@ -118,12 +126,12 @@ export default function LabReport() {
 
           {services.map((s, i) => (
             <div key={s.name} style={{ borderBottom: i < services.length - 1 ? '1px solid rgba(14,14,12,0.1)' : 'none', padding: '12px 0' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', display: 'inline-block', flexShrink: 0 }} />
-                  <span style={{ fontFamily: mono, fontSize: '13px', fontWeight: 700, color: 'var(--fg)' }}>{s.name}</span>
-                </div>
-                <span style={{ fontFamily: mono, fontSize: '10px', color: 'var(--sepia)', textAlign: 'right' }}>{s.url}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', display: 'inline-block', flexShrink: 0 }} />
+                <span style={{ fontFamily: mono, fontSize: '13px', fontWeight: 700, color: 'var(--fg)' }}>{s.name}</span>
+              </div>
+              <div style={{ paddingLeft: '16px', marginBottom: '4px' }}>
+                <span style={{ fontFamily: mono, fontSize: '10px', color: 'var(--sepia)', display: 'block', wordBreak: 'break-all' }}>{s.url}</span>
               </div>
               <div style={{ paddingLeft: '16px' }}>
                 <p style={{ fontFamily: serif, fontSize: '12.5px', fontStyle: 'italic', lineHeight: 1.55, color: 'var(--fg)', margin: 0 }}>{s.desc}</p>
