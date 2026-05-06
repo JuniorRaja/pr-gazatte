@@ -627,3 +627,27 @@ select {
     border: 1px solid rgba(14, 14, 12, 0.2);
   }
 }
+
+/* ── Career/Business Section Mobile Adjustments ───────────────── */
+
+/* Hide left column (Annual Report, numbers, Education) on mobile */
+#career .responsive-grid > div:nth-child(1) {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  #career .responsive-grid > div:nth-child(1) {
+    display: flex !important;
+  }
+}
+
+/* Increase image min-height on mobile */
+#career .responsive-grid > div:nth-child(3) > div:has(img) {
+  min-height: 500px;
+}
+
+@media (min-width: 1024px) {
+  #career .responsive-grid > div:nth-child(3) > div:has(img) {
+    min-height: 220px;
+  }
+}

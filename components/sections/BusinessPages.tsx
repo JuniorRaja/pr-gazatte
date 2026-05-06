@@ -13,6 +13,7 @@ const filingMeta = [
 const pullQuote = 'Promoted to manager. Git blame still points to me.'
 
 const editorial = [
+  'From the outside, the titles suggest management. The work tells a different story.',
   'Most careers have a shape. A beginning, a comfortable middle, a tidy arc toward seniority. This one does not. What looks like a single employer and a clean timeline is, on closer inspection, three different jobs — each demanding a different brain — run in sequence at the same address.',
   'The software engineer who taught himself the discipline of test-driven development is the same person now accountable for eight others doing the same. The distance between those two points is not measured in years, but in judgment calls made under pressure.',
 ]
@@ -24,7 +25,7 @@ export default function BusinessPages() {
       <SectionFlag pageLabel="Business · Page 4" subtitle="The Career Beat" />
 
       {/* 3-column grid → responsive */}
-      <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1.5fr 3fr 2fr', columnGap: 0 }}>
+      <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1.25fr 3.5fr 2fr', columnGap: 0 }}>
 
         {/* LEFT — Label + headline + filing meta + numbers */}
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)', display: 'flex', flexDirection: 'column' }}>
@@ -74,13 +75,13 @@ export default function BusinessPages() {
         {/* CENTER — Headline + timeline + pull quote */}
         <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '28px 32px' }}>
 
-          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 900, lineHeight: 1.05, color: 'var(--fg)', margin: '0 0 8px' }}>
+          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(32px, 6vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 6px' }}>
             <span style={{ color: 'var(--accent)' }}>7 years</span><br />
             &amp; counting.
           </h2>
 
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--sepia)', lineHeight: 1.9, marginBottom: '20px' }}>
-            One company.&nbsp;&nbsp;·&nbsp;&nbsp;Three titles.&nbsp;&nbsp;·&nbsp;&nbsp;Infinite fires.
+          <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(14px, 2.5vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', marginBottom: '20px' }}>
+            One company. Three titles. Infinite fires.
           </div>
 
           <div style={{ height: '2px', background: 'var(--fg)', marginBottom: '20px' }} />
@@ -102,13 +103,16 @@ export default function BusinessPages() {
                   </div>
                   {/* Content */}
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '5px' }}>{item.date}</div>
-                    <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '18px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.15, marginBottom: '3px' }}>{item.title}</div>
-                    <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--sepia)', letterSpacing: '.05em', marginBottom: '10px' }}>{item.org}</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '12px', marginBottom: '5px' }}>
+                      <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '18px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.15 }}>{item.title}</div>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0 }}>
+                        <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{item.date}</div>
+                      </div>
+                    </div>
                     <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.68, color: 'var(--fg)', margin: 0 }}>{item.body}</p>
                   </div>
                 </div>
-                {i < timeline.length - 1 && <div style={{ height: '1px', background: 'rgba(14,14,12,0.12)', margin: '22px 0 22px 36px' }} />}
+                {i < timeline.length - 1 && <div style={{ height: '1px', background: 'rgba(14,14,12,0.12)', margin: '16px 0 16px 36px' }} />}
               </div>
             ))}
           </div>
@@ -143,7 +147,7 @@ export default function BusinessPages() {
           ))}
 
           {/* Photo fills remaining height */}
-          <div style={{ flex: 1, minHeight: '220px', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
+          <div style={{ flex: 1, minHeight: '500px', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
             <Image
               src="/pr-business-still.png"
               alt="Career — Prasanna Rajendran"
