@@ -130,17 +130,17 @@ function BookRow({ book, hoveredId, onHover }: {
       <div style={{ minWidth: 0 }}>
         <div style={{
           fontFamily: display,
-          fontSize: '11px',
+          fontSize: 'clamp(13px, 2.5vw, 14px)',
           fontWeight: 700,
           color: 'var(--fg)',
-          lineHeight: 1.25,
+          lineHeight: 1.15,
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
         }}>{book.title}</div>
         <div style={{
           fontFamily: serif,
-          fontSize: '9.5px',
+          fontSize: 'clamp(11px, 2.2vw, 12px)',
           fontStyle: 'italic',
           color: 'var(--sepia)',
           marginTop: '1px',
@@ -243,7 +243,7 @@ function BookTableCol({ books, hoveredId, onHover }: {
         gridTemplateColumns: '44px 1fr 72px',
         gap: '0 10px',
         fontFamily: mono,
-        fontSize: '8.5px',
+        fontSize: 'clamp(10px, 2vw, 11px)',
         letterSpacing: '.15em',
         textTransform: 'uppercase',
         color: 'var(--sepia)',
@@ -311,9 +311,12 @@ export default function BooksReview() {
         }
         @media (max-width: 960px) {
           .br-outer { grid-template-columns: 1fr !important; }
-          .br-photo-right { display: none !important; }
+          .br-photo-right { display: block !important; position: relative !important; width: 100% !important; height: 550px !important; min-height: 550px !important; }
+          .br-left-col { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.2) !important; }
           .br-writing-row { grid-template-columns: 1fr 1fr !important; }
           .br-table-grid { grid-template-columns: 1fr 1fr !important; }
+          .br-hide-mobile { display: none !important; }
+          .br-writing-row .br-wcol p:nth-of-type(n+3) { display: none !important; }
         }
         @media (max-width: 600px) {
           .br-writing-row { grid-template-columns: 1fr !important; }
@@ -400,8 +403,8 @@ export default function BooksReview() {
                 The habit formed not in school but in the years after, when answers stopped arriving pre-packaged and questions started arriving faster. A book became the cheapest form of a very expensive conversation.
               </p>
 
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What gets chosen</div>
-              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '12px' }}>
+              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What gets chosen</div>
+              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '12px' }}>
                 The shelf leans non-fiction without being cold. History. Systems. The psychology of decisions. The occasional biography of someone who built something and survived it. Fiction makes a rare appearance — usually when a colleague insists, or when the nonfiction starts sounding too much like itself.
               </p>
               <div style={{
@@ -421,8 +424,8 @@ export default function BooksReview() {
 
             {/* Right editorial */}
             <div>
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What stays</div>
-              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
+              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What stays</div>
+              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 The books that earn a permanent place are not the easiest to finish. They are the ones that left a sentence behind — something that surfaced weeks later in a code review, a retrospective, a late-night architecture discussion where the right framing suddenly mattered.
               </p>
 
@@ -431,8 +434,8 @@ export default function BooksReview() {
                 There is no colour-coding, no reading tracker, no Goodreads profile updated with military precision. The system is simpler: start, finish if it earns it, remember what matters. Dog-eared pages over highlights — a highlight is for someone else. The folded corner is a private agreement between reader and page.
               </p>
 
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What comes next</div>
-              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify' }}>
+              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What comes next</div>
+              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify' }}>
                 Five are waiting. The to-read list is shorter than it has ever been — not because curiosity has narrowed, but because the bar has quietly raised itself. A book earns its place by being mentioned twice by people whose judgment has already proven expensive to ignore.
               </p>
             </div>
