@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import NpImage from '@/components/NpImage'
 import SectionFiller from '@/components/SectionFiller'
-import { countries, upcomingCountries } from '@/content/travel.mdx'
+import { countries, upcomingCountries } from '@/content/travel'
 
 const mono = '"JetBrains Mono", monospace'
 const serif = '"Source Serif 4", serif'

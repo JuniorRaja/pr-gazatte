@@ -1,0 +1,76 @@
+export type Country = {
+  name: string
+  code: string
+  year: string
+  region: string
+  body: string
+}
+
+export const countries: Country[] = [
+  {
+    name: 'Sri Lanka',
+    code: 'LK',
+    year: '2022',
+    region: 'South Asia',
+    body: "The trip that started it all — or at least recalibrated it. Sri Lanka hit differently: the roads narrow, the people wide open, the food demanding full attention. He arrived curious and left something closer to converted. The temples weren't the highlight. A roadside kottu at midnight was.",
+  },
+  {
+    name: 'Singapore',
+    code: 'SG',
+    year: '2022',
+    region: 'Southeast Asia',
+    body: "Efficient, precise, almost surgical in its organisation. Singapore was the first country that made him genuinely reconsider what a city could be. The MRT ran on time. The hawker centres were world-class. He spent three days trying to find something that wasn't working. He couldn't.",
+  },
+  {
+    name: 'Poland',
+    code: 'PL',
+    year: '2023',
+    region: 'Central Europe',
+    body: "Warsaw surprised him. He'd expected grey Soviet concrete and found instead a city that had rebuilt itself from rubble with remarkable stubbornness. The Old Town is reconstructed, technically — but feels earned rather than manufactured. Pierogi in a basement restaurant. A conversation he couldn't have had anywhere else.",
+  },
+  {
+    name: 'Czech Rep.',
+    code: 'CZ',
+    year: '2023',
+    region: 'Central Europe',
+    body: "Prague is the city that photographs itself. Every corner composed, every bridge cinematic. But the best part wasn't the architecture — it was the unhurried pace of it. Nobody rushing. A culture that treats sitting down with a beer as a legitimate use of an afternoon. He agreed completely.",
+  },
+  {
+    name: 'Austria',
+    code: 'AT',
+    year: '2023',
+    region: 'Central Europe',
+    body: "Vienna arrived at the midpoint of the Europe route and felt like the pivot. Classical music drifting out of open windows. Coffee houses that don't rush you. Museums he hadn't planned to enter. He lost half a day in the Kunsthistorisches and came out not regretting a minute of it.",
+  },
+  {
+    name: 'Hungary',
+    code: 'HU',
+    year: '2023',
+    region: 'Central Europe',
+    body: "Budapest felt like two cities that agreed to share a river. Buda: calm, castle-crowned, overlooking everything. Pest: loud, lit, alive past midnight. He crossed the Chain Bridge more than once just to feel the contrast. The thermal baths at dusk. The ruin bars at midnight. Both essential.",
+  },
+  {
+    name: 'Slovakia',
+    code: 'SK',
+    year: '2023',
+    region: 'Central Europe',
+    body: "Bratislava was the quiet one on the route — smaller, slower, overlooked by most who breeze through on a day trip from Vienna. He stayed longer. The old town fits in an afternoon but rewards a full day. A castle on the hill, a city underneath it, and far fewer tourists than it deserved.",
+  },
+]
+
+export const upcomingCountries: Country[] = [
+  {
+    name: 'Kazakhstan',
+    code: 'KZ',
+    year: '2026',
+    region: 'Central Asia',
+    body: "The steppe, the scale, the silence between cities — this one is about going somewhere that genuinely doesn't come up in conversation. A country most people can't place on a map. That's precisely the point.",
+  },
+  {
+    name: 'Vietnam',
+    code: 'VN',
+    year: '2026',
+    region: 'Southeast Asia',
+    body: "North to south or south to north — he hasn't decided yet. The food alone justifies the flight. The rest is a bonus. A country that rewards the curious and punishes the impatient. He qualifies on both counts.",
+  },
+]
