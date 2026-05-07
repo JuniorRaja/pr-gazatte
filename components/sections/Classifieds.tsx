@@ -367,7 +367,7 @@ export default function Classifieds() {
           {/* Col 4 — Photo */}
           <div className="cl-col4" style={{ position: 'relative', minHeight: '420px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
             <Image
-              src="/pr-contact-still.png"
+              src="/pr-contact-still.webp"
               alt="Prasanna Rajendran"
               fill
               style={{ objectFit: 'cover', filter: 'grayscale(0.85) sepia(0.4) contrast(1.1) brightness(0.88)' }}

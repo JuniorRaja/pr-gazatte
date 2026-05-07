@@ -190,7 +190,7 @@ export default function Masthead() {
           </p>
           {/* Portrait */}
           <div style={{ marginTop: '20px', flex: 1, minHeight: '400px', maxHeight: '400px', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }} className="md:min-h-[150px] md:max-h-[300px]">
-            <Image src="/pr-masthead-still-profes.png" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', objectPosition: 'center 20%', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
+            <Image src="/pr-masthead-still-profes.webp" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', objectPosition: 'center 20%', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.6))', padding: '12px 8px 6px' }}>
               <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>
             </div>

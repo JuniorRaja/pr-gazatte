@@ -149,7 +149,7 @@ export default function BusinessPages() {
           {/* Photo fills remaining height */}
           <div style={{ flex: 1, minHeight: '500px', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
             <Image
-              src="/pr-business-still.png"
+              src="/pr-business-still.webp"
               alt="Career — Prasanna Rajendran"
               fill
               style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }}

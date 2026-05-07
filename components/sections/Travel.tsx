@@ -31,6 +31,17 @@ export default function Travel() {
 
   const active = countries[activeIndex]
 
+  const countryImages: Record<string, { src: string; caption: string }> = {
+    LK: { src: '/pr-lanka-sigiriya.webp', caption: 'Sigiriya Rock Fortress — Sri Lanka, 2022' },
+    SG: { src: '/pr-sg-changi.webp', caption: 'Changi Airport — Singapore, 2022' },
+    PL: { src: '/pr-poland-krakow.webp', caption: 'Krakow Old Town — Poland, 2023' },
+    AT: { src: '/pr-austria.webp', caption: 'Vienna — Austria, 2023' },
+    HU: { src: '/pr-hungary.webp', caption: 'Budapest — Hungary, 2023' },
+    SK: { src: '/pr-slovakia.webp', caption: 'Bratislava — Slovakia, 2023' },
+  }
+  const fallbackImage = { src: 'https://picsum.photos/seed/prague-old-town/800/400', caption: 'Old Town, Prague — Central Europe, 2023' }
+  const activeImage = countryImages[active.code] ?? fallbackImage
+
   return (
     <section id="travel" style={{ borderBottom: '2px solid var(--fg)' }}>
       <style>{`
@@ -304,7 +315,7 @@ export default function Travel() {
         <div className="tv-col-rule tv-row1-portrait" style={{ padding: '20px 16px' }}>
           <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '460px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
             <NpImage
-              src="/pr-travel-still.png"
+              src="/pr-travel-still.webp"
               alt="Somewhere between borders — Europe, 2023"
               fill
               sizes="(max-width: 960px) 100vw, 33vw"
@@ -465,11 +476,12 @@ export default function Travel() {
         {/* Left — Landscape photo + Timeline */}
         <div className="tv-col-rule" style={{ padding: '20px 20px' }}>
 
-          {/* Landscape photo */}
-          <div style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)', marginBottom: '6px' }}>
+          {/* Landscape photo — updates with selected country */}
+          <div style={{ position: 'relative', width: '100%', height: '320px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)', marginBottom: '6px' }}>
             <NpImage
-              src="https://picsum.photos/seed/prague-old-town/800/400"
-              alt="Old Town, Prague-route — Central Europe, 2023"
+              key={activeImage.src}
+              src={activeImage.src}
+              alt={activeImage.caption}
               fill
               sizes="(max-width: 960px) 100vw, 700px"
             />
@@ -481,7 +493,7 @@ export default function Travel() {
             color: 'var(--sepia)',
             marginBottom: '16px',
           }}>
-            Old Town, Prague-route — Central Europe, 2023
+            {activeImage.caption}
           </div>
 
           {/* Timeline label */}

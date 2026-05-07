@@ -453,7 +453,7 @@ export default function BooksReview() {
           }}
         >
           <NpImage
-            src="/pr-library-still.png"
+            src="/pr-library-still.webp"
             alt="The reading room"
             fill
             sizes="(max-width: 960px) 100vw, 40vw"

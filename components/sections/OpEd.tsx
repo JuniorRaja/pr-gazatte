@@ -31,7 +31,7 @@ export default function OpEd() {
           
           {/* Portrait - responsive height */}
           <div style={{ marginTop: '20px', height: 'clamp(300px, 50vh, 600px)', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
-            <Image src="/pr-oped-still.png" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
+            <Image src="/pr-oped-still.webp" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
           </div>
         </div>
 
