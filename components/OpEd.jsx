@@ -128,7 +128,25 @@ const OpEd = ({ tweaks }) => {
               color: '#0E0E0C',
               margin: '0 0 16px',
             }}>
-              Most portfolios are résumés with better fonts. This one is a newspaper because a person is not a list of skills — a person is a beat. The tech beat, the lab beat, the senses beat, the trails beat. Turn the page.
+              Most portfolios are just résumés wearing better fonts. This one is a newspaper because a person is more than a list of skills.
+            </p>
+            <p style={{
+              fontFamily: '"Source Serif 4", serif',
+              fontSize: '14.5px',
+              lineHeight: 1.72,
+              color: '#0E0E0C',
+              margin: '0 0 16px',
+            }}>
+              It's the rhythm that matters. The tech beat clicks in keystrokes and caffeine. The lab beat smells like curiosity and the occasional burnt experiment. The production beat — that one you feel in your stomach at 4 a.m. when confidence meets reality.
+            </p>
+            <p style={{
+              fontFamily: '"Source Serif 4", serif',
+              fontSize: '14.5px',
+              lineHeight: 1.72,
+              color: '#0E0E0C',
+              margin: '0 0 16px',
+            }}>
+              My days layer like this: architecture in the morning, diplomacy in the afternoon, and midnight tinkering where the best ideas still happen unsupervised. None of these layers are clean. And I've stopped pretending they should be.
             </p>
             <p style={{
               fontFamily: '"Source Serif 4", serif',
@@ -137,7 +155,7 @@ const OpEd = ({ tweaks }) => {
               color: '#0E0E0C',
               margin: 0,
             }}>
-              The work happens in layers: the architecture decision at 10 a.m., the pull request review at 2, the production incident at 4, the personal project at midnight. None of those layers are separable. This paper doesn't try to separate them.
+              I've spent seven-plus years in FinTech engineering — building systems, leading teams, and shipping infrastructure that has to work when it matters. Along the way I picked up photography across nine countries, a growing bookshelf that refuses to stay organized, and an unhealthy tolerance for unsolved problems. This isn't self-promotion. It's just the long version of me.
             </p>
           </div>
 
@@ -177,9 +195,9 @@ const OpEd = ({ tweaks }) => {
             color: '#0E0E0C',
             margin: '0 0 16px',
           }}>
-            "This is not a self-promotion. This is a record. The record of someone who learned to code alone, then learned to lead, then decided to keep both skills sharp simultaneously."
+            "This is not a self-promotion. This is a record. Of someone who learned to code alone, then learned to lead, then decided both skills had to stay sharp at the same time."
           </p>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: '#B8A792' }}>— P.R., Editor</div>
+          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: '#B8A792' }}>— P.R.</div>
 
           <div style={{
             marginTop: '28px',

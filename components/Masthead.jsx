@@ -153,7 +153,7 @@ const Masthead = ({ tweaks }) => {
             color: '#0E0E0C',
             margin: 0,
           }}>
-            Prasanna Rajendran has spent six and a half years inside the machinery of non-banking finance — writing the code, then leading the team that writes the code, then fighting the fires that break out when code meets production.
+            Prasanna Rajendran has spent the better part of a decade inside non-banking finance — first writing code, then shaping the systems around it, and eventually taking responsibility for what happens when those systems meet the real world.
           </p>
           <p style={{
             fontFamily: '"Source Serif 4", serif',
@@ -162,7 +162,7 @@ const Masthead = ({ tweaks }) => {
             color: '#0E0E0C',
             margin: '12px 0 0',
           }}>
-            This is his front page.
+            He believes competence and curiosity are not trade-offs. You can — and should — keep both sharp.
           </p>
 
           <div style={{
@@ -179,10 +179,11 @@ const Masthead = ({ tweaks }) => {
               marginBottom: '8px',
             }}>Quick Facts</div>
             {[
-              ['Role', 'Proj Manager + Engineer'],
+              ['Role', 'Project Manager + Engineer'],
               ['Location', 'Chennai, India'],
-              ['Experience', '6.5 years'],
-              ['Team', '8 direct reports'],
+              ['Experience', '7+ years in FinTech'],
+              ['Focus', 'Reliable systems & calmer teams'],
+              ['Curiosities', 'Photography, books, rabbit holes'],
             ].map(([k, v]) => (
               <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dotted rgba(14,14,12,0.15)', padding: '4px 0', fontFamily: '"JetBrains Mono", monospace', fontSize: '10px' }}>
                 <span style={{ color: '#B8A792', textTransform: 'uppercase', letterSpacing: '.05em' }}>{k}</span>
@@ -203,7 +204,7 @@ const Masthead = ({ tweaks }) => {
           <div>
             <h1 style={{
               fontFamily: '"Playfair Display", serif',
-              fontSize: 'clamp(38px, 6vw, 72px)',
+              fontSize: 'clamp(32px, 4.5vw, 64px)',
               fontWeight: 900,
               lineHeight: 1.0,
               letterSpacing: '-0.02em',
@@ -227,7 +228,7 @@ const Masthead = ({ tweaks }) => {
               borderBottom: '1px solid rgba(14,14,12,0.15)',
               paddingBottom: '16px',
             }}>
-              PR leads an eight-person FinTech team by day, ships POCs by night, and reverse-engineers perfumes on the weekend.
+              By day, I lead a FinTech engineering team that moves real money. By night, I ship experiments. On weekends, I chase whatever rabbit hole looks interesting. Same operating system, different tabs.
             </p>
 
             {/* Drop cap lead paragraph */}
@@ -236,13 +237,33 @@ const Masthead = ({ tweaks }) => {
               fontSize: '14px',
               lineHeight: 1.7,
               color: '#0E0E0C',
-              margin: 0,
+              margin: '0 0 16px',
               columns: 2,
               columnGap: '20px',
               columnRule: showRules ? '1px solid rgba(14,14,12,0.15)' : 'none',
             }}>
-              Prasanna Rajendran has spent six and a half years inside the machinery of non-banking finance — writing the code, then leading the team that writes the code, then fighting the fires that break out when code meets production. This is his front page.
+              Prasanna Rajendran has spent seven years inside the machinery of non-banking finance — writing the code, then leading the team that writes it, then calmly putting out the fires when that code meets reality at 3 a.m. He's the kind of person who fixes the bug before filing the ticket. The one reading RFCs on a Sunday not because anyone asked, but because something felt unfinished. Somewhere around year four, he learned that panic is the least efficient response when things break.
             </p>
+
+            {/* Quote block */}
+            <blockquote style={{
+              margin: '0',
+              padding: '14px 18px',
+              borderLeft: '3px solid #C1272D',
+              background: 'rgba(193,39,45,0.04)',
+            }}>
+              <p style={{
+                fontFamily: '"Playfair Display", serif',
+                fontSize: '13px',
+                fontStyle: 'italic',
+                lineHeight: 1.5,
+                color: '#0E0E0C',
+                margin: '0 0 6px',
+              }}>
+                "I have never once finished learning something and thought — that's enough. Curiosity is not a trait. It is the only operating system I have never considered upgrading."
+              </p>
+              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: '#B8A792' }}>— Prasanna Rajendran, Editor-in-Chief</div>
+            </blockquote>
           </div>
 
           <div style={{
@@ -254,7 +275,7 @@ const Masthead = ({ tweaks }) => {
             color: '#C1272D',
             fontStyle: 'italic',
           }}>
-            Continued on Op-Ed, p. 2 →
+            (Continued on Op-Ed, p. 2)
           </div>
         </div>
 
