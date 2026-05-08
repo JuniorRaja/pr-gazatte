@@ -50,10 +50,16 @@ export default function OpEd() {
           {/* Body text - columns on desktop, single on mobile */}
           <div className="content-spacing" style={{ columns: 'auto', columnGap: '28px', columnRule: '1px solid rgba(14,14,12,0.15)' }}>
             <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 16px' }}>
-              Most portfolios are résumés with better fonts — the same story, just wearing nicer shoes. This one is a newspaper because a person is not a list of skills — a person is a beat. The tech beat clicks in keystrokes and caffeine. The lab beat smells like curiosity (and the occasional burnt experiment). The senses beat notices what others scroll past. The trails beat wanders where documentation politely stops. Turn the page — there's always more than fits above the fold.
+              Most portfolios are just résumés wearing better fonts. This one is a newspaper because a person is more than a list of skills.
+            </p>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 16px' }}>
+              It&apos;s the rhythm that matters. The tech beat clicks in keystrokes and caffeine. The lab beat smells like curiosity and the occasional burnt experiment. The production beat — that one you feel in your stomach at 4 a.m. when confidence meets reality.
+            </p>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 16px' }}>
+              My days layer like this: architecture in the morning, diplomacy in the afternoon, and midnight tinkering where the best ideas still happen unsupervised. None of these layers are clean. And I&apos;ve stopped pretending they should be.
             </p>
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: 0 }}>
-              The work happens in layers: architecture at 10 a.m., careful and optimistic; pull request diplomacy at 2; production chaos at 4, where confidence meets reality; and midnight tinkering, where ideas roam unsupervised. None of these layers are separable — and frankly, they wouldn't behave if you tried. This paper doesn't pretend otherwise.
+              I&apos;ve spent seven-plus years in FinTech engineering — building systems, leading teams, and shipping infrastructure that has to work when it matters. Along the way I picked up photography across nine countries, a growing bookshelf that refuses to stay organized, and an unhealthy tolerance for unsolved problems. This isn&apos;t self-promotion. It&apos;s just the long version of me.
             </p>
           </div>
           
@@ -68,9 +74,9 @@ export default function OpEd() {
           <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>The Editor&apos;s Note</div>
           
           <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(12px, 2.5vw, 13px)', fontStyle: 'italic', lineHeight: 1.65, color: 'var(--fg)', margin: '0 0 16px' }}>
-            &ldquo;This is not a self-promotion. This is a record. The record of someone who learned to code alone, then learned to lead, then decided to keep both skills sharp simultaneously.&rdquo;
+            &ldquo;This is not a self-promotion. This is a record. Of someone who learned to code alone, then learned to lead, then decided both skills had to stay sharp at the same time.&rdquo;
           </p>
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--sepia)' }}>— P.R., Editor</div>
+          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--sepia)' }}>— P.R.</div>
           
           <div className="hide-mobile" style={{ marginTop: '24px', border: '1px solid rgba(14,14,12,0.2)', padding: '14px', background: 'rgba(184,167,146,0.08)' }}>
             <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '8px' }}>Filed under</div>

@@ -18,10 +18,11 @@ const headlines = [
 ]
 
 const quickFacts = [
-  ['Role', 'Proj Manager + Engineer'],
+  ['Role', 'Project Manager + Engineer'],
   ['Location', 'Chennai, India'],
-  ['Experience', '7 years'],
-  ['Team', '8 direct reports'],
+  ['Experience', '7+ years in FinTech'],
+  ['Focus', 'Reliable systems & calmer teams'],
+  ['Curiosities', 'Photography, books, rabbit holes'],
 ]
 
 const index = [
@@ -155,10 +156,10 @@ export default function Masthead() {
               <span style={{ color: 'var(--accent)' }}>{lastPart}</span>
             </h1>
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 3vw, 16px)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 16px', borderBottom: '1px solid rgba(14,14,12,0.15)', paddingBottom: '16px' }}>
-              PR leads an eight-person FinTech team by day, ships POCs by night, and reverse-engineers perfumes on the weekend.
+              By day, I lead a FinTech engineering team that moves real money. By night, I ship experiments. On weekends, I chase whatever rabbit hole looks interesting. Same operating system, different tabs.
             </p>
             <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
-              Prasanna Rajendran has spent seven years inside the machinery of non-banking finance — writing the code, then leading the team that writes the code, then fighting the fires that break out when code meets production. This is his front page.
+              Prasanna Rajendran has spent seven years inside the machinery of non-banking finance — writing the code, then leading the team that writes it, then calmly putting out the fires when that code meets reality at 3 a.m. He&apos;s the kind of person who fixes the bug before filing the ticket. The one reading RFCs on a Sunday not because anyone asked, but because something felt unfinished. Somewhere around year four, he learned that panic is the least efficient response when things break.
             </p>
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               He is the kind of person who fixes the bug before filing the ticket. Who reads the RFC on a Sunday not because anyone asked, but because something about it felt unresolved at dinner. Who leads an eight-person team with the calm of someone who has seen every flavour of production chaos and learned, somewhere around year four, that panic is the least efficient response.
@@ -178,7 +179,7 @@ export default function Masthead() {
             </blockquote>
           </div>
           <div style={{ marginTop: '20px', borderTop: '1px solid var(--fg)', paddingTop: '8px', fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(9px, 2vw, 10px)', color: 'var(--accent)', fontStyle: 'italic' }}>
-            Continued on Op-Ed, p. 2 →
+            (Continued on Op-Ed, p. 2)
           </div>
         </div>
 
