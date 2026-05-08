@@ -161,9 +161,6 @@ export default function Masthead() {
             <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               Prasanna Rajendran has spent seven years inside the machinery of non-banking finance — writing the code, then leading the team that writes it, then calmly putting out the fires when that code meets reality at 3 a.m. He&apos;s the kind of person who fixes the bug before filing the ticket. The one reading RFCs on a Sunday not because anyone asked, but because something felt unfinished. Somewhere around year four, he learned that panic is the least efficient response when things break.
             </p>
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
-              He is the kind of person who fixes the bug before filing the ticket. Who reads the RFC on a Sunday not because anyone asked, but because something about it felt unresolved at dinner. Who leads an eight-person team with the calm of someone who has seen every flavour of production chaos and learned, somewhere around year four, that panic is the least efficient response.
-            </p>
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0' }}>
               He keeps a bookshelf that has opinions. He drinks coffee that he has also researched. He has certifications in things most people have not heard of and is quietly working on a few more. None of this is the résumé. All of it is the person.
             </p>
@@ -171,7 +168,7 @@ export default function Masthead() {
             {/* Highlighted Quote */}
             <blockquote style={{ margin: '24px 0 0', padding: '20px', background: 'rgba(139, 34, 35, 0.08)', borderLeft: '4px solid var(--accent)', borderTop: '1px solid rgba(139, 34, 35, 0.2)', borderBottom: '1px solid rgba(139, 34, 35, 0.2)' }}>
               <p style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(15px, 3.2vw, 18px)', fontStyle: 'italic', lineHeight: 1.6, color: 'var(--fg)', margin: '0 0 12px', fontWeight: 600 }}>
-                &quot;I have never once finished learning something and thought — that&apos;s enough. Curiosity is not a trait. It is the only operating system I have never considered upgrading.&quot;
+                &quot;Learning something new has never felt optional to me. Curiosity isn&apos;t a hobby — it&apos;s how I stay useful and alive.&quot;
               </p>
               <footer style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 'clamp(9px, 2vw, 10px)', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
                 — Prasanna Rajendran · Editor-in-Chief
