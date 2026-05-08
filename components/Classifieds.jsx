@@ -128,7 +128,7 @@ const Classifieds = ({ tweaks }) => {
             fontFamily: '"Source Serif 4", serif',
             fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', lineHeight: 1.6,
           }}>
-            The PR Gazette · Chennai · Est. 1998 · Vol. PR · No. 69
+            The PR Gazette · Chennai · Est. 1998 · Vol. PR · No. 1
           </div>
           <a href="mailto:hello@prasannar.com" style={{
             fontFamily: '"Playfair Display", serif',

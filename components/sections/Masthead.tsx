@@ -75,7 +75,7 @@ export default function Masthead() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '8px' }}>
             <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', letterSpacing: '.05em', color: 'var(--fg)' }}>
               <div style={{ fontWeight: 700 }}>{dateStr}</div>
-              <div style={{ marginTop: 2 }}>Vol. PR · No. 69</div>
+              <div style={{ marginTop: 2 }}>Vol. PR · No. 1</div>
             </div>
             <WeatherWidget />
           </div>
@@ -94,7 +94,7 @@ export default function Masthead() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '8px' }}>
             <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', letterSpacing: '.05em', color: 'var(--fg)' }}>
               <div style={{ fontWeight: 700 }}>{dateStr}</div>
-              <div style={{ marginTop: 2 }}>Vol. PR · No. 69</div>
+              <div style={{ marginTop: 2 }}>Vol. PR · No. 1</div>
             </div>
             <WeatherWidget />
           </div>
@@ -211,7 +211,7 @@ export default function Masthead() {
         </div>
 
       </div>
-      <SectionFiller watermark="GAZETTE" footnote={`Vol. PR · No. 69 · Chennai Edition · ${getMonthYear()}`} page="1" />
+      <SectionFiller watermark="GAZETTE" footnote={`Vol. PR · No. 1 · Chennai Edition · ${getMonthYear()}`} page="1" />
     </header>
   )
 }
