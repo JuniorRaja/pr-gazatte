@@ -1,16 +1,15 @@
-import SectionFiller from '@/components/SectionFiller'
 import SectionFlag from '@/components/SectionFlag'
 import { projects, services, stack } from '@/content/lab.mdx'
 
-const mono  = '"JetBrains Mono", monospace'
+const condensed = '"Barlow Condensed", sans-serif'
 const serif = '"Source Serif 4", serif'
-const display = '"Playfair Display", serif'
+const display = '"Bodoni Moda", serif'
 
 function StatusBadge({ label, color }: { label: string; color: string }) {
   const isLive = label.toLowerCase() === 'live'
   return (
     <span style={{
-      fontFamily: mono, fontSize: '9px', fontWeight: 700, letterSpacing: '.12em',
+      fontFamily: condensed, fontSize: '9px', fontWeight: 700, letterSpacing: '.12em',
       textTransform: 'uppercase', color, border: `1px solid ${color}`,
       padding: '2px 8px', display: 'inline-flex', alignItems: 'center', gap: '5px',
     }}>
@@ -40,7 +39,7 @@ export default function LabReport() {
       {/* Subhead strip */}
       <div className="section-padding-x" style={{ borderBottom: '1px solid rgba(14,14,12,0.2)', paddingTop: '8px', paddingBottom: '8px', textAlign: 'center' }}>
         <span style={{ fontFamily: serif, fontSize: 'clamp(12px, 2.5vw, 13px)', fontStyle: 'italic', color: 'var(--fg)' }}>
-          Dispatches from the garage — where things get built, broken, and occasionally shipped
+          Dispatches from the garage, where things get built, broken, and occasionally shipped
         </span>
       </div>
 
@@ -59,7 +58,7 @@ export default function LabReport() {
 
         {/* ═══ LEFT — Projects ═══ */}
         <div className="section-padding-x section-padding-y lab-left-col">
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Field Reports · Active Experiments
           </div>
 
@@ -82,10 +81,10 @@ export default function LabReport() {
               {/* Tags and links row */}
               <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                 {p.tags.map(t => (
-                  <span key={t} style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.04em' }}>#{t.replace(/\s+/g, '')}</span>
+                  <span key={t} style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.04em' }}>#{t.replace(/\s+/g, '')}</span>
                 ))}
                 {p.links.map(l => (
-                  <a key={l.label} href={l.href} className="lab-link" style={{ fontFamily: mono, fontSize: '9px', fontWeight: 700, color: 'var(--fg)', textDecoration: 'underline', textTransform: 'uppercase', letterSpacing: '.08em' }}>↗ {l.label}</a>
+                  <a key={l.label} href={l.href} className="lab-link" style={{ fontFamily: condensed, fontSize: '9px', fontWeight: 700, color: 'var(--fg)', textDecoration: 'underline', textTransform: 'uppercase', letterSpacing: '.08em' }}>↗ {l.label}</a>
                 ))}
               </div>
               <div style={{ fontFamily: serif, fontSize: '12px', fontStyle: 'italic', color: 'var(--sepia)', marginBottom: '10px' }}>{p.subtitle}</div>
@@ -108,19 +107,19 @@ export default function LabReport() {
 
         {/* ═══ RIGHT — Infrastructure ═══ */}
         <div className="section-padding-x lab-right-col">
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Infrastructure Dispatch · Always On
           </div>
 
           <h3 style={{ fontFamily: display, fontSize: '28px', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'var(--fg)', margin: '0 0 4px' }}>
             <span style={{ color: 'var(--accent)' }}>One VM.</span><br />Zero excuses.
           </h3>
-          <p style={{ fontFamily: mono, fontSize: '10px', color: 'var(--sepia)', letterSpacing: '.04em', margin: '0 0 24px', lineHeight: 1.6 }}>
+          <p style={{ fontFamily: condensed, fontSize: '10px', color: 'var(--sepia)', letterSpacing: '.04em', margin: '0 0 24px', lineHeight: 1.6 }}>
             OCI Singapore · ARM · Ubuntu 24 · 200GB · Running since day one.
           </p>
 
           {/* Services on duty */}
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.18em', marginBottom: '16px' }}>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.18em', marginBottom: '16px' }}>
             Services on Duty
           </div>
 
@@ -128,10 +127,10 @@ export default function LabReport() {
             <div key={s.name} style={{ borderBottom: i < services.length - 1 ? '1px solid rgba(14,14,12,0.1)' : 'none', padding: '12px 0' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', display: 'inline-block', flexShrink: 0 }} />
-                <span style={{ fontFamily: mono, fontSize: '13px', fontWeight: 700, color: 'var(--fg)' }}>{s.name}</span>
+                <span style={{ fontFamily: condensed, fontSize: '13px', fontWeight: 700, color: 'var(--fg)' }}>{s.name}</span>
               </div>
               <div style={{ paddingLeft: '16px', marginBottom: '4px' }}>
-                <span style={{ fontFamily: mono, fontSize: '10px', color: 'var(--sepia)', display: 'block', wordBreak: 'break-all' }}>{s.url}</span>
+                <span style={{ fontFamily: condensed, fontSize: '10px', color: 'var(--sepia)', display: 'block', wordBreak: 'break-all' }}>{s.url}</span>
               </div>
               <div style={{ paddingLeft: '16px' }}>
                 <p style={{ fontFamily: serif, fontSize: '12.5px', fontStyle: 'italic', lineHeight: 1.55, color: 'var(--fg)', margin: 0 }}>{s.desc}</p>
@@ -140,18 +139,18 @@ export default function LabReport() {
           ))}
 
           {/* Stack at a glance */}
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginTop: '24px', marginBottom: '12px' }}>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginTop: '24px', marginBottom: '12px' }}>
             Stack at a Glance
           </div>
           {stack.map(([k, v]) => (
             <div key={k} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px dotted rgba(14,14,12,0.15)', padding: '6px 0' }}>
-              <span style={{ fontFamily: mono, fontSize: '11px', color: 'var(--fg)' }}>{k}</span>
-              <span style={{ fontFamily: mono, fontSize: '11px', color: 'var(--fg)', textAlign: 'right' }}>{v}</span>
+              <span style={{ fontFamily: condensed, fontSize: '11px', color: 'var(--fg)' }}>{k}</span>
+              <span style={{ fontFamily: condensed, fontSize: '11px', color: 'var(--fg)', textAlign: 'right' }}>{v}</span>
             </div>
           ))}
 
           {/* Infrastructure pull quote */}
-          <blockquote style={{ margin: '24px 0 0', padding: '16px 20px', borderLeft: '4px solid var(--accent)', background: 'rgba(193,39,45,0.04)' }}>
+          <blockquote style={{ margin: '24px 0 0', padding: '16px 20px', borderTop: '2px solid var(--accent)', borderBottom: '1px solid rgba(193,39,45,0.15)', background: 'rgba(193,39,45,0.04)' }}>
             <p style={{ fontFamily: display, fontSize: 'clamp(14px, 1.6vw, 17px)', fontWeight: 700, fontStyle: 'italic', lineHeight: 1.4, color: 'var(--fg)', margin: 0 }}>
               &ldquo;Every SaaS you replace with your own instance is a subscription cancelled and a skill compounded.&rdquo;
             </p>
@@ -159,12 +158,12 @@ export default function LabReport() {
 
           {/* Backup note */}
           <p style={{ fontFamily: serif, fontSize: '12px', fontStyle: 'italic', lineHeight: 1.65, color: 'var(--sepia)', margin: '16px 0 0' }}>
-            Fully portable. Restore anywhere with tar + docker compose up. Each service independently restorable from OCI backup. Zero third-party data exposure — because that was the whole point.
+            Fully portable. Restore anywhere with tar + docker compose up. Each service independently restorable from OCI backup. Zero third-party data exposure, because that was the whole point.
           </p>
         </div>
       </div>
 
-      <SectionFiller watermark="INFRA" footnote="Lab Report · p. 5 · Private compute · Cloudflare edge · Docker" page="5" accent="var(--accent)" />
+
     </section>
   )
 }

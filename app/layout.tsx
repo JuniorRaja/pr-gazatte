@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Source_Serif_4, JetBrains_Mono } from 'next/font/google'
+import { Bodoni_Moda, Source_Serif_4, Barlow_Condensed, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const bodoni = Bodoni_Moda({
   subsets: ['latin'],
   weight: ['400', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
-  variable: '--font-playfair',
+  variable: '--font-display',
   display: 'swap',
 })
 
@@ -16,10 +16,17 @@ const sourceSerif = Source_Serif_4({
   display: 'swap',
 })
 
+const barlow = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-condensed',
+  display: 'swap',
+})
+
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-jetbrains',
+  weight: ['400'],
+  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -36,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-theme="newsprint"
-      className={`${playfair.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${bodoni.variable} ${sourceSerif.variable} ${barlow.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

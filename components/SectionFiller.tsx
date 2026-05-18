@@ -10,12 +10,12 @@ export default function SectionFiller({ watermark, footnote, page, accent = 'var
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', minHeight: '48px' }}>
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(90deg, rgba(14,14,12,0.025) 0px, rgba(14,14,12,0.025) 1px, transparent 1px, transparent calc(100% / 12))', pointerEvents: 'none' }} />
       {watermark && (
-        <div style={{ position: 'absolute', bottom: '-10px', right: '20px', fontFamily: '"Playfair Display", serif', fontSize: 'clamp(72px, 11vw, 148px)', fontWeight: 900, lineHeight: 1, color: 'rgba(14,14,12,0.038)', letterSpacing: '-0.04em', userSelect: 'none', pointerEvents: 'none', whiteSpace: 'nowrap', overflow: 'visible' }}>
+        <div style={{ position: 'absolute', bottom: '-10px', right: '20px', fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(72px, 11vw, 148px)', fontWeight: 900, lineHeight: 1, color: 'rgba(14,14,12,0.038)', letterSpacing: '-0.04em', userSelect: 'none', pointerEvents: 'none', whiteSpace: 'nowrap', overflow: 'visible' }}>
           {watermark}
         </div>
       )}
       <div style={{ position: 'relative', zIndex: 1, borderTop: '1px solid rgba(14,14,12,0.12)', padding: '9px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8.5px', letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(14,14,12,0.3)' }}>
+        <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8.5px', letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(14,14,12,0.3)' }}>
           {footnote || 'The PR Gazette · Chennai'}
         </div>
         <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
@@ -30,7 +30,7 @@ export default function SectionFiller({ watermark, footnote, page, accent = 'var
             ))}
           </div>
           {page && (
-            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8.5px', color: 'rgba(14,14,12,0.3)', letterSpacing: '.1em' }}>— p. {page} —</div>
+            <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8.5px', color: 'rgba(14,14,12,0.3)', letterSpacing: '.1em' }}>p. {page}</div>
           )}
         </div>
       </div>

@@ -90,7 +90,7 @@ export default function Footer() {
       <div className="ft-colophon">
         {colophonCols.map((col) => (
           <div key={col.heading} className={`ft-col-item${col.heading === 'Technical Stack' ? ' ft-col-tech' : col.heading === 'Edition' ? ' ft-col-edition' : ''}`}>
-            <div className="ft-col-heading" style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', marginBottom: '10px', borderBottom: '1px solid rgba(139,34,35,0.4)', paddingBottom: '6px' }}>{col.heading}</div>
+            <div className="ft-col-heading" style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', marginBottom: '10px', borderBottom: '1px solid rgba(139,34,35,0.4)', paddingBottom: '6px' }}>{col.heading}</div>
             {col.lines.map(line => (
               <div key={line} className="ft-col-line" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', color: 'rgba(244,239,230,0.75)', lineHeight: 1.8 }}>{line}</div>
             ))}
@@ -100,10 +100,10 @@ export default function Footer() {
 
       {/* Mega display name */}
       <div style={{ padding: '40px 24px 0', textAlign: 'center', overflow: 'hidden' }}>
-        <div style={{ fontFamily: '"Playfair Display", serif', fontWeight: 900, lineHeight: 0.88, letterSpacing: '-0.04em', color: 'var(--bg)', fontSize: 'clamp(48px, 11vw, 120px)', opacity: 0.12, userSelect: 'none', whiteSpace: 'nowrap' }}>
+        <div style={{ fontFamily: '"Bodoni Moda", serif', fontWeight: 900, lineHeight: 0.88, letterSpacing: '-0.04em', color: 'var(--bg)', fontSize: 'clamp(48px, 11vw, 120px)', opacity: 0.12, userSelect: 'none', whiteSpace: 'nowrap' }}>
           PRASANNA
         </div>
-        <div style={{ fontFamily: '"Playfair Display", serif', fontWeight: 900, lineHeight: 0.88, letterSpacing: '-0.04em', color: 'var(--bg)', fontSize: 'clamp(48px, 11vw, 120px)', opacity: 0.12, userSelect: 'none', whiteSpace: 'nowrap', marginBottom: '8px' }}>
+        <div style={{ fontFamily: '"Bodoni Moda", serif', fontWeight: 900, lineHeight: 0.88, letterSpacing: '-0.04em', color: 'var(--bg)', fontSize: 'clamp(48px, 11vw, 120px)', opacity: 0.12, userSelect: 'none', whiteSpace: 'nowrap', marginBottom: '8px' }}>
           RAJENDRAN
         </div>
       </div>
@@ -131,7 +131,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="ft-bottom-bar">
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 1998</span>
+        <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 1998</span>
         <div className="ft-nav-links">
           {[
             { label: 'Op-Ed',    href: '#op-ed'   },
@@ -144,13 +144,13 @@ export default function Footer() {
             { label: 'Off Duty', href: '#hobbies'  },
             { label: 'Contact',  href: '#contact'  },
           ].map(({ label, href }) => (
-            <a key={label} href={href} style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.3)', letterSpacing: '.08em', textTransform: 'uppercase', textDecoration: 'none' }}
+            <a key={label} href={href} style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'rgba(244,239,230,0.3)', letterSpacing: '.08em', textTransform: 'uppercase', textDecoration: 'none' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'rgba(244,239,230,0.75)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(244,239,230,0.3)')}
             >{label}</a>
           ))}
         </div>
-        <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>VOL. I · NO. 1</span>
+        <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>VOL. I · NO. 1</span>
       </div>
     </footer>
   )

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import SectionFiller from '@/components/SectionFiller'
 import SectionFlag from '@/components/SectionFlag'
 import { timeline, numbers } from '@/content/career.mdx'
 
@@ -30,7 +29,7 @@ export default function BusinessPages() {
         {/* LEFT — Label + headline + filing meta + numbers */}
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)', display: 'flex', flexDirection: 'column' }}>
 
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
+          <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Annual Report · FY 2019–Present
           </div>
 
@@ -38,20 +37,20 @@ export default function BusinessPages() {
           <div style={{ border: '1px solid rgba(14,14,12,0.2)', padding: '10px 12px', marginBottom: '20px' }}>
             {filingMeta.map(([k, v]) => (
               <div key={k} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px dotted rgba(14,14,12,0.15)', padding: '5px 0', gap: '8px' }}>
-                <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.08em', flexShrink: 0 }}>{k}</span>
-                <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--fg)', fontWeight: 700, textAlign: 'right' }}>{v}</span>
+                <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.08em', flexShrink: 0 }}>{k}</span>
+                <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--fg)', fontWeight: 700, textAlign: 'right' }}>{v}</span>
               </div>
             ))}
           </div>
 
           {/* By the Numbers */}
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '4px' }}>
+          <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '4px' }}>
             By the Numbers
           </div>
           {numbers.map(({ n, unit, label }, i) => (
             <div key={i} style={{ borderBottom: '1px solid rgba(14,14,12,0.12)', padding: '14px 0' }}>
-              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(36px, 3vw, 48px)', fontWeight: 900, lineHeight: 0.9, color: 'var(--fg)', letterSpacing: '-0.02em' }}>{n}</div>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '7px', marginBottom: '4px' }}>{unit}</div>
+              <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(36px, 3vw, 48px)', fontWeight: 900, lineHeight: 0.9, color: 'var(--fg)', letterSpacing: '-0.02em' }}>{n}</div>
+              <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '7px', marginBottom: '4px' }}>{unit}</div>
               <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: '11px', color: 'var(--sepia)', fontStyle: 'italic', lineHeight: 1.5 }}>{label}</div>
             </div>
           ))}
@@ -60,13 +59,13 @@ export default function BusinessPages() {
           <div style={{ marginTop: '16px', border: '1px solid rgba(14,14,12,0.2)', background: 'rgba(193,39,45,0.04)', position: 'relative', overflow: 'hidden' }}>
             {/* Topper badge */}
             <div style={{ background: 'var(--accent)', padding: '4px 12px', display: 'flex', alignItems: 'center', gap: '6px', borderBottom: '1px solid rgba(193,39,45,0.3)' }}>
-              <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: '#F4EFE6', textTransform: 'uppercase', letterSpacing: '.15em', fontWeight: 700 }}>★ First Class Distinction</span>
+              <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: '#F4EFE6', textTransform: 'uppercase', letterSpacing: '.15em', fontWeight: 700 }}>★ First Class Distinction</span>
             </div>
             <div style={{ padding: '10px 12px' }}>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '6px' }}>Education</div>
-              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--fg)', fontWeight: 600, marginTop: '3px', letterSpacing: '.03em' }}>Bachelor of Science</div>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '10px', color: 'var(--sepia)', marginTop: '4px' }}>Chennai · 2019</div>
+              <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '6px' }}>Education</div>
+              <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
+              <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--fg)', fontWeight: 600, marginTop: '3px', letterSpacing: '.03em' }}>Bachelor of Science</div>
+              <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--sepia)', marginTop: '4px' }}>Chennai · 2019</div>
             </div>
           </div>
 
@@ -75,18 +74,18 @@ export default function BusinessPages() {
         {/* CENTER — Headline + timeline + pull quote */}
         <div style={{ borderRight: '1px solid rgba(14,14,12,0.2)', padding: '28px 32px' }}>
 
-          <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(32px, 6vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 6px' }}>
+          <h2 style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(32px, 6vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 6px' }}>
             <span style={{ color: 'var(--accent)' }}>7 years</span><br />
             &amp; counting.
           </h2>
 
-          <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(14px, 2.5vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', marginBottom: '20px' }}>
+          <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(14px, 2.5vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', marginBottom: '20px' }}>
             One company. Three titles. Infinite fires.
           </div>
 
           <div style={{ height: '2px', background: 'var(--fg)', marginBottom: '20px' }} />
 
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '24px' }}>
+          <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '24px' }}>
             Consolidated Statement of Experience · Retrospective 2019 – Present
           </div>
 
@@ -104,9 +103,9 @@ export default function BusinessPages() {
                   {/* Content */}
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '12px', marginBottom: '5px' }}>
-                      <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '18px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.15 }}>{item.title}</div>
+                      <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '18px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.15 }}>{item.title}</div>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0 }}>
-                        <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{item.date}</div>
+                        <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{item.date}</div>
                       </div>
                     </div>
                     <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.68, color: 'var(--fg)', margin: 0 }}>{item.body}</p>
@@ -118,8 +117,8 @@ export default function BusinessPages() {
           </div>
 
           {/* Pull quote */}
-          <blockquote style={{ margin: '28px 0 0', padding: '16px 20px', borderLeft: '4px solid var(--accent)', background: 'rgba(193,39,45,0.04)' }}>
-            <p style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(14px, 1.4vw, 17px)', fontStyle: 'italic', fontWeight: 700, lineHeight: 1.45, color: 'var(--fg)', margin: 0 }}>
+          <blockquote style={{ margin: '28px 0 0', padding: '16px 20px', borderTop: '2px solid var(--accent)', borderBottom: '1px solid rgba(193,39,45,0.15)', background: 'rgba(193,39,45,0.04)' }}>
+            <p style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(14px, 1.4vw, 17px)', fontStyle: 'italic', fontWeight: 700, lineHeight: 1.45, color: 'var(--fg)', margin: 0 }}>
               &ldquo;{pullQuote}&rdquo;
             </p>
           </blockquote>
@@ -130,7 +129,7 @@ export default function BusinessPages() {
         <div style={{ padding: '28px 28px', display: 'flex', flexDirection: 'column' }}>
 
           {/* Editorial label */}
-          <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
+          <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>
             Editor&apos;s Note
           </div>
 
@@ -139,7 +138,7 @@ export default function BusinessPages() {
             <p key={i} style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', margin: i < editorial.length - 1 ? '0 0 14px' : '0 0 24px' }}>
               {i === 0 ? (
                 <>
-                  <span style={{ fontFamily: '"Playfair Display", serif', fontSize: '54px', fontWeight: 900, lineHeight: 0.78, float: 'left', marginRight: '7px', marginTop: '5px', color: 'var(--fg)' }}>{para[0]}</span>
+                  <span style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '54px', fontWeight: 900, lineHeight: 0.78, float: 'left', marginRight: '7px', marginTop: '5px', color: 'var(--fg)' }}>{para[0]}</span>
                   {para.slice(1)}
                 </>
               ) : para}
@@ -155,13 +154,13 @@ export default function BusinessPages() {
               style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }}
             />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.65))', padding: '16px 8px 6px' }}>
-              <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>
+              <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>
             </div>
           </div>
 
           {/* Continued */}
           <div style={{ marginTop: '12px', borderTop: '1px solid rgba(14,14,12,0.15)', paddingTop: '10px', textAlign: 'right' }}>
-            <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '9px', color: 'var(--accent)', fontStyle: 'italic' }}>
+            <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', fontStyle: 'italic' }}>
               Continued on skills &amp; projects →
             </span>
           </div>
@@ -170,7 +169,7 @@ export default function BusinessPages() {
 
       </div>
 
-      <SectionFiller watermark="CAREER" footnote="Career Beat · p. 4 · One company · Three titles · 7 years" page="4" />
+
     </section>
   )
 }

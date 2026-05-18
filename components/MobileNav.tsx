@@ -17,7 +17,7 @@ export default function MobileNav() {
           background: 'none', 
           border: 'none', 
           cursor: 'pointer', 
-          fontFamily: '"JetBrains Mono", monospace', 
+          fontFamily: '"Barlow Condensed", sans-serif', 
           fontSize: '11px', 
           letterSpacing: '.1em', 
           textTransform: 'uppercase', 
@@ -57,7 +57,7 @@ export default function MobileNav() {
               background: 'none', 
               border: '1px solid var(--bg)', 
               cursor: 'pointer', 
-              fontFamily: '"JetBrains Mono", monospace', 
+              fontFamily: '"Barlow Condensed", sans-serif', 
               fontSize: '12px', 
               color: 'var(--bg)', 
               letterSpacing: '.1em',
@@ -78,7 +78,7 @@ export default function MobileNav() {
           </button>
           
           <div style={{ 
-            fontFamily: '"Playfair Display", serif', 
+            fontFamily: '"Bodoni Moda", serif', 
             fontSize: 'clamp(28px, 8vw, 38px)', 
             fontWeight: 900, 
             color: 'var(--bg)', 
@@ -97,7 +97,7 @@ export default function MobileNav() {
                 onClick={() => setOpen(false)}
                 className="touch-target-padded"
                 style={{ 
-                  fontFamily: '"JetBrains Mono", monospace', 
+                  fontFamily: '"Barlow Condensed", sans-serif', 
                   fontSize: '13px', 
                   letterSpacing: '.15em', 
                   textTransform: 'uppercase', 
@@ -124,7 +124,7 @@ export default function MobileNav() {
           </nav>
           
           <div style={{ 
-            fontFamily: '"JetBrains Mono", monospace', 
+            fontFamily: '"Barlow Condensed", sans-serif', 
             fontSize: '10px', 
             color: 'rgba(244,239,230,0.5)', 
             marginTop: '32px',

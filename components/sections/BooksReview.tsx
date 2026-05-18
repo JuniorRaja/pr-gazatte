@@ -1,12 +1,11 @@
 'use client'
 
 import { useState, useRef } from 'react'
-import SectionFiller from '@/components/SectionFiller'
 import NpImage from '@/components/NpImage'
 
-const mono = '"JetBrains Mono", monospace'
+const condensed = '"Barlow Condensed", sans-serif'
 const serif = '"Source Serif 4", serif'
-const display = '"Playfair Display", serif'
+const display = '"Bodoni Moda", serif'
 
 type BookStatus = 'currently-reading' | 'will-read' | 'read'
 
@@ -67,7 +66,7 @@ function stampClass(status?: BookStatus) {
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <span style={{ fontFamily: mono, fontSize: '9px', color: '#c7a830', letterSpacing: '1px' }}>
+    <span style={{ fontFamily: condensed, fontSize: '9px', color: '#c7a830', letterSpacing: '1px' }}>
       {'★'.repeat(rating)}{'☆'.repeat(5 - rating)}
     </span>
   )
@@ -242,7 +241,7 @@ function BookTableCol({ books, hoveredId, onHover }: {
         display: 'grid',
         gridTemplateColumns: '44px 1fr 72px',
         gap: '0 10px',
-        fontFamily: mono,
+        fontFamily: condensed,
         fontSize: 'clamp(10px, 2vw, 11px)',
         letterSpacing: '.15em',
         textTransform: 'uppercase',
@@ -270,7 +269,7 @@ export default function BooksReview() {
       <style>{`
         /* ── Stamps ── */
         .br-stamp {
-          font-family: ${mono};
+          font-family: ${condensed};
           font-size: 7.5px;
           font-weight: 700;
           letter-spacing: 0.12em;
@@ -330,8 +329,8 @@ export default function BooksReview() {
         background: 'var(--accent)', color: '#F4EFE6',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
       }}>
-        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Culture &amp; Character · The Reading Life</span>
-        <span style={{ fontFamily: mono, fontSize: '10px' }}>Page 7</span>
+        <span style={{ fontFamily: condensed, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Culture &amp; Character · The Reading Life</span>
+        <span style={{ fontFamily: condensed, fontSize: '10px' }}>Page 7</span>
       </div>
 
       {/* ── Top 2-col: [headline + writing] | [tall photo] ── */}
@@ -395,7 +394,7 @@ export default function BooksReview() {
                 marginRight: '22px',
               }}
             >
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The habit</div>
+              <div style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The habit</div>
               <p className="drop-cap" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '8px' }}>
                 He does not read on schedule. He reads the way some people think — in bursts, in margins, in the ten minutes before a meeting where a decent idea might still show up. The book is always somewhere nearby. Sometimes it is open. Sometimes it is just watching.
               </p>
@@ -403,7 +402,7 @@ export default function BooksReview() {
                 The habit formed not in school but in the years after, when answers stopped arriving pre-packaged and questions started arriving faster. A book became the cheapest form of a very expensive conversation.
               </p>
 
-              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What gets chosen</div>
+              <div className="br-hide-mobile" style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What gets chosen</div>
               <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '12px' }}>
                 The shelf leans non-fiction without being cold. History. Systems. The psychology of decisions. The occasional biography of someone who built something and survived it. Fiction makes a rare appearance — usually when a colleague insists, or when the nonfiction starts sounding too much like itself.
               </p>
@@ -424,17 +423,17 @@ export default function BooksReview() {
 
             {/* Right editorial */}
             <div>
-              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What stays</div>
+              <div className="br-hide-mobile" style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What stays</div>
               <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 The books that earn a permanent place are not the easiest to finish. They are the ones that left a sentence behind — something that surfaced weeks later in a code review, a retrospective, a late-night architecture discussion where the right framing suddenly mattered.
               </p>
 
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The system</div>
+              <div style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The system</div>
               <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 There is no colour-coding, no reading tracker, no Goodreads profile updated with military precision. The system is simpler: start, finish if it earns it, remember what matters. Dog-eared pages over highlights — a highlight is for someone else. The folded corner is a private agreement between reader and page.
               </p>
 
-              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What comes next</div>
+              <div className="br-hide-mobile" style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What comes next</div>
               <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify' }}>
                 Five are waiting. The to-read list is shorter than it has ever been — not because curiosity has narrowed, but because the bar has quietly raised itself. A book earns its place by being mentioned twice by people whose judgment has already proven expensive to ignore.
               </p>
@@ -471,7 +470,7 @@ export default function BooksReview() {
             padding: '40px 12px 14px',
           }}>
             <div style={{
-              fontFamily: mono,
+              fontFamily: condensed,
               fontSize: '7px',
               color: 'rgba(244,239,230,0.85)',
               textTransform: 'uppercase',
@@ -507,7 +506,7 @@ export default function BooksReview() {
             justifyContent: 'space-between',
             alignItems: 'baseline',
           }}>
-            <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase', fontWeight: 700 }}>
+            <span style={{ fontFamily: condensed, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase', fontWeight: 700 }}>
               Consolidated Reading Record · All Titles
             </span>
             <span style={{ fontFamily: serif, fontSize: '9px', fontStyle: 'italic', color: 'var(--sepia)', letterSpacing: '.05em' }}>
@@ -533,12 +532,6 @@ export default function BooksReview() {
 
       </div>
 
-      <SectionFiller
-        watermark="READS"
-        footnote={`The Career Beat · Books & Reading · Annual Review`}
-        page="7"
-        accent="var(--accent)"
-      />
     </section>
   )
 }

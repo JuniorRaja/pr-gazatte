@@ -30,7 +30,7 @@ export default function SectionFlag({
       }}
     >
       <span style={{ 
-        fontFamily: '"JetBrains Mono", monospace', 
+        fontFamily: '"Barlow Condensed", sans-serif', 
         fontSize: 'clamp(9px, 2vw, 10px)', 
         letterSpacing: '.2em', 
         textTransform: 'uppercase',
@@ -42,7 +42,7 @@ export default function SectionFlag({
         <span 
           className="hidden sm:inline"
           style={{ 
-            fontFamily: '"JetBrains Mono", monospace', 
+            fontFamily: '"Barlow Condensed", sans-serif', 
             fontSize: 'clamp(8px, 1.8vw, 10px)', 
             letterSpacing: '.1em' 
           }}
