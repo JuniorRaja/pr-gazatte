@@ -3,9 +3,9 @@
 /* ── Newsprint (default) ─────────────────────────────────────── */
 [data-theme="newsprint"],
 :root {
-  --bg: #e8dbc9;
+  --bg: #F4EFE6;
   --fg: #0E0E0C;
-  --accent: #8b2223;
+  --accent: #C1272D;
   --sepia: #B8A792;
 }
 
@@ -13,13 +13,13 @@
 [data-theme="ink"] {
   --bg: #0E0E0C;
   --fg: #F4EFE6;
-  --accent: #8b2223;
+  --accent: #C1272D;
   --sepia: #8a7c6e;
 }
 
 /* ── Aged ────────────────────────────────────────────────────── */
 [data-theme="aged"] {
-  --bg: #E8DCC8;
+  --bg: #D9C9A3;
   --fg: #2a1f0e;
   --accent: #8B2020;
   --sepia: #9c8060;

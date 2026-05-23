@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import ThemeToggle from '@/components/ThemeToggle'
 
 const navItems = ['Op-Ed', 'Tech', 'Career', 'Lab', 'Photos', 'Books', 'Travel', 'Hobbies', 'Contact']
 
@@ -123,14 +124,8 @@ export default function MobileNav() {
             ))}
           </nav>
           
-          <div style={{ 
-            fontFamily: '"Barlow Condensed", sans-serif', 
-            fontSize: '10px', 
-            color: 'rgba(244,239,230,0.5)', 
-            marginTop: '32px',
-            letterSpacing: '.05em'
-          }}>
-            hello@prasannar.com
+          <div style={{ marginTop: '32px', width: '100%', maxWidth: '280px' }}>
+            <ThemeToggle variant="drawer" />
           </div>
         </div>
       )}

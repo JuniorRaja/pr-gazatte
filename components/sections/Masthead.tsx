@@ -2,6 +2,7 @@ import Image from 'next/image'
 import SectionFiller from '@/components/SectionFiller'
 import MobileNav from '@/components/MobileNav'
 import WeatherWidget from '@/components/WeatherWidget'
+import ThemeToggle from '@/components/ThemeToggle'
 import { getMonthYear } from '@/utils/date'
 
 const DAYS = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
@@ -57,7 +58,7 @@ export default function Masthead() {
             <a key={item} href={`#${item.toLowerCase()}`} style={{ textDecoration: 'none', color: 'var(--fg)' }}>{item}</a>
           ))}
         </nav>
-        <span className="hidden md:flex">hello@prasannar.com</span>
+        <span className="hidden md:flex"><ThemeToggle /></span>
         <span className="md:hidden"><MobileNav /></span>
       </div>
 
