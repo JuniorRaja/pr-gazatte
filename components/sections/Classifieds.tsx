@@ -22,12 +22,30 @@ const condensed = '"Barlow Condensed", sans-serif'
 const serif   = '"Source Serif 4", serif'
 const display = '"Bodoni Moda", serif'
 
+function isValidContact(value: string): boolean {
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const digits = value.replace(/\D/g, '')
+  return emailRe.test(value.trim()) || (digits.length >= 7 && digits.length <= 15)
+}
+
 export default function Classifieds() {
   const [form, setForm] = useState({ name: '', contact: '', message: '' })
+  const [contactError, setContactError] = useState('')
   const [sent, setSent] = useState(false)
+
+  const handleContactBlur = () => {
+    if (form.contact && !isValidContact(form.contact))
+      setContactError('Enter a valid email address or phone number')
+    else
+      setContactError('')
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isValidContact(form.contact)) {
+      setContactError('Enter a valid email address or phone number')
+      return
+    }
     const subject = `Letter to the Editor — from ${form.name}`
     const body = `From: ${form.name}\nContact: ${form.contact}\n\n${form.message}`
     window.open(
@@ -302,7 +320,7 @@ export default function Classifieds() {
                     </a>
                   </p>
                   <button
-                    onClick={() => { setSent(false); setForm({ name: '', contact: '', message: '' }) }}
+                    onClick={() => { setSent(false); setForm({ name: '', contact: '', message: '' }); setContactError('') }}
                     style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', background: 'none', border: 'none', cursor: 'pointer', marginTop: '16px', textDecoration: 'underline' }}
                   >
                     Send another
@@ -338,9 +356,16 @@ export default function Classifieds() {
                         type="text"
                         placeholder="So the editor can write back"
                         value={form.contact}
-                        onChange={e => setForm(f => ({ ...f, contact: e.target.value }))}
+                        onChange={e => { setForm(f => ({ ...f, contact: e.target.value })); if (contactError) setContactError('') }}
+                        onBlur={handleContactBlur}
+                        style={{ borderBottomColor: contactError ? 'var(--accent)' : undefined }}
                         required
                       />
+                      {contactError && (
+                        <div style={{ fontFamily: condensed, fontSize: '7.5px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '5px' }}>
+                          ✕ {contactError}
+                        </div>
+                      )}
                     </div>
 
                     <div className="cl-field-wrap">
