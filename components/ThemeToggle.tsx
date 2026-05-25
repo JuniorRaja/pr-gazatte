@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function ThemeToggle({ variant = 'strip' }: Props) {
-  const [theme, setTheme] = useState<Theme>('newsprint')
+  const [theme, setTheme] = useState<Theme>('aged')
 
   useEffect(() => {
     const saved = localStorage.getItem('theme') as Theme | null

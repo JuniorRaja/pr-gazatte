@@ -58,6 +58,26 @@ export default function Classifieds() {
   return (
     <section id="contact" style={{ borderBottom: '3px solid var(--fg)' }}>
       <style>{`
+        /* Theme-aware border/chrome tokens */
+        :root, [data-theme="newsprint"], [data-theme="aged"] {
+          --cl-border:         rgba(14,14,12,0.18);
+          --cl-border-light:   rgba(14,14,12,0.12);
+          --cl-border-subtle:  rgba(14,14,12,0.15);
+          --cl-placeholder:    rgba(14,14,12,0.28);
+          --cl-scissors-color: rgba(14,14,12,0.30);
+          --cl-coupon-border:  rgba(14,14,12,0.32);
+          --cl-header-bg:      rgba(14,14,12,0.035);
+        }
+        [data-theme="ink"] {
+          --cl-border:         rgba(244,239,230,0.28);
+          --cl-border-light:   rgba(244,239,230,0.18);
+          --cl-border-subtle:  rgba(244,239,230,0.15);
+          --cl-placeholder:    rgba(244,239,230,0.35);
+          --cl-scissors-color: rgba(244,239,230,0.35);
+          --cl-coupon-border:  rgba(244,239,230,0.28);
+          --cl-header-bg:      rgba(244,239,230,0.04);
+        }
+
         .cl-main-grid {
           display: flex;
           flex-direction: column;
@@ -86,12 +106,12 @@ export default function Classifieds() {
         }
 
         /* Field report rows */
-        .cl-status-row { display: flex; flex-direction: column; border-bottom: 1px dotted rgba(14,14,12,0.15); padding: 8px 0; gap: 2px; }
+        .cl-status-row { display: flex; flex-direction: column; border-bottom: 1px dotted var(--cl-border-subtle); padding: 8px 0; gap: 2px; }
 
         /* Contact links */
-        .cl-primary-link { display: flex; flex-direction: column; text-decoration: none; gap: 2px; padding: 10px 0; border-bottom: 1px solid rgba(14,14,12,0.12); }
+        .cl-primary-link { display: flex; flex-direction: column; text-decoration: none; gap: 2px; padding: 10px 0; border-bottom: 1px solid var(--cl-border-light); }
         .cl-primary-link:hover span:last-child { opacity: 0.7; }
-        .cl-social-link { display: flex; justify-content: space-between; align-items: center; text-decoration: none; padding: 7px 0; border-bottom: 1px dotted rgba(14,14,12,0.12); }
+        .cl-social-link { display: flex; justify-content: space-between; align-items: center; text-decoration: none; padding: 7px 0; border-bottom: 1px dotted var(--cl-border-light); }
         .cl-social-link:hover .cl-social-val { color: var(--accent) !important; }
         @media (max-width: 767px) {
           .cl-social-link { flex-direction: column; align-items: flex-start; gap: 2px; }
@@ -99,9 +119,9 @@ export default function Classifieds() {
 
         /* Coupon form */
         .cl-coupon {
-          border: 1.5px dashed rgba(14,14,12,0.32);
+          border: 1.5px dashed var(--cl-coupon-border);
           position: relative;
-          background: rgba(14,14,12,0.01);
+          background: transparent;
         }
         .cl-scissors {
           position: absolute;
@@ -122,7 +142,7 @@ export default function Classifieds() {
         .cl-scissors-text {
           font-family: ${condensed};
           font-size: 7px;
-          color: rgba(14,14,12,0.3);
+          color: var(--cl-scissors-color);
           letter-spacing: .1em;
           text-transform: uppercase;
         }
@@ -131,7 +151,7 @@ export default function Classifieds() {
         .cl-form-header {
           border-bottom: 2px solid var(--fg);
           padding: 10px 14px 9px;
-          background: rgba(14,14,12,0.035);
+          background: var(--cl-header-bg);
         }
         .cl-form-header-row {
           display: flex;
@@ -161,13 +181,13 @@ export default function Classifieds() {
           flex-shrink: 0;
           cursor: pointer;
         }
-        .cl-field-rule { flex: 1; height: 1px; background: rgba(14,14,12,0.15); }
+        .cl-field-rule { flex: 1; height: 1px; background: var(--cl-border-subtle); }
         .cl-field {
           display: block;
           width: 100%;
           background: transparent;
           border: none;
-          border-bottom: 1.5px solid rgba(14,14,12,0.18);
+          border-bottom: 1.5px solid var(--cl-border);
           padding: 6px 0;
           font-family: ${serif};
           font-size: 13px;
@@ -177,7 +197,7 @@ export default function Classifieds() {
           border-radius: 0;
           -webkit-appearance: none;
         }
-        .cl-field::placeholder { color: rgba(14,14,12,0.22); font-style: italic; }
+        .cl-field::placeholder { color: var(--cl-placeholder); font-style: italic; }
         .cl-field:focus { border-bottom-color: var(--accent); }
         textarea.cl-field {
           resize: none;
@@ -384,7 +404,7 @@ export default function Classifieds() {
                       />
                     </div>
 
-                    <div style={{ borderTop: '1px dotted rgba(14,14,12,0.18)', margin: '16px 0 14px' }} />
+                    <div style={{ borderTop: '1px dotted var(--cl-border)', margin: '16px 0 14px' }} />
 
                     <button type="submit" className="cl-submit">
                       Write to the Editor
@@ -396,7 +416,7 @@ export default function Classifieds() {
           </div>
 
           {/* Col 4 — Photo */}
-          <div className="cl-col4" style={{ position: 'relative', minHeight: '420px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
+          <div className="cl-col4" style={{ position: 'relative', minHeight: '420px', overflow: 'hidden', border: '1px solid var(--cl-border-subtle)' }}>
             <Image
               src="/pr-contact-still.webp"
               alt="Prasanna Rajendran"

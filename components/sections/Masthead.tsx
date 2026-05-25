@@ -34,6 +34,7 @@ const index = [
 export default function Masthead() {
   const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
   const dateStr = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
+  const headlineIdx = Math.floor(Math.random() * 5)
 
   return (
     <header style={{ borderBottom: '3px solid var(--fg)' }}>
@@ -141,7 +142,7 @@ export default function Masthead() {
         {/* Centre - Main headline */}
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
-            <RandomHeadline />
+            <RandomHeadline idx={headlineIdx} />
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 3vw, 16px)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 16px', borderBottom: '1px solid rgba(14,14,12,0.15)', paddingBottom: '16px' }}>
               By day, he leads a FinTech engineering team that moves real money. By night, he ships experiments. On weekends, he chases whatever rabbit hole looks interesting. Same operating system, different tabs.
             </p>

@@ -1,5 +1,4 @@
 'use client'
-import { useState, useEffect } from 'react'
 
 const headlines = [
   "Builds Systems. Scales Teams. Ships Products.",
@@ -9,13 +8,8 @@ const headlines = [
   "Trainee to PM. Coder to Leader. Maker to Manager.",
 ]
 
-export default function RandomHeadline() {
-  const [headline, setHeadline] = useState(headlines[0])
-
-  useEffect(() => {
-    setHeadline(headlines[Math.floor(Math.random() * headlines.length)])
-  }, [])
-
+export default function RandomHeadline({ idx }: { idx: number }) {
+  const headline = headlines[idx] ?? headlines[0]
   const parts = headline.split('. ')
   const lastPart = parts.pop()
   const firstParts = parts.length > 0 ? parts.join('. ') + '.' : ''
