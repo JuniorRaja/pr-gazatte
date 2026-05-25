@@ -47,27 +47,55 @@ export default function Footer() {
   return (
     <footer id="footer" style={{ background: 'var(--fg)', color: 'var(--bg)' }}>
       <style>{`
+        :root,[data-theme="newsprint"],[data-theme="aged"]{
+          --ft-text-hi:rgba(244,239,230,0.75);
+          --ft-text-mid:rgba(244,239,230,0.35);
+          --ft-text-lo:rgba(244,239,230,0.30);
+          --ft-border:rgba(244,239,230,0.12);
+          --ft-border-subtle:rgba(244,239,230,0.1);
+          --ft-border-rule:rgba(244,239,230,0.2);
+          --ft-accent-border:rgba(139,34,35,0.4);
+        }
+        [data-theme="ink"]{
+          --ft-text-hi:rgba(14,14,12,0.80);
+          --ft-text-mid:rgba(14,14,12,0.55);
+          --ft-text-lo:rgba(14,14,12,0.45);
+          --ft-border:rgba(14,14,12,0.15);
+          --ft-border-subtle:rgba(14,14,12,0.10);
+          --ft-border-rule:rgba(14,14,12,0.20);
+          --ft-accent-border:rgba(193,39,45,0.4);
+        }
         .ft-colophon {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr 1fr;
           column-gap: 0;
           padding: 0 32px;
-          border-bottom: 1px solid rgba(244,239,230,0.1);
+          border-bottom: 1px solid var(--ft-border-subtle);
         }
         .ft-col-item {
           padding: 20px 28px;
-          border-right: 1px solid rgba(244,239,230,0.12);
+          border-right: 1px solid var(--ft-border);
         }
         .ft-col-item:first-child { padding-left: 0; }
         .ft-col-item:last-child { padding-right: 0; border-right: none; }
         .ft-bottom-bar {
-          border-top: 1px solid rgba(244,239,230,0.12);
+          border-top: 1px solid var(--ft-border);
           padding: 10px 32px;
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
         .ft-nav-links { display: flex; gap: 20px; }
+        .ft-nav-link {
+          font-family: "Barlow Condensed", sans-serif;
+          font-size: 8px;
+          color: var(--ft-text-lo);
+          letter-spacing: .08em;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: color 0.15s;
+        }
+        .ft-nav-link:hover { color: var(--ft-text-hi); }
         @media (max-width: 767px) {
           .ft-col-tech { display: none; }
           .ft-col-edition { display: none; }
@@ -84,15 +112,18 @@ export default function Footer() {
           .ft-colophon { padding: 0 24px; }
           .ft-bottom-bar { padding: 10px 24px; }
         }
+        @keyframes cursorBlink {
+          0%,100%{opacity:1} 50%{opacity:0}
+        }
       `}</style>
 
       {/* 4-column colophon */}
       <div className="ft-colophon">
         {colophonCols.map((col) => (
           <div key={col.heading} className={`ft-col-item${col.heading === 'Technical Stack' ? ' ft-col-tech' : col.heading === 'Edition' ? ' ft-col-edition' : ''}`}>
-            <div className="ft-col-heading" style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', marginBottom: '10px', borderBottom: '1px solid rgba(139,34,35,0.4)', paddingBottom: '6px' }}>{col.heading}</div>
+            <div className="ft-col-heading" style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', marginBottom: '10px', borderBottom: '1px solid var(--ft-accent-border)', paddingBottom: '6px' }}>{col.heading}</div>
             {col.lines.map(line => (
-              <div key={line} className="ft-col-line" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', color: 'rgba(244,239,230,0.75)', lineHeight: 1.8 }}>{line}</div>
+              <div key={line} className="ft-col-line" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', color: 'var(--ft-text-hi)', lineHeight: 1.8 }}>{line}</div>
             ))}
           </div>
         ))}
@@ -110,13 +141,13 @@ export default function Footer() {
 
       {/* Tagline with typewriter effect */}
       <div style={{ textAlign: 'center', padding: '0 32px 32px', marginTop: '-60px', position: 'relative' }}>
-        <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(16px, 2.5vw, 26px)', fontStyle: 'italic', color: 'rgba(244,239,230,0.75)', lineHeight: 1.4, maxWidth: '600px', margin: '0 auto', minHeight: '1.4em' }}>
+        <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(16px, 2.5vw, 26px)', fontStyle: 'italic', color: 'var(--ft-text-hi)', lineHeight: 1.4, maxWidth: '600px', margin: '0 auto', minHeight: '1.4em' }}>
           &ldquo;{displayed}
           <span style={{
             display: 'inline-block',
             width: '2px',
             height: '1em',
-            background: 'rgba(244,239,230,0.75)',
+            background: 'var(--ft-text-hi)',
             marginLeft: '2px',
             verticalAlign: 'text-bottom',
             animation: done ? 'cursorBlink 1s step-end infinite' : 'none',
@@ -127,11 +158,11 @@ export default function Footer() {
       </div>
 
       {/* Rule */}
-      <div style={{ borderTop: '1px solid rgba(244,239,230,0.2)', margin: '0 32px' }} />
+      <div style={{ borderTop: '1px solid var(--ft-border-rule)', margin: '0 32px' }} />
 
       {/* Bottom bar */}
       <div className="ft-bottom-bar">
-        <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 1998</span>
+        <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--ft-text-mid)', letterSpacing: '.1em' }}>THE PR GAZETTE · EST. 1998</span>
         <div className="ft-nav-links">
           {[
             { label: 'Op-Ed',    href: '#op-ed'   },
@@ -144,13 +175,10 @@ export default function Footer() {
             { label: 'Off Duty', href: '#hobbies'  },
             { label: 'Contact',  href: '#contact'  },
           ].map(({ label, href }) => (
-            <a key={label} href={href} style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'rgba(244,239,230,0.3)', letterSpacing: '.08em', textTransform: 'uppercase', textDecoration: 'none' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'rgba(244,239,230,0.75)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(244,239,230,0.3)')}
-            >{label}</a>
+            <a key={label} href={href} className="ft-nav-link">{label}</a>
           ))}
         </div>
-        <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'rgba(244,239,230,0.35)', letterSpacing: '.1em' }}>VOL. I · NO. 1</span>
+        <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--ft-text-mid)', letterSpacing: '.1em' }}>VOL. I · NO. 1</span>
       </div>
     </footer>
   )
