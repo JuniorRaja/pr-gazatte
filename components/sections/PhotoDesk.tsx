@@ -83,12 +83,12 @@ export default function PhotoDesk() {
         .pd-nav-btn {
           font-family: ${condensed}; font-size: 11px;
           color: var(--fg); background: transparent;
-          border: 1px solid rgba(14,14,12,0.2);
+          border: 1px solid var(--rule);
           padding: 8px 18px; cursor: pointer;
           letter-spacing: .1em; text-transform: uppercase;
           transition: background .15s, color .15s;
         }
-        .pd-nav-btn:hover { background: var(--accent); color: #F4EFE6; border-color: var(--accent); }
+        .pd-nav-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
         .pd-pill { width: 28px; height: 4px; border: none; cursor: pointer; transition: background .2s; }
         .pd-thumb-row { cursor: pointer; transition: opacity .15s; }
         .pd-thumb-row:hover { opacity: 0.8; }
@@ -137,7 +137,7 @@ export default function PhotoDesk() {
         }
         @media (max-width: 900px) {
           .pd-body { grid-template-columns: 1fr !important; }
-          .pd-col-left { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.2) !important; }
+          .pd-col-left { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
           .pd-spread-grid { grid-template-columns: 1fr !important; }
           .pd-spread-right { display: none !important; }
           .pd-bottom-nav { flex-wrap: wrap; gap: 8px; justify-content: center !important; }
@@ -145,6 +145,20 @@ export default function PhotoDesk() {
           .pd-orig-btn { display: none; }
           .pd-header-quote { display: none !important; }
         }
+        /* Album spread — theme-aware parchment */
+        .pd-album-left { background: #F0EAD8; border-right: 2px solid rgba(14,14,12,0.25); }
+        .pd-album-right { background: #E8E0CC; }
+        [data-theme="aged"] .pd-album-left { background: #D4C39A; border-right-color: rgba(42,31,14,0.25); }
+        [data-theme="aged"] .pd-album-right { background: #CABB91; }
+        [data-theme="ink"] .pd-album-left { background: #171715; border-right-color: rgba(244,239,230,0.12); }
+        [data-theme="ink"] .pd-album-left, [data-theme="ink"] .pd-album-left * { color: var(--fg); }
+        [data-theme="ink"] .pd-album-left .pd-accent-word { color: var(--accent) !important; }
+        [data-theme="ink"] .pd-album-right { background: #111110; }
+        [data-theme="ink"] .pd-album-right, [data-theme="ink"] .pd-album-right * { color: var(--fg); }
+        /* Nav button border — theme-aware */
+        .pd-nav-btn { border-color: var(--rule); }
+        /* Ink-mode border overrides */
+        [data-theme="ink"] .pd-col-left { border-right-color: var(--rule) !important; }
       `}</style>
 
       {/* ── Section bar ──────────────────────────────────────── */}
@@ -207,9 +221,8 @@ export default function PhotoDesk() {
             }}
           >
             {/* Left page */}
-            <div style={{
-              background: '#F0EAD8', padding: '28px 24px',
-              borderRight: '2px solid rgba(14,14,12,0.25)',
+            <div className="pd-album-left" style={{
+              padding: '28px 24px',
               position: 'relative', minHeight: '500px',
               display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
             }}>
@@ -221,7 +234,7 @@ export default function PhotoDesk() {
                     <h3 style={{ fontFamily: display, fontSize: 'clamp(24px, 3vw, 40px)', fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.02em', color: '#0E0E0C', margin: 0 }}>
                       {album.title.split(' ').map((word, wi) =>
                         word === album.highlight
-                          ? <span key={wi} style={{ color: '#8B2020' }}>{word} </span>
+                          ? <span key={wi} className="pd-accent-word" style={{ color: '#8B2020' }}>{word} </span>
                           : word + ' '
                       )}
                     </h3>
@@ -266,7 +279,7 @@ export default function PhotoDesk() {
             </div>
 
             {/* Right page — contact sheet */}
-            <div className="pd-spread-right" style={{ background: '#E8E0CC', padding: '24px 20px', display: 'flex', flexDirection: 'column' }}>
+            <div className="pd-spread-right pd-album-right" style={{ padding: '24px 20px', display: 'flex', flexDirection: 'column' }}>
               <div style={{ fontFamily: condensed, fontSize: '8px', letterSpacing: '.15em', textTransform: 'uppercase', color: '#7a6a5a', borderBottom: '1px solid rgba(14,14,12,0.2)', paddingBottom: '6px', marginBottom: '12px' }}>Contact Sheet · {album.title}</div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', flex: 1, marginBottom: '12px' }}>

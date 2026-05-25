@@ -7,6 +7,8 @@
   --fg: #0E0E0C;
   --accent: #C1272D;
   --sepia: #B8A792;
+  --rule: rgba(14,14,12,0.2);
+  --rule-subtle: rgba(14,14,12,0.12);
 }
 
 /* ── Ink (dark) ──────────────────────────────────────────────── */
@@ -15,6 +17,8 @@
   --fg: #F4EFE6;
   --accent: #C1272D;
   --sepia: #8a7c6e;
+  --rule: rgba(244,239,230,0.2);
+  --rule-subtle: rgba(244,239,230,0.12);
 }
 
 /* ── Aged ────────────────────────────────────────────────────── */
@@ -23,6 +27,8 @@
   --fg: #2a1f0e;
   --accent: #8B2020;
   --sepia: #9c8060;
+  --rule: rgba(42,31,14,0.2);
+  --rule-subtle: rgba(42,31,14,0.12);
 }
 
 /* Prototype compatibility aliases — var(--cream/ink/red) map to theme-aware tokens */

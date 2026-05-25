@@ -294,6 +294,8 @@ export default function BooksReview() {
 
         /* ── Book row hover cursor ── */
         .br-book-row:hover { cursor: default; }
+        /* ── Ink-mode border overrides ── */
+        [data-theme="ink"] .br-left-col { border-right-color: var(--rule) !important; }
 
         /* ── Responsive ── */
         .br-flag { padding: 5px 16px; }
@@ -312,7 +314,7 @@ export default function BooksReview() {
         @media (max-width: 960px) {
           .br-outer { grid-template-columns: 1fr !important; }
           .br-photo-right { display: block !important; position: relative !important; width: 100% !important; height: 550px !important; min-height: 550px !important; }
-          .br-left-col { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.2) !important; }
+          .br-left-col { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
           .br-writing-row { grid-template-columns: 1fr 1fr !important; }
           .br-table-grid { grid-template-columns: 1fr 1fr !important; }
           .br-hide-mobile { display: none !important; }
@@ -320,7 +322,7 @@ export default function BooksReview() {
         }
         @media (max-width: 600px) {
           .br-writing-row { grid-template-columns: 1fr !important; }
-          .br-writing-row .br-wcol { border-right: none !important; margin-right: 0 !important; padding-right: 0 !important; border-bottom: 1px solid rgba(14,14,12,0.15); padding-bottom: 16px; margin-bottom: 16px; }
+          .br-writing-row .br-wcol { border-right: none !important; margin-right: 0 !important; padding-right: 0 !important; border-bottom: 1px solid var(--rule-subtle); padding-bottom: 16px; margin-bottom: 16px; }
           .br-table-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

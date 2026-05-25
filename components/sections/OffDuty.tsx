@@ -8,13 +8,13 @@ export default function OffDuty() {
         .od-flag { padding: 5px 16px; }
         .od-inner { padding: 20px 16px 28px; }
         .od-headline { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 8px; }
-        .od-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(14,14,12,0.2); }
-        .od-col-left { display: flex; flex-direction: column; border-right: 1px solid rgba(14,14,12,0.2); }
+        .od-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); }
+        .od-col-left { display: flex; flex-direction: column; border-right: 1px solid var(--rule); }
         .od-col-right { display: flex; flex-direction: column; }
         .od-col-item { padding: 20px; }
-        .od-col-left .od-col-item:first-child { flex: 2; border-bottom: 1px solid rgba(14,14,12,0.2); }
+        .od-col-left .od-col-item:first-child { flex: 2; border-bottom: 1px solid var(--rule); }
         .od-col-left .od-col-item:last-child { flex: 1; }
-        .od-col-right .od-col-item:first-child { flex: 1; border-bottom: 1px solid rgba(14,14,12,0.2); }
+        .od-col-right .od-col-item:first-child { flex: 1; border-bottom: 1px solid var(--rule); }
         .od-col-right .od-col-item:last-child { flex: 2; }
         @media (min-width: 640px) {
           .od-flag { padding: 5px 24px; }
@@ -26,8 +26,10 @@ export default function OffDuty() {
         }
         @media (max-width: 639px) {
           .od-grid { grid-template-columns: 1fr; }
-          .od-col-left { border-right: none; border-bottom: 1px solid rgba(14,14,12,0.2); }
+          .od-col-left { border-right: none; border-bottom: 1px solid var(--rule); }
         }
+        /* Ink-mode override for hobby note dotted border */
+        [data-theme="ink"] .od-col-note { border-top-color: var(--rule) !important; }
       `}</style>
 
       <div className="od-flag" style={{ background: 'var(--accent)', color: '#F4EFE6', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -59,7 +61,7 @@ export default function OffDuty() {
                   <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.65, color: 'var(--fg)', margin: '0 0 10px' }}>{col.body}</p>
 
                   {col.note && (
-                    <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--sepia)', fontStyle: 'italic', borderTop: '1px dotted rgba(14,14,12,0.2)', paddingTop: '8px', marginTop: '8px' }}>{col.note}</div>
+                    <div className="od-col-note" style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--sepia)', fontStyle: 'italic', borderTop: '1px dotted rgba(14,14,12,0.2)', paddingTop: '8px', marginTop: '8px' }}>{col.note}</div>
                   )}
                 </div>
               ))}

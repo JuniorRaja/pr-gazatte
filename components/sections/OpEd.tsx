@@ -49,16 +49,16 @@ export default function OpEd() {
           
           {/* Body text - columns on desktop, single on mobile */}
           <div className="content-spacing" style={{ columns: 'auto', columnGap: '28px', columnRule: '1px solid rgba(14,14,12,0.15)' }}>
-            <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
+            <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               Most portfolios are just résumés wearing better fonts. This one is a newspaper because a person is more than a list of skills.
             </p>
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               It&apos;s the rhythm that matters. The tech beat clicks in keystrokes and caffeine. The lab beat smells like curiosity and the occasional burnt experiment. The production beat: that one you feel in your stomach at 4 a.m. when confidence meets reality.
             </p>
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               My days layer like this: architecture in the morning, diplomacy in the afternoon, and midnight tinkering where the best ideas still happen unsupervised. None of these layers are clean. And I&apos;ve stopped pretending they should be.
             </p>
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: 0 }}>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: 0 }}>
               I&apos;ve spent seven-plus years in FinTech engineering, building systems, leading teams, and shipping infrastructure that has to work when it matters. Along the way I picked up photography across nine countries, a growing bookshelf that refuses to stay organized, and an unhealthy tolerance for unsolved problems. This isn&apos;t self-promotion. It&apos;s just the long version of me.
             </p>
           </div>

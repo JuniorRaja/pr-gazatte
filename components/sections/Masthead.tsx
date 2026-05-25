@@ -127,13 +127,13 @@ export default function Masthead() {
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <RandomHeadline idx={headlineIdx} />
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 3vw, 16px)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 16px', borderBottom: '1px solid rgba(14,14,12,0.15)', paddingBottom: '16px' }}>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 16px', borderBottom: '1px solid rgba(14,14,12,0.15)', paddingBottom: '16px' }}>
               By day, he leads a FinTech engineering team that moves real money. By night, he ships experiments. On weekends, he chases whatever rabbit hole looks interesting. Same operating system, different tabs.
             </p>
-            <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
+            <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               Prasanna Rajendran has spent seven years inside the machinery of non-banking finance: writing the code, then leading the team that writes it, then calmly putting out the fires when that code meets reality at 3 a.m. He&apos;s the kind of person who fixes the bug before filing the ticket. The one reading RFCs on a Sunday not because anyone asked, but because something felt unfinished. Somewhere around year four, he learned that panic is the least efficient response when things break.
             </p>
-            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0' }}>
+            <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0' }}>
               He keeps a bookshelf that has opinions. He drinks coffee that he has also researched. He has certifications in things most people have not heard of and is quietly working on a few more. None of this is the résumé. All of it is the person.
             </p>
             
@@ -155,7 +155,7 @@ export default function Masthead() {
         {/* Right - About the Editor */}
         <div className="section-padding-x section-padding-y" style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: 'clamp(8px, 1.8vw, 9px)', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>About the Editor</div>
-          <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(12px, 2.5vw, 14px)', lineHeight: 1.65, color: 'var(--fg)', margin: 0 }}>
+          <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.65, color: 'var(--fg)', margin: 0 }}>
             Prasanna Rajendran has spent the better part of a decade inside the circuitry of non-banking finance (first writing code, then shaping the systems around it, and eventually taking responsibility for what happens when those systems meet the real world). 
           </p>
           {/* Portrait */}

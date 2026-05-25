@@ -187,7 +187,7 @@ export default function TechDesk() {
         @keyframes prTickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes prFlashGreen { 0%, 15% { background-color: rgba(42,122,59,0.22); } 100% { background-color: transparent; } }
         @keyframes prFlashRed   { 0%, 15% { background-color: rgba(193,39,45,0.22); } 100% { background-color: transparent; } }
-        .stock-row:hover { background: rgba(14,14,12,0.04) !important; }
+        .stock-row:hover { background: var(--rule-subtle) !important; }
         
         @media (max-width: 1023px) {
           .tech-desk-grid {
@@ -249,12 +249,6 @@ export default function TechDesk() {
           </p>
 
           <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Analyst&apos;s Note</div>
-          {/* <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 10px' }}>
-            The BACKEND-30 index continues its bull run, buoyed by strong C# and .NET fundamentals. FRONTEND-50 surged past resistance on renewed React momentum.
-          </p>
-          <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
-            EMERGING-10 posted the session&apos;s highest gains — Agentic AI and ML Ops leading the rally.
-          </p> */}
           <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
             &ldquo;The portfolio skews deep over broad, but these IPO positions signal infrastructure-level ambition. Rare. Durable. Currently undervalued by the market.&rdquo;
           </p>
