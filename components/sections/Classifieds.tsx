@@ -23,14 +23,15 @@ const serif   = '"Source Serif 4", serif'
 const display = '"Bodoni Moda", serif'
 
 export default function Classifieds() {
-  const [form, setForm] = useState({ name: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', contact: '', message: '' })
   const [sent, setSent] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const body = `From: ${form.name}\n\nRe: ${form.subject}\n\n${form.message}`
+    const subject = `Letter to the Editor — from ${form.name}`
+    const body = `From: ${form.name}\nContact: ${form.contact}\n\n${form.message}`
     window.open(
-      `mailto:hello@prasannar.com?subject=${encodeURIComponent(form.subject || 'Letter to the Editor')}&body=${encodeURIComponent(body)}`,
+      `mailto:hello@prasannar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
       '_self'
     )
     setSent(true)
@@ -290,12 +291,18 @@ export default function Classifieds() {
 
               {sent ? (
                 <div className="cl-form-body" style={{ textAlign: 'center' }}>
-                  <div className="cl-stamp">RECEIVED</div>
-                  <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.65, color: 'var(--fg)', fontStyle: 'italic', margin: '0' }}>
-                    Your dispatch has been filed. The editor reads every letter and responds in due course.
+                  <div className="cl-stamp">READY TO SEND</div>
+                  <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.65, color: 'var(--fg)', fontStyle: 'italic', margin: '0 0 10px' }}>
+                    Your dispatch is prepared. A mail window should have opened — hit send from there.
+                  </p>
+                  <p style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', lineHeight: 1.8, margin: '0' }}>
+                    Mail window didn&apos;t open?{' '}
+                    <a href="mailto:hello@prasannar.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>
+                      hello@prasannar.com
+                    </a>
                   </p>
                   <button
-                    onClick={() => { setSent(false); setForm({ name: '', subject: '', message: '' }) }}
+                    onClick={() => { setSent(false); setForm({ name: '', contact: '', message: '' }) }}
                     style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', background: 'none', border: 'none', cursor: 'pointer', marginTop: '16px', textDecoration: 'underline' }}
                   >
                     Send another
@@ -322,16 +329,16 @@ export default function Classifieds() {
 
                     <div className="cl-field-wrap">
                       <div className="cl-field-label-row">
-                        <label className="cl-field-label" htmlFor="cl-subject">Email / Mobile</label>
+                        <label className="cl-field-label" htmlFor="cl-contact">Email / Mobile</label>
                         <div className="cl-field-rule" />
                       </div>
                       <input
-                        id="cl-subject"
+                        id="cl-contact"
                         className="cl-field"
                         type="text"
                         placeholder="So the editor can write back"
-                        value={form.subject}
-                        onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+                        value={form.contact}
+                        onChange={e => setForm(f => ({ ...f, contact: e.target.value }))}
                         required
                       />
                     </div>

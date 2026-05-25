@@ -36,6 +36,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offset anchor scroll for sticky nav bar (~34px tall) */
+section[id] {
+  scroll-margin-top: 34px;
+}
+
 body {
   background: var(--bg);
   color: var(--fg);
