@@ -157,11 +157,11 @@ export default function PhotoDesk() {
       <div className="pd-headline-strip" style={{ borderBottom: '3px double var(--fg)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '32px', flexWrap: 'wrap' }}>
         <div style={{ flex: 1, minWidth: '260px' }}>
           <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.2em', marginBottom: '8px' }}>{meta.kicker}</div>
-          <h2 style={{ fontFamily: display, fontSize: 'clamp(30px, 4.5vw, 60px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.025em', color: 'var(--fg)', margin: 0 }}>
+          <h2 style={{ fontFamily: display, fontSize: 'clamp(30px, 4.5vw, 60px)', fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.025em', color: 'var(--fg)', margin: 0 }}>
             The <span style={{ color: 'var(--accent)' }}>Photo</span> Desk.
           </h2>
         </div>
-        <div className="pd-header-quote" style={{ fontFamily: serif, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.65, color: 'var(--fg)', maxWidth: '340px', flexShrink: 0, borderTop: '2px solid var(--accent)', paddingTop: '12px', opacity: 0.8 }}>
+        <div className="pd-header-quote" style={{ fontFamily: serif, fontSize: '13px', fontStyle: 'italic', lineHeight: 1.65, color: 'var(--fg)', maxWidth: '340px', flexShrink: 0, borderTop: '2px solid var(--accent)', paddingTop: '12px', opacity: 0.8 }}>
           {meta.headerQuote}
         </div>
       </div>
@@ -218,7 +218,7 @@ export default function PhotoDesk() {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                   <div>
-                    <h3 style={{ fontFamily: display, fontSize: 'clamp(24px, 3vw, 40px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: '#0E0E0C', margin: 0 }}>
+                    <h3 style={{ fontFamily: display, fontSize: 'clamp(24px, 3vw, 40px)', fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.02em', color: '#0E0E0C', margin: 0 }}>
                       {album.title.split(' ').map((word, wi) =>
                         word === album.highlight
                           ? <span key={wi} style={{ color: '#8B2020' }}>{word} </span>
@@ -255,7 +255,7 @@ export default function PhotoDesk() {
                   </div>
                 </button>
 
-                <p style={{ fontFamily: serif, fontSize: '13.5px', lineHeight: 1.68, color: '#2a1f0e', margin: 0 }}>
+                <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: '#2a1f0e', margin: 0 }}>
                   {album.description} {album.sequences.length} photographs.
                 </p>
               </div>
@@ -341,7 +341,7 @@ export default function PhotoDesk() {
           {/* Editor's Note */}
           <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Editor&apos;s Note</div>
           {editorsNote.map((para, i) => (
-            <p key={i} style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', margin: i < editorsNote.length - 1 ? '0 0 12px' : '0 0 20px' }}>
+            <p key={i} style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: i < editorsNote.length - 1 ? '0 0 12px' : '0 0 20px' }}>
               {i === 0 ? (
                 <>
                   <span style={{ fontFamily: display, fontSize: '48px', fontWeight: 900, lineHeight: 0.78, float: 'left', marginRight: '6px', marginTop: '4px', color: 'var(--fg)' }}>{para[0]}</span>

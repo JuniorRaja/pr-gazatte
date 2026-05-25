@@ -132,7 +132,7 @@ function StockTable({ items, label, flashMap }: { items: Stock[]; label: string;
                   {isIpo && <span style={{ fontSize: '8px', color: 'var(--accent)', marginLeft: '4px', fontWeight: 400, verticalAlign: 'super' }}>IPO</span>}
                 </td>
                 <td style={{ padding: '6px 8px', color: sectorColors[s.sector] || 'var(--sepia)', fontSize: 'clamp(11px, 2.2vw, 12px)', whiteSpace: 'nowrap' }}>{s.sector}</td>
-                <td style={{ padding: '6px 8px', textAlign: 'right', fontWeight: 700, color: 'var(--fg)', fontSize: '11px' }}>₹{fmt(s.ltp)}</td>
+                <td style={{ padding: '6px 8px', textAlign: 'right', fontWeight: 700, color: 'var(--fg)', fontSize: '11px', fontVariantNumeric: 'tabular-nums' }}>₹{fmt(s.ltp)}</td>
                 <td style={{ padding: '6px 8px', textAlign: 'right', color: changeColor, fontWeight: 700 }}>
                   {isPositive ? '▲' : '▼'} {Math.abs(s.pctChg).toFixed(2)}%
                 </td>
@@ -225,11 +225,11 @@ export default function TechDesk() {
         <div style={{ display: 'flex', gap: '32px', width: 'max-content', animation: 'prTickerScroll 50s linear infinite' }}>
           {tickerItems.map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: condensed, fontSize: '11px', whiteSpace: 'nowrap' }}>
-              <span style={{ color: '#F4EFE6', fontWeight: 700, letterSpacing: '.05em' }}>{s.sym}</span>
+              <span style={{ color: 'var(--bg)', fontWeight: 700, letterSpacing: '.05em' }}>{s.sym}</span>
               <span style={{ color: s.chg >= 0 ? '#4ade80' : '#f87171' }}>
                 {s.chg >= 0 ? '▲' : '▼'} {s.chg >= 0 ? '+' : ''}{s.pctChg}%
               </span>
-              <span style={{ color: '#F4EFE6', opacity: 0.2 }}>│</span>
+              <span style={{ color: 'var(--bg)', opacity: 0.2 }}>│</span>
             </div>
           ))}
         </div>
@@ -244,7 +244,7 @@ export default function TechDesk() {
           <h2 style={{ fontFamily: display, fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 900, lineHeight: 1.05, color: 'var(--fg)', margin: '0 0 12px' }}>
             The <span style={{ color: 'var(--accent)' }}>Stack</span><br />Report.
           </h2>
-          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 24px'}}>
+          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px'}}>
             React hit a new high this quarter, .NET Core & Microservices holds steady in enterprise. Golang opened a learning position.
           </p>
 
@@ -255,7 +255,7 @@ export default function TechDesk() {
           <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
             EMERGING-10 posted the session&apos;s highest gains — Agentic AI and ML Ops leading the rally.
           </p> */}
-          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 24px' }}>
+          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
             &ldquo;The portfolio skews deep over broad, but these IPO positions signal infrastructure-level ambition. Rare. Durable. Currently undervalued by the market.&rdquo;
           </p>
 
@@ -336,7 +336,7 @@ export default function TechDesk() {
                 <div key={s.sym} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(14,14,12,0.06)' }}>
                   <div>
                     <span style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', fontWeight: 700, color: 'var(--fg)' }}>{s.sym}</span>
-                    <span style={{ fontFamily: condensed, fontSize: '7px', color: 'var(--accent)', marginLeft: '4px', border: '1px solid var(--accent)', padding: '1px 3px' }}>NEW</span>
+                    <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--accent)', marginLeft: '4px', border: '1px solid var(--accent)', padding: '1px 3px' }}>NEW</span>
                   </div>
                   <span style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--fg)' }}>₹{fmt(s.ltp)}</span>
                 </div>
@@ -347,7 +347,7 @@ export default function TechDesk() {
           <div style={{ marginTop: '16px', fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', letterSpacing: '.05em' }}>Source: PR Stack Exchange · {getMonthYear()}</div>
 
           <div className="hide-mobile" style={{ marginTop: '12px', border: '1px solid rgba(14,14,12,0.15)', padding: '10px 12px', background: 'rgba(14,14,12,0.02)' }}>
-            <p style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', lineHeight: 1.65, letterSpacing: '.02em', textAlign: 'justify', margin: 0 }}>
+            <p style={{ fontFamily: serif, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', lineHeight: 1.65, letterSpacing: 0, textAlign: 'justify', margin: 0 }}>
               PR Stack Exchange operates 24/7. All prices are fictional and reflect proficiency, not financial advice. Past performance in production is indicative of future results.
             </p>
           </div>

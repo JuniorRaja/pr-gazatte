@@ -305,7 +305,7 @@ body {
 
 @media (min-width: 1024px) {
   body {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
   }
 }
@@ -313,7 +313,7 @@ body {
 /* Responsive text size utilities */
 .text-body-mobile { font-size: 16px; line-height: 1.65; }
 .text-body-tablet { font-size: 15px; line-height: 1.6; }
-.text-body-desktop { font-size: 14px; line-height: 1.6; }
+.text-body-desktop { font-size: 15px; line-height: 1.6; }
 
 /* Headline scaling utilities */
 .headline-lg { font-size: clamp(28px, 5vw, 48px); }

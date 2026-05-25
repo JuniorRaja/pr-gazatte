@@ -181,7 +181,7 @@ export default function Travel() {
         }
         .tv-dot-year {
           font-family: ${condensed};
-          font-size: 7px;
+          font-size: 8px;
           color: var(--sepia);
           margin-top: 1px;
         }
@@ -195,7 +195,7 @@ export default function Travel() {
         /* ── Planned badge ── */
         .tv-planned-badge {
           font-family: ${condensed};
-          font-size: 7px;
+          font-size: 8px;
           font-weight: 700;
           letter-spacing: .1em;
           text-transform: uppercase;
@@ -286,7 +286,7 @@ export default function Travel() {
         {/* Headline byline — right side */}
         <p className="tv-headline-quote" style={{
           fontFamily: serif,
-          fontSize: '14px',
+          fontSize: '13px',
           fontStyle: 'italic',
           lineHeight: 1.65,
           color: 'var(--fg)',
@@ -342,7 +342,7 @@ export default function Travel() {
           <p className="drop-cap" style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 12px',
             textAlign: 'justify',
@@ -352,7 +352,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 16px',
             textAlign: 'justify',
@@ -392,7 +392,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 12px',
             textAlign: 'justify',
@@ -402,7 +402,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 12px',
             textAlign: 'justify',
@@ -412,7 +412,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: 0,
             textAlign: 'justify',
@@ -570,7 +570,7 @@ export default function Travel() {
             <p style={{
               fontFamily: serif,
               fontSize: '13px',
-              lineHeight: 1.72,
+              lineHeight: 1.7,
               color: 'var(--fg)',
               margin: '0 0 10px',
             }}>

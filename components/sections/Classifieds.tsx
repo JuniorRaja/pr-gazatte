@@ -142,7 +142,7 @@ export default function Classifieds() {
         }
         .cl-scissors-text {
           font-family: ${condensed};
-          font-size: 7px;
+          font-size: 8px;
           color: var(--cl-scissors-color);
           letter-spacing: .1em;
           text-transform: uppercase;
@@ -174,7 +174,7 @@ export default function Classifieds() {
         }
         .cl-field-label {
           font-family: ${condensed};
-          font-size: 7.5px;
+          font-size: 9px;
           color: var(--sepia);
           text-transform: uppercase;
           letter-spacing: .12em;
@@ -250,22 +250,22 @@ export default function Classifieds() {
 
           {/* Col 1 — From the Desk */}
           <div className="cl-col1">
-            <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>From the Desk</div>
+            <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>From the Desk</div>
             <h3 style={{ fontFamily: display, fontSize: 'clamp(24px, 5vw, 36px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 20px' }}>
               The desk is open.<br /><span style={{ color: 'var(--accent)' }}>File your dispatch.</span>
             </h3>
             <blockquote style={{ margin: 0, padding: 'clamp(12px, 2.5vw, 14px) clamp(14px, 3vw, 16px)', borderTop: '2px solid var(--accent)', borderBottom: '1px solid rgba(193,39,45,0.15)', background: 'rgba(193,39,45,0.04)' }}>
-              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.72, fontStyle: 'italic', color: 'var(--fg)', margin: '0 0 10px' }}>
+              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.7, fontStyle: 'italic', color: 'var(--fg)', margin: '0 0 10px' }}>
                 &ldquo;Prasanna Rajendran does not have a dramatic origin story. No garage startup, no dropout mythology. Just a man in Chennai who got very good at one thing, then quietly got good at several others.&rdquo;
               </p>
-              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.72, fontStyle: 'italic', color: 'var(--fg)', margin: 0 }}>
+              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.7, fontStyle: 'italic', color: 'var(--fg)', margin: 0 }}>
                 &ldquo;The code still compiles. The curiosity never shipped a bug.&rdquo;
               </p>
               <div style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.12em', marginTop: '10px' }}>The Editor</div>
             </blockquote>
             <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '7px' }}>
               <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2a7a3b', flexShrink: 0 }} />
-              <div style={{ fontFamily: condensed, fontSize: '7.5px', color: '#2a7a3b', fontWeight: 700, letterSpacing: '.06em', lineHeight: 1.5 }}>
+              <div style={{ fontFamily: condensed, fontSize: '9px', color: '#2a7a3b', fontWeight: 700, letterSpacing: '.06em', lineHeight: 1.5 }}>
                 ON ASSIGNMENT &nbsp;·&nbsp; <span style={{ color: 'var(--sepia)', fontWeight: 400 }}>Open to distinguished opportunities</span>
               </div>
             </div>
@@ -277,16 +277,16 @@ export default function Classifieds() {
 
               {/* Reach the Desk */}
               <div>
-                <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Reach the Desk</div>
+                <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Reach the Desk</div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {contacts.map(({ label, value, href, primary }) => (
                     primary
                       ? <a key={label} href={href} className="cl-primary-link">
-                          <span style={{ fontFamily: condensed, fontSize: '7.5px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
+                          <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
                           <span style={{ fontFamily: display, fontSize: 'clamp(12px, 2.5vw, 13px)', fontWeight: 700, color: 'var(--accent)' }}>{value}</span>
                         </a>
                       : <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="cl-social-link">
-                          <span style={{ fontFamily: condensed, fontSize: '7.5px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
+                          <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
                           <span className="cl-social-val" style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--fg)', transition: 'color .15s' }}>
                             {value} ↗
                           </span>
@@ -297,7 +297,7 @@ export default function Classifieds() {
 
               {/* Field Report */}
               <div>
-                <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Field Report</div>
+                <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Field Report</div>
                 {fieldReport.map(([k, v]) => (
                   <div key={k} className="cl-status-row">
                     <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.08em' }}>{k}</span>
@@ -311,7 +311,7 @@ export default function Classifieds() {
 
           {/* Col 3 — Wire Submission Form */}
           <div className="cl-col3">
-            <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Letters to the Editor</div>
+            <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Letters to the Editor</div>
 
             <div className="cl-coupon">
               <span className="cl-scissors">
@@ -323,7 +323,7 @@ export default function Classifieds() {
               <div className="cl-form-header">
                 <div className="cl-form-header-row">
                   <span style={{ fontFamily: condensed, fontSize: '10px', fontWeight: 700, color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.15em' }}>The PR Gazette</span>
-                  <span style={{ fontFamily: condensed, fontSize: '7.5px', color: 'var(--sepia)', letterSpacing: '.1em' }}>FORM E-01</span>
+                  <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', letterSpacing: '.1em' }}>FORM E-01</span>
                 </div>
                 <div style={{ fontFamily: condensed, fontSize: '7px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.14em' }}>Editorial Correspondence</div>
               </div>
@@ -383,7 +383,7 @@ export default function Classifieds() {
                         required
                       />
                       {contactError && (
-                        <div style={{ fontFamily: condensed, fontSize: '7.5px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '5px' }}>
+                        <div style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '5px' }}>
                           ✕ {contactError}
                         </div>
                       )}

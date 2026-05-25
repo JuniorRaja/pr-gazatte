@@ -3,6 +3,10 @@ import SectionFlag from '@/components/SectionFlag'
 import SectionFiller from '@/components/SectionFiller'
 import { timeline, numbers } from '@/content/career.mdx'
 
+const condensed = '"Barlow Condensed", sans-serif'
+const serif = '"Source Serif 4", serif'
+const display = '"Bodoni Moda", serif'
+
 const filingMeta = [
   ['Entity',   'Chennai FinTech'],
   ['Period',   'Jun 2019 – Present'],
@@ -47,7 +51,7 @@ export default function BusinessPages() {
           </div>
           <div style={{ padding: '10px 12px' }}>
             <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '6px' }}>Education</div>
-            <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
+            <div style={{ fontFamily: serif, fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
             <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--fg)', fontWeight: 600, marginTop: '3px', letterSpacing: '.03em' }}>Bachelor of Science</div>
             <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--sepia)', marginTop: '4px' }}>Chennai · 2019</div>
           </div>
@@ -95,7 +99,7 @@ export default function BusinessPages() {
             </div>
             <div style={{ padding: '10px 12px' }}>
               <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '6px' }}>Education</div>
-              <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
+              <div style={{ fontFamily: serif, fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
               <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--fg)', fontWeight: 600, marginTop: '3px', letterSpacing: '.03em' }}>Bachelor of Science</div>
               <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--sepia)', marginTop: '4px' }}>Chennai · 2019</div>
             </div>
@@ -111,7 +115,7 @@ export default function BusinessPages() {
             &amp; counting.
           </h2>
 
-          <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(14px, 2.5vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', marginBottom: '20px' }}>
+          <div style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.5vw, 19px)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--fg)', marginBottom: '20px' }}>
             One company. Three titles. Infinite fires.
           </div>
 
@@ -135,12 +139,12 @@ export default function BusinessPages() {
                   {/* Content */}
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '12px', marginBottom: '5px' }}>
-                      <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '18px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.15 }}>{item.title}</div>
+                      <div style={{ fontFamily: serif, fontSize: '18px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.15 }}>{item.title}</div>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0 }}>
                         <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{item.date}</div>
                       </div>
                     </div>
-                    <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.68, color: 'var(--fg)', margin: 0 }}>{item.body}</p>
+                    <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: 0 }}>{item.body}</p>
                   </div>
                 </div>
                 {i < timeline.length - 1 && <div style={{ height: '1px', background: 'rgba(14,14,12,0.12)', margin: '16px 0 16px 36px' }} />}
@@ -150,7 +154,7 @@ export default function BusinessPages() {
 
           {/* Pull quote */}
           <blockquote style={{ margin: '28px 0 0', padding: '16px 20px', borderTop: '2px solid var(--accent)', borderBottom: '1px solid rgba(193,39,45,0.15)', background: 'rgba(193,39,45,0.04)' }}>
-            <p style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(14px, 1.4vw, 17px)', fontStyle: 'italic', fontWeight: 700, lineHeight: 1.45, color: 'var(--fg)', margin: 0 }}>
+            <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 1.4vw, 17px)', fontStyle: 'italic', fontWeight: 700, lineHeight: 1.45, color: 'var(--fg)', margin: 0 }}>
               &ldquo;{pullQuote}&rdquo;
             </p>
           </blockquote>
@@ -167,7 +171,7 @@ export default function BusinessPages() {
 
           {/* Editorial paragraphs — justified, drop-cap on first */}
           {editorial.map((para, i) => (
-            <p key={i} style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13.5px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', margin: i < editorial.length - 1 ? '0 0 14px' : '0 0 24px' }}>
+            <p key={i} style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', textAlign: 'justify', margin: i < editorial.length - 1 ? '0 0 14px' : '0 0 24px' }}>
               {i === 0 ? (
                 <>
                   <span style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '54px', fontWeight: 900, lineHeight: 0.78, float: 'left', marginRight: '7px', marginTop: '5px', color: 'var(--fg)' }}>{para[0]}</span>
