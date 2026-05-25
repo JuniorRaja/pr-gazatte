@@ -11,6 +11,7 @@ import OffDuty from '@/components/sections/OffDuty'
 import Classifieds from '@/components/sections/Classifieds'
 import Footer from '@/components/sections/Footer'
 import SectionTracker from '@/components/SectionTracker'
+import SmoothScroll from '@/components/SmoothScroll'
 
 const SECTION_IDS = [
   'op-ed',
@@ -28,6 +29,7 @@ const SECTION_IDS = [
 export default function Home() {
   return (
     <main>
+      <SmoothScroll />
       <SectionTracker sectionIds={SECTION_IDS} />
       <StickyNav />
       <Masthead />
