@@ -128,6 +128,13 @@ export default function Masthead() {
                 <span style={{ color: 'var(--fg)', fontWeight: 700 }}>{v}</span>
               </div>
             ))}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', fontFamily: '"Barlow Condensed", sans-serif', fontSize: 'clamp(9px, 2vw, 10px)' }}>
+              <span style={{ color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.05em' }}>Status</span>
+              <span style={{ color: '#2a7a3b', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#2a7a3b', display: 'inline-block', flexShrink: 0 }} />
+                Open to opportunities
+              </span>
+            </div>
           </div>
         </div>
         
