@@ -1,3 +1,4 @@
+import StickyNav from '@/components/StickyNav'
 import Masthead from '@/components/sections/Masthead'
 import OpEd from '@/components/sections/OpEd'
 import TechDesk from '@/components/sections/TechDesk'
@@ -28,6 +29,7 @@ export default function Home() {
   return (
     <main>
       <SectionTracker sectionIds={SECTION_IDS} />
+      <StickyNav />
       <Masthead />
       <OpEd />
       <TechDesk />
