@@ -3,20 +3,13 @@ import SectionFiller from '@/components/SectionFiller'
 import MobileNav from '@/components/MobileNav'
 import WeatherWidget from '@/components/WeatherWidget'
 import ThemeToggle from '@/components/ThemeToggle'
+import RandomHeadline from '@/components/RandomHeadline'
 import { getMonthYear } from '@/utils/date'
 
 const DAYS = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
 const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
 
 const navItems = ['Op-Ed', 'Tech', 'Career', 'Lab', 'Photos', 'Books', 'Travel', 'Hobbies', 'Contact']
-
-const headlines = [
-  "Builds Systems. Scales Teams. Ships Products.",
-  "Debugs Code. Debugs Teams. Debugs Everything.",
-  "Firefighter. Code Writer. Team Builder.",
-  "Five Years Coding. Two Years Leading. Forever Learning.",
-  "Trainee to PM. Coder to Leader. Maker to Manager."
-]
 
 const quickFacts = [
   ['Role', 'Project Manager + Engineer'],
@@ -41,12 +34,6 @@ const index = [
 export default function Masthead() {
   const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
   const dateStr = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
-  
-  // Randomly select a headline on each render
-  const randomHeadline = headlines[Math.floor(Math.random() * headlines.length)]
-  const headlineParts = randomHeadline.split('. ')
-  const lastPart = headlineParts.pop()
-  const firstParts = headlineParts.length > 0 ? headlineParts.join('. ') + '.' : ''
 
   return (
     <header style={{ borderBottom: '3px solid var(--fg)' }}>
@@ -147,15 +134,7 @@ export default function Masthead() {
         {/* Centre - Main headline */}
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
-            <h1 style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(24px, 5.5vw, 54px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 16px', borderBottom: '2px solid var(--fg)', paddingBottom: '16px' }}>
-              {firstParts && (
-                <>
-                  {firstParts}
-                  <br />
-                </>
-              )}
-              <span style={{ color: 'var(--accent)' }}>{lastPart}</span>
-            </h1>
+            <RandomHeadline />
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 3vw, 16px)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 16px', borderBottom: '1px solid rgba(14,14,12,0.15)', paddingBottom: '16px' }}>
               By day, he leads a FinTech engineering team that moves real money. By night, he ships experiments. On weekends, he chases whatever rabbit hole looks interesting. Same operating system, different tabs.
             </p>

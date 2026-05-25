@@ -61,7 +61,8 @@ export default function ThemeToggle({ variant = 'strip' }: Props) {
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>Variant</span>
       {THEMES.map(t => (
         <button
           key={t}
