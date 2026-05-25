@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import NpImage from '@/components/NpImage'
 import PhotoSkeleton from '@/components/PhotoSkeleton'
+import SectionFiller from '@/components/SectionFiller'
 import { albums, getAlbumThumbnail, getPhotoUrl } from '@/content/photoAlbums'
 import { meta, editorsNote } from '@/content/photos.mdx'
 
@@ -429,6 +430,7 @@ export default function PhotoDesk() {
           onClose={closeLightbox}
         />
       )}
+      <SectionFiller watermark="PHOTO" footnote="Vol. PR · No. 1 · Photo Desk · Chennai" page="6" accent="#00AFEC" />
     </section>
   )
 }

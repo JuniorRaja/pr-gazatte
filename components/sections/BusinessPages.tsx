@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import SectionFlag from '@/components/SectionFlag'
+import SectionFiller from '@/components/SectionFiller'
 import { timeline, numbers } from '@/content/career.mdx'
 
 const filingMeta = [
@@ -199,7 +200,7 @@ export default function BusinessPages() {
         </div>
 
       </div>
-
+      <SectionFiller watermark="CAREER" footnote="Vol. PR · No. 1 · Career Beat · Chennai" page="4" accent="#D4A500" />
 
     </section>
   )

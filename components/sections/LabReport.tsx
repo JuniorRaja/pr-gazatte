@@ -1,4 +1,5 @@
 import SectionFlag from '@/components/SectionFlag'
+import SectionFiller from '@/components/SectionFiller'
 import { projects, services, stack } from '@/content/lab.mdx'
 
 const condensed = '"Barlow Condensed", sans-serif'
@@ -162,7 +163,7 @@ export default function LabReport() {
           </p>
         </div>
       </div>
-
+      <SectionFiller watermark="LAB" footnote="Vol. PR · No. 1 · Lab Report · Chennai" page="5" accent="var(--fg)" />
 
     </section>
   )

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import NpImage from '@/components/NpImage'
+import SectionFiller from '@/components/SectionFiller'
 import { countries, upcomingCountries } from '@/content/travel'
 
 const condensed = '"Barlow Condensed", sans-serif'
@@ -689,6 +690,7 @@ export default function Travel() {
           </div>
         </div>
       </div>
+      <SectionFiller watermark="TRAVEL" footnote="Vol. PR · No. 1 · Travel · Chennai" page="8" accent="#D4A500" />
 
     </section>
   )

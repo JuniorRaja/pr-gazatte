@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import SectionFlag from '@/components/SectionFlag'
+import SectionFiller from '@/components/SectionFiller'
 
 const contacts = [
   { label: 'Primary Wire', value: 'hello@prasannar.com',      href: 'mailto:hello@prasannar.com',                primary: true  },
@@ -437,7 +438,7 @@ export default function Classifieds() {
           </div>
         </div>
       </div>
-
+      <SectionFiller watermark="CONTACT" footnote="Vol. PR · No. 1 · Correspondence · Chennai" page="10" accent="#00AFEC" />
 
     </section>
   )

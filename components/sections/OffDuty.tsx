@@ -1,4 +1,5 @@
 import { columns } from '@/content/hobbies.mdx'
+import SectionFiller from '@/components/SectionFiller'
 
 export default function OffDuty() {
   return (
@@ -66,7 +67,7 @@ export default function OffDuty() {
           ))}
         </div>
       </div>
-
+      <SectionFiller watermark="HOBBIES" footnote="Vol. PR · No. 1 · Off-Duty · Chennai" page="9" accent="var(--fg)" />
 
     </section>
   )

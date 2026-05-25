@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { getMonthYear } from '@/utils/date'
+import SectionFiller from '@/components/SectionFiller'
 import { stocks as initialStocks, indices } from '@/content/skills.mdx'
 
 /* ── helpers ─────────────────────────────────────────────────── */
@@ -352,7 +353,7 @@ export default function TechDesk() {
           </div>
         </div>
       </div>
-
+      <SectionFiller watermark="TECH" footnote="Vol. PR · No. 1 · Tech Desk · Chennai" page="3" accent="#EC008C" />
 
     </section>
   )

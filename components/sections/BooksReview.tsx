@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react'
 import NpImage from '@/components/NpImage'
+import SectionFiller from '@/components/SectionFiller'
 
 const condensed = '"Barlow Condensed", sans-serif'
 const serif = '"Source Serif 4", serif'
@@ -531,6 +532,7 @@ export default function BooksReview() {
           </div>
 
       </div>
+      <SectionFiller watermark="BOOKS" footnote="Vol. PR · No. 1 · Books · Chennai" page="7" accent="#EC008C" />
 
     </section>
   )

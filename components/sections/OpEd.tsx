@@ -1,4 +1,5 @@
 import SectionFlag from '@/components/SectionFlag'
+import SectionFiller from '@/components/SectionFiller'
 import { getFormattedShortDate } from '@/utils/date'
 import Image from 'next/image'
 
@@ -92,7 +93,7 @@ export default function OpEd() {
           </div>
         </div>
       </div>
-      
+      <SectionFiller watermark="OP · ED" footnote="Vol. PR · No. 1 · Op-Ed · Chennai" page="2" accent="#00AFEC" />
 
     </section>
   )
