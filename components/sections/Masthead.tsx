@@ -157,7 +157,7 @@ export default function Masthead() {
               <span style={{ color: 'var(--accent)' }}>{lastPart}</span>
             </h1>
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 3vw, 16px)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--fg)', margin: '0 0 16px', borderBottom: '1px solid rgba(14,14,12,0.15)', paddingBottom: '16px' }}>
-              By day, I lead a FinTech engineering team that moves real money. By night, I ship experiments. On weekends, I chase whatever rabbit hole looks interesting. Same operating system, different tabs.
+              By day, he leads a FinTech engineering team that moves real money. By night, he ships experiments. On weekends, he chases whatever rabbit hole looks interesting. Same operating system, different tabs.
             </p>
             <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: 'clamp(13px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               Prasanna Rajendran has spent seven years inside the machinery of non-banking finance: writing the code, then leading the team that writes it, then calmly putting out the fires when that code meets reality at 3 a.m. He&apos;s the kind of person who fixes the bug before filing the ticket. The one reading RFCs on a Sunday not because anyone asked, but because something felt unfinished. Somewhere around year four, he learned that panic is the least efficient response when things break.
