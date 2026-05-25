@@ -23,6 +23,37 @@ export default function BusinessPages() {
 
       <SectionFlag pageLabel="Business · Page 4" subtitle="The Career Beat" />
 
+      {/* MOBILE ONLY: Stats + Education strip — mirrors left column content, hidden on lg+ where the column is visible */}
+      <div className="lg:hidden section-padding-x" style={{ borderBottom: '1px solid rgba(14,14,12,0.15)', paddingTop: '20px', paddingBottom: '20px' }}>
+
+        <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>
+          By the Numbers
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: 'rgba(14,14,12,0.15)', border: '1px solid rgba(14,14,12,0.15)', marginBottom: '14px' }}>
+          {numbers.map(({ n, unit, label }, i) => (
+            <div key={i} style={{ background: 'var(--bg)', padding: '14px 12px' }}>
+              <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '36px', fontWeight: 900, lineHeight: 0.9, color: 'var(--fg)', letterSpacing: '-0.02em' }}>{n}</div>
+              <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '6px', marginBottom: '3px' }}>{unit}</div>
+              <div style={{ fontFamily: '"Source Serif 4", serif', fontSize: '11px', color: 'var(--sepia)', fontStyle: 'italic', lineHeight: 1.4 }}>{label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ border: '1px solid rgba(14,14,12,0.2)', background: 'rgba(193,39,45,0.04)' }}>
+          <div style={{ background: 'var(--accent)', padding: '4px 12px', borderBottom: '1px solid rgba(193,39,45,0.3)' }}>
+            <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: '#F4EFE6', textTransform: 'uppercase', letterSpacing: '.15em', fontWeight: 700 }}>★ First Class Distinction</span>
+          </div>
+          <div style={{ padding: '10px 12px' }}>
+            <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '6px' }}>Education</div>
+            <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1.3 }}>B.Sc. Computer Science</div>
+            <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', color: 'var(--fg)', fontWeight: 600, marginTop: '3px', letterSpacing: '.03em' }}>Bachelor of Science</div>
+            <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', color: 'var(--sepia)', marginTop: '4px' }}>Chennai · 2019</div>
+          </div>
+        </div>
+
+      </div>
+
       {/* 3-column grid → responsive */}
       <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1.25fr 3.5fr 2fr', columnGap: 0 }}>
 
