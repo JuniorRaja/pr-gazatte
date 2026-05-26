@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Bodoni_Moda, Source_Serif_4, Barlow_Condensed, JetBrains_Mono } from 'next/font/google'
+import WebVitals from '@/components/WebVitals'
 import './globals.css'
 
 const bodoni = Bodoni_Moda({
@@ -156,12 +157,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </div>
         {process.env.NEXT_PUBLIC_UMAMI_URL && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
-          <Script
-            src={process.env.NEXT_PUBLIC_UMAMI_URL}
-            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-            data-domains="prasannar.com"
-            strategy="afterInteractive"
-          />
+          <>
+            <Script
+              src={process.env.NEXT_PUBLIC_UMAMI_URL}
+              data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+              data-domains="prasannar.com"
+              strategy="afterInteractive"
+            />
+            <WebVitals />
+          </>
         )}
       </body>
     </html>
