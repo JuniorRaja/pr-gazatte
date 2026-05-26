@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     'Senior software engineer available for new opportunities. React, TypeScript, .NET, Azure.',
 }
 
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}try{if(!localStorage.getItem('prg-intro'))document.documentElement.setAttribute('data-splash','')}catch(e){}})();`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

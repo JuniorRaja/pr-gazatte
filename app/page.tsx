@@ -1,3 +1,4 @@
+import NewsSplash from '@/components/NewsSplash'
 import StickyNav from '@/components/StickyNav'
 import Masthead from '@/components/sections/Masthead'
 import OpEd from '@/components/sections/OpEd'
@@ -30,6 +31,7 @@ const SECTION_IDS = [
 export default function Home() {
   return (
     <main>
+      <NewsSplash />
       <SmoothScroll />
       <SectionTracker sectionIds={SECTION_IDS} />
       <BackToTop />
