@@ -41,7 +41,7 @@ export default function Masthead() {
             <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(52px, 9vw, 110px)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.02em', color: 'var(--fg)', userSelect: 'none' }}>
               THE PR GAZETTE
             </div>
-            <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', letterSpacing: '0.25em', color: 'var(--fg)', marginTop: '6px', textTransform: 'uppercase' }}>
+            <div id="masthead-tagline" style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', letterSpacing: '0.25em', color: 'var(--fg)', marginTop: '6px', textTransform: 'uppercase' }}>
               ◆ &nbsp; Independent · Opinionated · Occasionally Correct &nbsp; ◆
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Masthead() {
             <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(38px, 12vw, 72px)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.02em', color: 'var(--fg)', userSelect: 'none' }}>
               THE PR GAZETTE
             </div>
-            <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: 'clamp(7px, 2vw, 9px)', letterSpacing: '0.2em', color: 'var(--fg)', marginTop: '8px', textTransform: 'uppercase' }}>
+            <div id="masthead-tagline-mobile" style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: 'clamp(7px, 2vw, 9px)', letterSpacing: '0.2em', color: 'var(--fg)', marginTop: '8px', textTransform: 'uppercase' }}>
               ◆ Independent · Opinionated ◆
             </div>
           </div>
@@ -90,8 +90,8 @@ export default function Masthead() {
             </div>
           ))}
           
-          {/* Featured Inside */}
-          <div style={{ marginTop: '24px', borderTop: '2px solid var(--fg)', paddingTop: '14px' }}>
+          {/* Featured Inside - hidden on mobile */}
+          <div className="hidden md:block" style={{ marginTop: '24px', borderTop: '2px solid var(--fg)', paddingTop: '14px' }}>
             <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>Featured Inside</div>
             
             {/* Tech Feature */}
@@ -158,15 +158,15 @@ export default function Masthead() {
             Prasanna Rajendran has spent the better part of a decade inside the circuitry of non-banking finance (first writing code, then shaping the systems around it, and eventually taking responsibility for what happens when those systems meet the real world). 
           </p>
           {/* Portrait */}
-          <div style={{ marginTop: '20px', height: 'clamp(220px, 38vh, 360px)', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
+          <div style={{ marginTop: '20px', height: 'clamp(280px, 60vh, 600px)', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
             <Image src="/pr-masthead-still-profes.webp" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', objectPosition: 'center 20%', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.6))', padding: '12px 8px 6px' }}>
               <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>
             </div>
           </div>
           
-          {/* Featured Inside */}
-          <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '2px solid var(--fg)' }}>
+          {/* Featured Inside - hidden on mobile */}
+          <div className="hidden md:block" style={{ marginTop: '20px', paddingTop: '16px', borderTop: '2px solid var(--fg)' }}>
             <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>Featured Inside</div>
             
             {/* Books Feature */}

@@ -26,9 +26,11 @@ export default function StickyNav() {
       const el = document.documentElement
       const total = el.scrollHeight - el.clientHeight
       setProgress(total > 0 ? el.scrollTop / total : 0)
-      
-      // Show title when scrolled past 300px (past the masthead section)
-      setShowTitle(el.scrollTop > 300)
+
+      const tagline =
+        document.getElementById('masthead-tagline-mobile') ??
+        document.getElementById('masthead-tagline')
+      if (tagline) setShowTitle(tagline.getBoundingClientRect().bottom < 0)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
 
@@ -98,12 +100,26 @@ export default function StickyNav() {
           })}
         </nav>
 
-        {/* Mobile center title - shows when scrolled past masthead */}
-        {showTitle && (
-          <div className="md:hidden" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(11px, 3vw, 14px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'var(--fg)' }}>
-            THE PR GAZETTE
-          </div>
-        )}
+        {/* Mobile center title - fades in when scrolled past masthead */}
+        <div
+          className="md:hidden"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontFamily: '"Bodoni Moda", serif',
+            fontSize: 'clamp(15px, 4.5vw, 19px)',
+            fontWeight: 700,
+            letterSpacing: '-0.02em',
+            color: 'var(--fg)',
+            opacity: showTitle ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+            pointerEvents: showTitle ? 'auto' : 'none',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          THE PR GAZETTE
+        </div>
 
         <span className="hidden md:flex"><ThemeToggle /></span>
         <span className="md:hidden"><MobileNav /></span>
