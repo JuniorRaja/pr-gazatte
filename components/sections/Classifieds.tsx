@@ -32,7 +32,7 @@ function isValidContact(value: string): boolean {
 export default function Classifieds() {
   const [form, setForm] = useState({ name: '', contact: '', message: '' })
   const [contactError, setContactError] = useState('')
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const handleContactBlur = () => {
     if (form.contact && !isValidContact(form.contact))
@@ -41,19 +41,24 @@ export default function Classifieds() {
       setContactError('')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!isValidContact(form.contact)) {
       setContactError('Enter a valid email address or phone number')
       return
     }
-    const subject = `Letter to the Editor — from ${form.name}`
-    const body = `From: ${form.name}\nContact: ${form.contact}\n\n${form.message}`
-    window.open(
-      `mailto:hello@prasannar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
-      '_self'
-    )
-    setSent(true)
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('send failed')
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -328,20 +333,20 @@ export default function Classifieds() {
                 <div style={{ fontFamily: condensed, fontSize: '7px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.14em' }}>Editorial Correspondence</div>
               </div>
 
-              {sent ? (
+              {status === 'sent' ? (
                 <div className="cl-form-body" style={{ textAlign: 'center' }}>
-                  <div className="cl-stamp">READY TO SEND</div>
+                  <div className="cl-stamp">TRANSMITTED</div>
                   <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.65, color: 'var(--fg)', fontStyle: 'italic', margin: '0 0 10px' }}>
-                    Your dispatch is prepared. A mail window should have opened — hit send from there.
+                    Dispatch received. The editor will be in touch.
                   </p>
                   <p style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', lineHeight: 1.8, margin: '0' }}>
-                    Mail window didn&apos;t open?{' '}
+                    Direct wire:{' '}
                     <a href="mailto:hello@prasannar.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>
                       hello@prasannar.com
                     </a>
                   </p>
                   <button
-                    onClick={() => { setSent(false); setForm({ name: '', contact: '', message: '' }); setContactError('') }}
+                    onClick={() => { setStatus('idle'); setForm({ name: '', contact: '', message: '' }); setContactError('') }}
                     style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', background: 'none', border: 'none', cursor: 'pointer', marginTop: '16px', textDecoration: 'underline' }}
                   >
                     Send another
@@ -411,8 +416,15 @@ export default function Classifieds() {
 
                     <div style={{ borderTop: '1px dotted var(--cl-border)', margin: '16px 0 14px' }} />
 
-                    <button type="submit" className="cl-submit">
-                      Write to the Editor
+                    {status === 'error' && (
+                      <div style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '10px', textAlign: 'center' }}>
+                        ✕ Transmission failed — try again or write directly to{' '}
+                        <a href="mailto:hello@prasannar.com" style={{ color: 'var(--accent)' }}>hello@prasannar.com</a>
+                      </div>
+                    )}
+
+                    <button type="submit" className="cl-submit" disabled={status === 'sending'} style={{ opacity: status === 'sending' ? 0.6 : 1 }}>
+                      {status === 'sending' ? 'Transmitting…' : 'Write to the Editor'}
                     </button>
                   </form>
                 </div>
