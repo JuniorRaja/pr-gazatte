@@ -19,12 +19,16 @@ const navItems = [
 export default function StickyNav() {
   const [activeId, setActiveId] = useState('')
   const [progress, setProgress] = useState(0)
+  const [showTitle, setShowTitle] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
       const el = document.documentElement
       const total = el.scrollHeight - el.clientHeight
       setProgress(total > 0 ? el.scrollTop / total : 0)
+      
+      // Show title when scrolled past 300px (past the masthead section)
+      setShowTitle(el.scrollTop > 300)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
 
@@ -93,6 +97,13 @@ export default function StickyNav() {
             )
           })}
         </nav>
+
+        {/* Mobile center title - shows when scrolled past masthead */}
+        {showTitle && (
+          <div className="md:hidden" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(11px, 3vw, 14px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'var(--fg)' }}>
+            THE PR GAZETTE
+          </div>
+        )}
 
         <span className="hidden md:flex"><ThemeToggle /></span>
         <span className="md:hidden"><MobileNav /></span>
