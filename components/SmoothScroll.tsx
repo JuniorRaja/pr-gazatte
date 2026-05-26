@@ -10,6 +10,7 @@ export default function SmoothScroll() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 1.5,
     })
+    ;(window as any).__lenis = lenis
 
     let raf: number
     const loop = (time: number) => {
@@ -19,6 +20,7 @@ export default function SmoothScroll() {
     raf = requestAnimationFrame(loop)
 
     return () => {
+      ;(window as any).__lenis = undefined
       cancelAnimationFrame(raf)
       lenis.destroy()
     }

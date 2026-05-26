@@ -244,12 +244,12 @@ export default function TechDesk() {
           <h2 style={{ fontFamily: display, fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 900, lineHeight: 1.05, color: 'var(--fg)', margin: '0 0 12px' }}>
             The <span style={{ color: 'var(--accent)' }}>Stack</span><br />Report.
           </h2>
-          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px'}}>
+          <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px'}}>
             React hit a new high this quarter, .NET Core & Microservices holds steady in enterprise. Golang opened a learning position.
           </p>
 
           <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Analyst&apos;s Note</div>
-          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
+          <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
             &ldquo;The portfolio skews deep over broad, but these IPO positions signal infrastructure-level ambition. Rare. Durable. Currently undervalued by the market.&rdquo;
           </p>
 

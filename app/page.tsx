@@ -12,6 +12,7 @@ import Classifieds from '@/components/sections/Classifieds'
 import Footer from '@/components/sections/Footer'
 import SectionTracker from '@/components/SectionTracker'
 import SmoothScroll from '@/components/SmoothScroll'
+import BackToTop from '@/components/BackToTop'
 
 const SECTION_IDS = [
   'op-ed',
@@ -31,6 +32,7 @@ export default function Home() {
     <main>
       <SmoothScroll />
       <SectionTracker sectionIds={SECTION_IDS} />
+      <BackToTop />
       <StickyNav />
       <Masthead />
       <OpEd />

@@ -39,7 +39,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior managed by Lenis smooth scroll */
 }
 
 /* Offset anchor scroll for sticky nav bar (~34px tall) */
@@ -277,6 +277,10 @@ body::after {
 /* Classifieds — CTA button */
 .cta-btn { background: var(--fg); transition: background 0.15s; }
 .cta-btn:hover { background: var(--accent); }
+
+/* Back to top */
+.btt-btn { background: var(--bg); color: var(--fg); }
+.btt-btn:hover { background: var(--fg); color: var(--bg); }
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE UTILITIES
    ══════════════════════════════════════════════════════════════ */
@@ -450,7 +454,7 @@ body {
   
   .responsive-grid > div {
     border-right: none !important;
-    border-bottom: 1px solid rgba(14,14,12,0.2) !important;
+    border-bottom: 1px solid var(--rule) !important;
   }
   
   .responsive-grid > div:last-child {

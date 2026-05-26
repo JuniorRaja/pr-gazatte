@@ -18,7 +18,7 @@ const quickFacts = [
 const index = [
   { p: '2', t: 'Op-Ed: A Person, Not a Resume' },
   { p: '3', t: 'Tech Desk: The Stack Report' },
-  { p: '4', t: 'Career Beat: seven + Years' },
+  { p: '4', t: 'Career Beat: Seven+ Years' },
   { p: '5', t: 'Lab Report: Self-Hosting & Servers' },
   { p: '6', t: 'Photo Desk: Patterns & Doors' },
   { p: '7', t: "Books: This Week's Reads" },
@@ -159,7 +159,7 @@ export default function Masthead() {
             Prasanna Rajendran has spent the better part of a decade inside the circuitry of non-banking finance (first writing code, then shaping the systems around it, and eventually taking responsibility for what happens when those systems meet the real world). 
           </p>
           {/* Portrait */}
-          <div style={{ marginTop: '20px', flex: 1, minHeight: '400px', maxHeight: '400px', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }} className="md:min-h-[150px] md:max-h-[300px]">
+          <div style={{ marginTop: '20px', height: 'clamp(220px, 38vh, 360px)', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
             <Image src="/pr-masthead-still-profes.webp" alt="Prasanna Rajendran" fill style={{ objectFit: 'cover', objectPosition: 'center 20%', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.6))', padding: '12px 8px 6px' }}>
               <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>

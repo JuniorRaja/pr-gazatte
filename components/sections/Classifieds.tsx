@@ -400,9 +400,13 @@ export default function Classifieds() {
                         rows={3}
                         placeholder="Say what's on your mind…"
                         value={form.message}
+                        maxLength={1000}
                         onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                         required
                       />
+                      <div style={{ fontFamily: condensed, fontSize: '8px', letterSpacing: '.06em', textAlign: 'right', marginTop: '3px', color: form.message.length > 900 ? 'var(--accent)' : 'var(--sepia)', transition: 'color 0.2s' }}>
+                        {form.message.length}/1000
+                      </div>
                     </div>
 
                     <div style={{ borderTop: '1px dotted var(--cl-border)', margin: '16px 0 14px' }} />

@@ -187,7 +187,7 @@ export default function BusinessPages() {
               src="/pr-business-still.webp"
               alt="Career — Prasanna Rajendran"
               fill
-              style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }}
+              style={{ objectFit: 'cover', filter: 'grayscale(0.9) sepia(0.75) contrast(0.9) brightness(0.95)' }}
             />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.65))', padding: '16px 8px 6px' }}>
               <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>
