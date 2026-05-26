@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { track } from '@/lib/analytics'
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false)
@@ -12,6 +13,7 @@ export default function BackToTop() {
   }, [])
 
   const scrollToTop = () => {
+    track('back_to_top')
     const lenis = (window as any).__lenis
     if (lenis) lenis.scrollTo(0, { duration: 1.2 })
     else window.scrollTo({ top: 0, behavior: 'smooth' })

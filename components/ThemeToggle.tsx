@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { track } from '@/lib/analytics'
 
 const THEMES = ['newsprint', 'ink', 'aged'] as const
 type Theme = (typeof THEMES)[number]
@@ -22,6 +23,7 @@ export default function ThemeToggle({ variant = 'strip' }: Props) {
   }, [])
 
   function pick(t: Theme) {
+    track('theme_change', { from: theme, to: t })
     setTheme(t)
     document.documentElement.setAttribute('data-theme', t)
     localStorage.setItem('theme', t)

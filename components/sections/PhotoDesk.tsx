@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import { track } from '@/lib/analytics'
 import NpImage from '@/components/NpImage'
 import PhotoSkeleton from '@/components/PhotoSkeleton'
 import SectionFiller from '@/components/SectionFiller'
@@ -42,6 +43,7 @@ export default function PhotoDesk() {
   const go = (delta: number) => {
     if (flipping) return
     const next = (current + delta + albums.length) % albums.length
+    track('album_switch', { album: albums[next].title, direction: delta > 0 ? 'next' : 'prev' })
     setDir(delta)
     setFlipping(true)
     setCoverIndex(getRandomIndex(next))
@@ -53,6 +55,7 @@ export default function PhotoDesk() {
 
   const jumpTo = (i: number) => {
     if (flipping || i === current) return
+    track('album_switch', { album: albums[i].title, direction: 'index' })
     setDir(i > current ? 1 : -1)
     setFlipping(true)
     setCoverIndex(getRandomIndex(i))
@@ -63,6 +66,7 @@ export default function PhotoDesk() {
   }
 
   const openLightbox = useCallback((albumIndex: number, photoIndex: number) => {
+    track('photo_open', { album: albums[albumIndex].title, photo: photoIndex + 1 })
     setLightbox({ albumIndex, photoIndex })
   }, [])
 

@@ -1,24 +1,42 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { track } from '@/lib/analytics'
 
 interface SectionTrackerProps {
   sectionIds: string[]
 }
 
+const DEPTH_MILESTONES = [25, 50, 75, 100]
+
 export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
   const currentHashRef = useRef('')
   const rafRef = useRef<number | null>(null)
   const lastUpdateRef = useRef(0)
+  const firedDepthsRef = useRef(new Set<number>())
+  const sectionEnterTimeRef = useRef<number>(0)
 
   useEffect(() => {
     const updateHash = (newHash: string) => {
       if (currentHashRef.current === newHash) return
-      // Throttle replaceState to stay well under browser limits (~100/30s)
       const now = Date.now()
       if (now - lastUpdateRef.current < 250) return
+
+      // Track time spent in previous section
+      if (currentHashRef.current && sectionEnterTimeRef.current) {
+        const seconds = Math.round((now - sectionEnterTimeRef.current) / 1000)
+        if (seconds >= 2) {
+          track('section_time', { section: currentHashRef.current, seconds })
+        }
+      }
+
       lastUpdateRef.current = now
       currentHashRef.current = newHash
+
+      if (newHash) {
+        sectionEnterTimeRef.current = now
+        track('section_view', { section: newHash })
+      }
 
       const url = new URL(window.location.href)
       if (newHash === '') {
@@ -31,17 +49,27 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
     }
 
     const getActiveSection = (): string => {
-      // Trigger point: 45% down from the top of the viewport
       const triggerY = window.innerHeight * 0.45
       let active = ''
       for (const id of sectionIds) {
         const el = document.getElementById(id)
         if (!el) continue
-        // Once this section's top is above (or at) the trigger, it becomes the candidate.
-        // We keep iterating so the last matching section wins (i.e. the lowest one still above trigger).
         if (el.getBoundingClientRect().top <= triggerY) active = id
       }
       return active
+    }
+
+    const checkScrollDepth = () => {
+      const el = document.documentElement
+      const scrolled = el.scrollTop + el.clientHeight
+      const total = el.scrollHeight
+      const pct = Math.round((scrolled / total) * 100)
+      for (const milestone of DEPTH_MILESTONES) {
+        if (pct >= milestone && !firedDepthsRef.current.has(milestone)) {
+          firedDepthsRef.current.add(milestone)
+          track('scroll_depth', { depth: milestone })
+        }
+      }
     }
 
     const onScroll = () => {
@@ -49,11 +77,11 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
       rafRef.current = requestAnimationFrame(() => {
         rafRef.current = null
         updateHash(getActiveSection())
+        checkScrollDepth()
       })
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    // Set initial hash on mount
     onScroll()
 
     return () => {

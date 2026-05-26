@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import ThemeToggle from '@/components/ThemeToggle'
 import MobileNav from '@/components/MobileNav'
+import { track } from '@/lib/analytics'
 
 const navItems = [
   { label: 'Op-Ed',   id: 'op-ed'   },
@@ -87,6 +88,7 @@ export default function StickyNav() {
                 key={id}
                 href={`#${id}`}
                 aria-current={isActive ? 'location' : undefined}
+                onClick={() => track('nav_click', { section: id })}
                 style={{
                   textDecoration: 'none',
                   color: isActive ? 'var(--accent)' : 'var(--fg)',

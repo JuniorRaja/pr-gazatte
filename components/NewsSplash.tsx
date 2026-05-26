@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { track } from '@/lib/analytics'
 
 const BODY_LINES = [
   'Something landed on your doorstep.',
@@ -29,8 +30,9 @@ export default function NewsSplash() {
     }
   }, [])
 
-  const dismiss = useCallback(() => {
+  const dismiss = useCallback((method: 'button' | 'backdrop' | 'escape' = 'backdrop') => {
     if (exiting) return
+    track('splash_dismiss', { method })
     setExiting(true)
     setTimeout(() => {
       setVisible(false)
@@ -41,7 +43,7 @@ export default function NewsSplash() {
   useEffect(() => {
     if (!visible) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') dismiss()
+      if (e.key === 'Escape') dismiss('escape')
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -55,7 +57,7 @@ export default function NewsSplash() {
       role="dialog"
       aria-modal="true"
       aria-label="Welcome to The PR Gazette"
-      onClick={dismiss}
+      onClick={() => dismiss('backdrop')}
     >
       <div className="splash-rule-bar splash-rule-top" aria-hidden="true" />
       <div className="splash-rule-bar splash-rule-bottom" aria-hidden="true" />
@@ -81,7 +83,7 @@ export default function NewsSplash() {
 
         <button
           className="splash-cta"
-          onClick={dismiss}
+          onClick={() => dismiss('button')}
           aria-label="Enter The PR Gazette"
         >
           Open it &rarr;

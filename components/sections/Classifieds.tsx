@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import SectionFlag from '@/components/SectionFlag'
 import SectionFiller from '@/components/SectionFiller'
+import { track } from '@/lib/analytics'
 
 const contacts = [
   { label: 'Primary Wire', value: 'hello@prasannar.com',      href: 'mailto:hello@prasannar.com',                primary: true  },
@@ -33,6 +34,7 @@ export default function Classifieds() {
   const [form, setForm] = useState({ name: '', contact: '', message: '' })
   const [contactError, setContactError] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const formStartedRef = useRef(false)
 
   const handleContactBlur = () => {
     if (form.contact && !isValidContact(form.contact))
@@ -55,8 +57,10 @@ export default function Classifieds() {
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error('send failed')
+      track('contact_submit')
       setStatus('sent')
     } catch {
+      track('contact_error')
       setStatus('error')
     }
   }
@@ -286,11 +290,11 @@ export default function Classifieds() {
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {contacts.map(({ label, value, href, primary }) => (
                     primary
-                      ? <a key={label} href={href} className="cl-primary-link">
+                      ? <a key={label} href={href} className="cl-primary-link" onClick={() => track('contact_link_click', { platform: label })}>
                           <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
                           <span style={{ fontFamily: display, fontSize: 'clamp(12px, 2.5vw, 13px)', fontWeight: 700, color: 'var(--accent)' }}>{value}</span>
                         </a>
-                      : <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="cl-social-link">
+                      : <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="cl-social-link" onClick={() => track('contact_link_click', { platform: label })}>
                           <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
                           <span className="cl-social-val" style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--fg)', transition: 'color .15s' }}>
                             {value} ↗
@@ -354,7 +358,15 @@ export default function Classifieds() {
                 </div>
               ) : (
                 <div className="cl-form-body">
-                  <form onSubmit={handleSubmit}>
+                  <form
+                    onSubmit={handleSubmit}
+                    onFocus={() => {
+                      if (!formStartedRef.current) {
+                        formStartedRef.current = true
+                        track('contact_form_start')
+                      }
+                    }}
+                  >
                     <div className="cl-field-wrap">
                       <div className="cl-field-label-row">
                         <label className="cl-field-label" htmlFor="cl-name">Your name</label>
