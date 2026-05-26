@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Source_Serif_4, JetBrains_Mono } from 'next/font/google'
+import { Bodoni_Moda, Source_Serif_4, Barlow_Condensed, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const bodoni = Bodoni_Moda({
   subsets: ['latin'],
   weight: ['400', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
-  variable: '--font-playfair',
+  variable: '--font-display',
   display: 'swap',
 })
 
@@ -16,10 +16,17 @@ const sourceSerif = Source_Serif_4({
   display: 'swap',
 })
 
+const barlow = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-condensed',
+  display: 'swap',
+})
+
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-jetbrains',
+  weight: ['400'],
+  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -29,14 +36,15 @@ export const metadata: Metadata = {
     'Senior software engineer available for new opportunities. React, TypeScript, .NET, Azure.',
 }
 
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}try{if(!localStorage.getItem('prg-intro'))document.documentElement.setAttribute('data-splash','')}catch(e){}})();`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      data-theme="newsprint"
-      className={`${playfair.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}
+      data-theme="aged"
+      suppressHydrationWarning
+      className={`${bodoni.variable} ${sourceSerif.variable} ${barlow.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useRef } from 'react'
-import SectionFiller from '@/components/SectionFiller'
 import NpImage from '@/components/NpImage'
+import SectionFiller from '@/components/SectionFiller'
 
-const mono = '"JetBrains Mono", monospace'
+const condensed = '"Barlow Condensed", sans-serif'
 const serif = '"Source Serif 4", serif'
-const display = '"Playfair Display", serif'
+const display = '"Bodoni Moda", serif'
 
 type BookStatus = 'currently-reading' | 'will-read' | 'read'
 
@@ -67,7 +67,7 @@ function stampClass(status?: BookStatus) {
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <span style={{ fontFamily: mono, fontSize: '9px', color: '#c7a830', letterSpacing: '1px' }}>
+    <span style={{ fontFamily: condensed, fontSize: '9px', color: '#c7a830', letterSpacing: '1px' }}>
       {'★'.repeat(rating)}{'☆'.repeat(5 - rating)}
     </span>
   )
@@ -211,7 +211,7 @@ function BookRow({ book, hoveredId, onHover }: {
           {/* Overview */}
           <p style={{
             fontFamily: serif,
-            fontSize: '10.5px',
+            fontSize: '11px',
             lineHeight: 1.65,
             color: 'var(--fg)',
             margin: '0 0 10px',
@@ -220,7 +220,7 @@ function BookRow({ book, hoveredId, onHover }: {
 
           {/* Status badge */}
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <span className={stampClass(book.status)} style={{ fontSize: '7px' }}>
+            <span className={stampClass(book.status)} style={{ fontSize: '8px' }}>
               {statusLabel(book.status)}
             </span>
           </div>
@@ -242,7 +242,7 @@ function BookTableCol({ books, hoveredId, onHover }: {
         display: 'grid',
         gridTemplateColumns: '44px 1fr 72px',
         gap: '0 10px',
-        fontFamily: mono,
+        fontFamily: condensed,
         fontSize: 'clamp(10px, 2vw, 11px)',
         letterSpacing: '.15em',
         textTransform: 'uppercase',
@@ -270,8 +270,8 @@ export default function BooksReview() {
       <style>{`
         /* ── Stamps ── */
         .br-stamp {
-          font-family: ${mono};
-          font-size: 7.5px;
+          font-family: ${condensed};
+          font-size: 8.5px;
           font-weight: 700;
           letter-spacing: 0.12em;
           text-transform: uppercase;
@@ -294,6 +294,8 @@ export default function BooksReview() {
 
         /* ── Book row hover cursor ── */
         .br-book-row:hover { cursor: default; }
+        /* ── Ink-mode border overrides ── */
+        [data-theme="ink"] .br-left-col { border-right-color: var(--rule) !important; }
 
         /* ── Responsive ── */
         .br-flag { padding: 5px 16px; }
@@ -312,7 +314,7 @@ export default function BooksReview() {
         @media (max-width: 960px) {
           .br-outer { grid-template-columns: 1fr !important; }
           .br-photo-right { display: block !important; position: relative !important; width: 100% !important; height: 550px !important; min-height: 550px !important; }
-          .br-left-col { border-right: none !important; border-bottom: 1px solid rgba(14,14,12,0.2) !important; }
+          .br-left-col { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
           .br-writing-row { grid-template-columns: 1fr 1fr !important; }
           .br-table-grid { grid-template-columns: 1fr 1fr !important; }
           .br-hide-mobile { display: none !important; }
@@ -320,7 +322,7 @@ export default function BooksReview() {
         }
         @media (max-width: 600px) {
           .br-writing-row { grid-template-columns: 1fr !important; }
-          .br-writing-row .br-wcol { border-right: none !important; margin-right: 0 !important; padding-right: 0 !important; border-bottom: 1px solid rgba(14,14,12,0.15); padding-bottom: 16px; margin-bottom: 16px; }
+          .br-writing-row .br-wcol { border-right: none !important; margin-right: 0 !important; padding-right: 0 !important; border-bottom: 1px solid var(--rule-subtle); padding-bottom: 16px; margin-bottom: 16px; }
           .br-table-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
@@ -330,8 +332,8 @@ export default function BooksReview() {
         background: 'var(--accent)', color: '#F4EFE6',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
       }}>
-        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Culture &amp; Character · The Reading Life</span>
-        <span style={{ fontFamily: mono, fontSize: '10px' }}>Page 7</span>
+        <span style={{ fontFamily: condensed, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Culture &amp; Character · The Reading Life</span>
+        <span style={{ fontFamily: condensed, fontSize: '10px' }}>Page 7</span>
       </div>
 
       {/* ── Top 2-col: [headline + writing] | [tall photo] ── */}
@@ -353,7 +355,7 @@ export default function BooksReview() {
             fontFamily: display,
             fontSize: 'clamp(30px, 4.5vw, 52px)',
             fontWeight: 900,
-            lineHeight: 1.0,
+            lineHeight: 1.08,
             letterSpacing: '-0.02em',
             color: 'var(--fg)',
             margin: '0 0 8px',
@@ -367,7 +369,7 @@ export default function BooksReview() {
             fontStyle: 'italic',
             color: 'var(--sepia)',
             maxWidth: '580px',
-            lineHeight: 1.55,
+            lineHeight: 1.6,
             borderBottom: '0.5px solid rgba(14,14,12,0.25)',
             paddingBottom: '16px',
             marginBottom: '20px',
@@ -395,16 +397,16 @@ export default function BooksReview() {
                 marginRight: '22px',
               }}
             >
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The habit</div>
-              <p className="drop-cap" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '8px' }}>
+              <div style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The habit</div>
+              <p className="drop-cap" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', textAlign: 'justify', marginBottom: '8px' }}>
                 He does not read on schedule. He reads the way some people think — in bursts, in margins, in the ten minutes before a meeting where a decent idea might still show up. The book is always somewhere nearby. Sometimes it is open. Sometimes it is just watching.
               </p>
-              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
+              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 The habit formed not in school but in the years after, when answers stopped arriving pre-packaged and questions started arriving faster. A book became the cheapest form of a very expensive conversation.
               </p>
 
-              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What gets chosen</div>
-              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '12px' }}>
+              <div className="br-hide-mobile" style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What gets chosen</div>
+              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', textAlign: 'justify', marginBottom: '12px' }}>
                 The shelf leans non-fiction without being cold. History. Systems. The psychology of decisions. The occasional biography of someone who built something and survived it. Fiction makes a rare appearance — usually when a colleague insists, or when the nonfiction starts sounding too much like itself.
               </p>
               <div style={{
@@ -424,18 +426,18 @@ export default function BooksReview() {
 
             {/* Right editorial */}
             <div>
-              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What stays</div>
-              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
+              <div className="br-hide-mobile" style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What stays</div>
+              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 The books that earn a permanent place are not the easiest to finish. They are the ones that left a sentence behind — something that surfaced weeks later in a code review, a retrospective, a late-night architecture discussion where the right framing suddenly mattered.
               </p>
 
-              <div style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The system</div>
-              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
+              <div style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>The system</div>
+              <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', textAlign: 'justify', marginBottom: '14px' }}>
                 There is no colour-coding, no reading tracker, no Goodreads profile updated with military precision. The system is simpler: start, finish if it earns it, remember what matters. Dog-eared pages over highlights — a highlight is for someone else. The folded corner is a private agreement between reader and page.
               </p>
 
-              <div className="br-hide-mobile" style={{ fontFamily: mono, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What comes next</div>
-              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.72, color: 'var(--fg)', textAlign: 'justify' }}>
+              <div className="br-hide-mobile" style={{ fontFamily: condensed, fontSize: '9px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>What comes next</div>
+              <p className="br-hide-mobile" style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', textAlign: 'justify' }}>
                 Five are waiting. The to-read list is shorter than it has ever been — not because curiosity has narrowed, but because the bar has quietly raised itself. A book earns its place by being mentioned twice by people whose judgment has already proven expensive to ignore.
               </p>
             </div>
@@ -471,8 +473,8 @@ export default function BooksReview() {
             padding: '40px 12px 14px',
           }}>
             <div style={{
-              fontFamily: mono,
-              fontSize: '7px',
+              fontFamily: condensed,
+              fontSize: '9px',
               color: 'rgba(244,239,230,0.85)',
               textTransform: 'uppercase',
               letterSpacing: '.12em',
@@ -482,7 +484,7 @@ export default function BooksReview() {
             </div>
             <div style={{
               fontFamily: serif,
-              fontSize: '8px',
+              fontSize: '10px',
               fontStyle: 'italic',
               color: 'rgba(244,239,230,0.6)',
               marginTop: '3px',
@@ -507,7 +509,7 @@ export default function BooksReview() {
             justifyContent: 'space-between',
             alignItems: 'baseline',
           }}>
-            <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase', fontWeight: 700 }}>
+            <span style={{ fontFamily: condensed, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase', fontWeight: 700 }}>
               Consolidated Reading Record · All Titles
             </span>
             <span style={{ fontFamily: serif, fontSize: '9px', fontStyle: 'italic', color: 'var(--sepia)', letterSpacing: '.05em' }}>
@@ -532,13 +534,8 @@ export default function BooksReview() {
           </div>
 
       </div>
+      <SectionFiller watermark="BOOKS" footnote="Vol. PR · No. 1 · Books · Chennai" page="7" accent="#EC008C" />
 
-      <SectionFiller
-        watermark="READS"
-        footnote={`The Career Beat · Books & Reading · Annual Review`}
-        page="7"
-        accent="var(--accent)"
-      />
     </section>
   )
 }

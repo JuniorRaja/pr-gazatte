@@ -5,7 +5,7 @@ import NpImage from '@/components/NpImage'
 import { photoUrl } from '@/utils/cdn'
 import type { Album } from '@/content/photoAlbums'
 
-const mono = '"JetBrains Mono", monospace'
+const mono = '"Barlow Condensed", sans-serif'
 const serif = '"Source Serif 4", serif'
 
 interface PhotoLightboxProps {

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import SectionFiller from '@/components/SectionFiller'
 import { getMonthYear } from '@/utils/date'
+import SectionFiller from '@/components/SectionFiller'
 import { stocks as initialStocks, indices } from '@/content/skills.mdx'
 
 /* ── helpers ─────────────────────────────────────────────────── */
@@ -18,9 +18,9 @@ const sectorColors: Record<string, string> = {
   DevOps: '#1e8449',
 }
 
-const mono = '"JetBrains Mono", monospace'
+const condensed = '"Barlow Condensed", sans-serif'
 const serif = '"Source Serif 4", serif'
-const display = '"Playfair Display", serif'
+const display = '"Bodoni Moda", serif'
 
 const levelIcon: Record<string, string> = {
   Expert:       '▲',
@@ -96,7 +96,7 @@ function SectorBar({ stocks }: { stocks: Stock[] }) {
         {Object.entries(sectors).map(([sector, count]) => (
           <div key={sector} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <div style={{ width: '6px', height: '6px', background: sectorColors[sector] || 'var(--sepia)' }} />
-            <span style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--fg)', letterSpacing: '.05em' }}>{sector} ({count})</span>
+            <span style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--fg)', letterSpacing: '.05em' }}>{sector} ({count})</span>
           </div>
         ))}
       </div>
@@ -109,8 +109,8 @@ function SectorBar({ stocks }: { stocks: Stock[] }) {
 function StockTable({ items, label, flashMap }: { items: Stock[]; label: string; flashMap: Record<string, 'up' | 'down'> }) {
   return (
     <div>
-      <div style={{ fontFamily: mono, fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>{label}</div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)' }}>
+      <div style={{ fontFamily: condensed, fontSize: '10px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>{label}</div>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)' }}>
         <thead>
           <tr style={{ background: 'var(--fg)', color: 'var(--bg)' }}>
             {['Symbol', 'Sector', 'LTP', '%Chg'].map(h => (
@@ -132,7 +132,7 @@ function StockTable({ items, label, flashMap }: { items: Stock[]; label: string;
                   {isIpo && <span style={{ fontSize: '8px', color: 'var(--accent)', marginLeft: '4px', fontWeight: 400, verticalAlign: 'super' }}>IPO</span>}
                 </td>
                 <td style={{ padding: '6px 8px', color: sectorColors[s.sector] || 'var(--sepia)', fontSize: 'clamp(11px, 2.2vw, 12px)', whiteSpace: 'nowrap' }}>{s.sector}</td>
-                <td style={{ padding: '6px 8px', textAlign: 'right', fontWeight: 700, color: 'var(--fg)', fontSize: '11px' }}>₹{fmt(s.ltp)}</td>
+                <td style={{ padding: '6px 8px', textAlign: 'right', fontWeight: 700, color: 'var(--fg)', fontSize: '11px', fontVariantNumeric: 'tabular-nums' }}>₹{fmt(s.ltp)}</td>
                 <td style={{ padding: '6px 8px', textAlign: 'right', color: changeColor, fontWeight: 700 }}>
                   {isPositive ? '▲' : '▼'} {Math.abs(s.pctChg).toFixed(2)}%
                 </td>
@@ -187,7 +187,7 @@ export default function TechDesk() {
         @keyframes prTickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes prFlashGreen { 0%, 15% { background-color: rgba(42,122,59,0.22); } 100% { background-color: transparent; } }
         @keyframes prFlashRed   { 0%, 15% { background-color: rgba(193,39,45,0.22); } 100% { background-color: transparent; } }
-        .stock-row:hover { background: rgba(14,14,12,0.04) !important; }
+        .stock-row:hover { background: var(--rule-subtle) !important; }
         
         @media (max-width: 1023px) {
           .tech-desk-grid {
@@ -216,20 +216,20 @@ export default function TechDesk() {
 
       {/* ── Red banner ───────────────────────────────────────── */}
       <div style={{ background: 'var(--accent)', color: '#F4EFE6', padding: '5px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Tech Desk · Page 3</span>
-        <span style={{ fontFamily: mono, fontSize: '10px' }}>MARKETS · STACK REPORT · ENGINEERING</span>
+        <span style={{ fontFamily: condensed, fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase' }}>Tech Desk · Page 3</span>
+        <span style={{ fontFamily: condensed, fontSize: '10px' }}>MARKETS · STACK REPORT · ENGINEERING</span>
       </div>
 
       {/* ── Ticker strip ─────────────────────────────────────── */}
       <div style={{ overflow: 'hidden', borderBottom: '1px solid var(--fg)', background: 'var(--fg)', padding: '6px 0' }}>
         <div style={{ display: 'flex', gap: '32px', width: 'max-content', animation: 'prTickerScroll 50s linear infinite' }}>
           {tickerItems.map((s, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: mono, fontSize: '11px', whiteSpace: 'nowrap' }}>
-              <span style={{ color: '#F4EFE6', fontWeight: 700, letterSpacing: '.05em' }}>{s.sym}</span>
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: condensed, fontSize: '11px', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'var(--bg)', fontWeight: 700, letterSpacing: '.05em' }}>{s.sym}</span>
               <span style={{ color: s.chg >= 0 ? '#4ade80' : '#f87171' }}>
                 {s.chg >= 0 ? '▲' : '▼'} {s.chg >= 0 ? '+' : ''}{s.pctChg}%
               </span>
-              <span style={{ color: '#F4EFE6', opacity: 0.2 }}>│</span>
+              <span style={{ color: 'var(--bg)', opacity: 0.2 }}>│</span>
             </div>
           ))}
         </div>
@@ -240,27 +240,21 @@ export default function TechDesk() {
 
         {/* ════ LEFT — Analyst's Note + Trading Guide ════ */}
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>Markets Summary</div>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '14px' }}>Markets Summary</div>
           <h2 style={{ fontFamily: display, fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 900, lineHeight: 1.05, color: 'var(--fg)', margin: '0 0 12px' }}>
             The <span style={{ color: 'var(--accent)' }}>Stack</span><br />Report.
           </h2>
-          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 24px'}}>
+          <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px'}}>
             React hit a new high this quarter, .NET Core & Microservices holds steady in enterprise. Golang opened a learning position.
           </p>
 
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Analyst&apos;s Note</div>
-          {/* <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 10px' }}>
-            The BACKEND-30 index continues its bull run, buoyed by strong C# and .NET fundamentals. FRONTEND-50 surged past resistance on renewed React momentum.
-          </p>
-          <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
-            EMERGING-10 posted the session&apos;s highest gains — Agentic AI and ML Ops leading the rally.
-          </p> */}
-          <p style={{ fontFamily: serif, fontSize: 'clamp(14px, 2.8vw, 15px)', lineHeight: 1.72, color: 'var(--fg)', margin: '0 0 24px' }}>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Analyst&apos;s Note</div>
+          <p style={{ fontFamily: serif, fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 24px' }}>
             &ldquo;The portfolio skews deep over broad, but these IPO positions signal infrastructure-level ambition. Rare. Durable. Currently undervalued by the market.&rdquo;
           </p>
 
           <div className="hide-mobile" style={{ border: '1px solid var(--fg)', padding: '12px 14px', background: 'rgba(14,14,12,0.03)' }}>
-            <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '8px' }}>Trading Guide</div>
+            <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '8px' }}>Trading Guide</div>
             {[
               { sym: '▲', label: 'Blue Chip — Expert, production-proven', color: '#2a7a3b' },
               { sym: '◆', label: 'Large Cap — Advanced, battle-tested', color: 'var(--fg)' },
@@ -268,7 +262,7 @@ export default function TechDesk() {
               { sym: '★', label: 'IPO — Learning, active new position', color: 'var(--accent)' },
             ].map(({ sym, label, color }) => (
               <div key={sym} style={{ display: 'flex', gap: '8px', marginBottom: '5px', alignItems: 'center' }}>
-                <span style={{ color, fontFamily: mono, fontSize: '12px', fontWeight: 700, width: '14px', textAlign: 'center' }}>{sym}</span>
+                <span style={{ color, fontFamily: condensed, fontSize: '12px', fontWeight: 700, width: '14px', textAlign: 'center' }}>{sym}</span>
                 <span style={{ fontFamily: serif, fontSize: '11px', color: 'var(--fg)' }}>{label}</span>
               </div>
             ))}
@@ -280,14 +274,14 @@ export default function TechDesk() {
         <div className="section-padding-x section-padding-y" style={{ borderRight: '1px solid rgba(14,14,12,0.2)' }}>
 
           {/* Index cards — 4 across desktop, 2 across mobile */}
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Market Indices</div>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Market Indices</div>
           <div className="tech-indices-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1px', background: 'rgba(14,14,12,0.12)', border: '1px solid rgba(14,14,12,0.12)', marginBottom: '20px' }}>
             {indices.map(idx => (
               <div key={idx.name} style={{ background: 'var(--bg)', padding: '12px 14px' }}>
-                <div style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--accent)', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>{idx.name}</div>
+                <div style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--accent)', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>{idx.name}</div>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '8px' }}>
-                  <div style={{ fontFamily: mono, fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1 }}>{fmt(idx.value)}</div>
-                  <div style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', color: idx.chg >= 0 ? '#2a7a3b' : 'var(--accent)' }}>
+                  <div style={{ fontFamily: condensed, fontSize: '14px', fontWeight: 700, color: 'var(--fg)', lineHeight: 1 }}>{fmt(idx.value)}</div>
+                  <div style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: idx.chg >= 0 ? '#2a7a3b' : 'var(--accent)' }}>
                     {idx.chg >= 0 ? '+' : ''}{idx.chg.toFixed(2)}%
                   </div>
                 </div>
@@ -303,7 +297,7 @@ export default function TechDesk() {
           </div>
 
           {/* Sector Breakdown */}
-          <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px', marginTop: '20px' }}>Sector Breakdown</div>
+          <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px', marginTop: '20px' }}>Sector Breakdown</div>
           <SectorBar stocks={stocks} />
 
           {/* Footer row */}
@@ -318,43 +312,43 @@ export default function TechDesk() {
         <div className="section-padding-x section-padding-y">
           <div className="tech-right-mobile">
             <div>
-              <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Top Gainers</div>
+              <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>Top Gainers</div>
               {topGainers.map((s, i) => (
                 <div key={s.sym} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: i < topGainers.length - 1 ? '1px solid rgba(14,14,12,0.06)' : 'none' }}>
                   <div>
-                    <span style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', fontWeight: 700, color: 'var(--fg)' }}>{s.sym}</span>
+                    <span style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', fontWeight: 700, color: 'var(--fg)' }}>{s.sym}</span>
                     <span style={{ fontFamily: serif, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', marginLeft: '6px' }}>{s.name}</span>
                   </div>
-                  <span style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', color: '#2a7a3b', fontWeight: 700 }}>+{s.pctChg.toFixed(2)}%</span>
+                  <span style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: '#2a7a3b', fontWeight: 700 }}>+{s.pctChg.toFixed(2)}%</span>
                 </div>
               ))}
             </div>
 
             <div>
-              <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>New Listings · IPO</div>
+              <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '12px' }}>New Listings · IPO</div>
               {ipos.map(s => (
                 <div key={s.sym} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(14,14,12,0.06)' }}>
                   <div>
-                    <span style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', fontWeight: 700, color: 'var(--fg)' }}>{s.sym}</span>
-                    <span style={{ fontFamily: mono, fontSize: '7px', color: 'var(--accent)', marginLeft: '4px', border: '1px solid var(--accent)', padding: '1px 3px' }}>NEW</span>
+                    <span style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', fontWeight: 700, color: 'var(--fg)' }}>{s.sym}</span>
+                    <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--accent)', marginLeft: '4px', border: '1px solid var(--accent)', padding: '1px 3px' }}>NEW</span>
                   </div>
-                  <span style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--fg)' }}>₹{fmt(s.ltp)}</span>
+                  <span style={{ fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--fg)' }}>₹{fmt(s.ltp)}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div style={{ marginTop: '16px', fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', letterSpacing: '.05em' }}>Source: PR Stack Exchange · {getMonthYear()}</div>
+          <div style={{ marginTop: '16px', fontFamily: condensed, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', letterSpacing: '.05em' }}>Source: PR Stack Exchange · {getMonthYear()}</div>
 
           <div className="hide-mobile" style={{ marginTop: '12px', border: '1px solid rgba(14,14,12,0.15)', padding: '10px 12px', background: 'rgba(14,14,12,0.02)' }}>
-            <p style={{ fontFamily: mono, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', lineHeight: 1.65, letterSpacing: '.02em', textAlign: 'justify', margin: 0 }}>
+            <p style={{ fontFamily: serif, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--sepia)', lineHeight: 1.65, letterSpacing: 0, textAlign: 'justify', margin: 0 }}>
               PR Stack Exchange operates 24/7. All prices are fictional and reflect proficiency, not financial advice. Past performance in production is indicative of future results.
             </p>
           </div>
         </div>
       </div>
+      <SectionFiller watermark="TECH" footnote="Vol. PR · No. 1 · Tech Desk · Chennai" page="3" accent="#EC008C" />
 
-      <SectionFiller watermark="MARKETS" footnote={`Tech Desk · p. 3 · PR Stack Exchange · ${getMonthYear()}`} page="3" accent="var(--accent)" />
     </section>
   )
 }

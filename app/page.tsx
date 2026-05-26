@@ -1,3 +1,5 @@
+import NewsSplash from '@/components/NewsSplash'
+import StickyNav from '@/components/StickyNav'
 import Masthead from '@/components/sections/Masthead'
 import OpEd from '@/components/sections/OpEd'
 import TechDesk from '@/components/sections/TechDesk'
@@ -10,6 +12,8 @@ import OffDuty from '@/components/sections/OffDuty'
 import Classifieds from '@/components/sections/Classifieds'
 import Footer from '@/components/sections/Footer'
 import SectionTracker from '@/components/SectionTracker'
+import SmoothScroll from '@/components/SmoothScroll'
+import BackToTop from '@/components/BackToTop'
 
 const SECTION_IDS = [
   'op-ed',
@@ -27,7 +31,11 @@ const SECTION_IDS = [
 export default function Home() {
   return (
     <main>
+      <NewsSplash />
+      <SmoothScroll />
       <SectionTracker sectionIds={SECTION_IDS} />
+      <BackToTop />
+      <StickyNav />
       <Masthead />
       <OpEd />
       <TechDesk />

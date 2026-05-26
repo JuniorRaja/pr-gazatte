@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import SectionFiller from '@/components/SectionFiller'
 import SectionFlag from '@/components/SectionFlag'
+import SectionFiller from '@/components/SectionFiller'
 
 const contacts = [
   { label: 'Primary Wire', value: 'hello@prasannar.com',      href: 'mailto:hello@prasannar.com',                primary: true  },
@@ -19,27 +19,71 @@ const fieldReport = [
   ['On File',   '7+ years, FinTech'],
 ]
 
-const mono    = '"JetBrains Mono", monospace'
+const condensed = '"Barlow Condensed", sans-serif'
 const serif   = '"Source Serif 4", serif'
-const display = '"Playfair Display", serif'
+const display = '"Bodoni Moda", serif'
+
+function isValidContact(value: string): boolean {
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const digits = value.replace(/\D/g, '')
+  return emailRe.test(value.trim()) || (digits.length >= 7 && digits.length <= 15)
+}
 
 export default function Classifieds() {
-  const [form, setForm] = useState({ name: '', subject: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [form, setForm] = useState({ name: '', contact: '', message: '' })
+  const [contactError, setContactError] = useState('')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleContactBlur = () => {
+    if (form.contact && !isValidContact(form.contact))
+      setContactError('Enter a valid email address or phone number')
+    else
+      setContactError('')
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const body = `From: ${form.name}\n\nRe: ${form.subject}\n\n${form.message}`
-    window.open(
-      `mailto:hello@prasannar.com?subject=${encodeURIComponent(form.subject || 'Letter to the Editor')}&body=${encodeURIComponent(body)}`,
-      '_self'
-    )
-    setSent(true)
+    if (!isValidContact(form.contact)) {
+      setContactError('Enter a valid email address or phone number')
+      return
+    }
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('send failed')
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
     <section id="contact" style={{ borderBottom: '3px solid var(--fg)' }}>
       <style>{`
+        /* Theme-aware border/chrome tokens */
+        :root, [data-theme="newsprint"], [data-theme="aged"] {
+          --cl-border:         rgba(14,14,12,0.18);
+          --cl-border-light:   rgba(14,14,12,0.12);
+          --cl-border-subtle:  rgba(14,14,12,0.15);
+          --cl-placeholder:    rgba(14,14,12,0.28);
+          --cl-scissors-color: rgba(14,14,12,0.30);
+          --cl-coupon-border:  rgba(14,14,12,0.32);
+          --cl-header-bg:      rgba(14,14,12,0.035);
+        }
+        [data-theme="ink"] {
+          --cl-border:         rgba(244,239,230,0.28);
+          --cl-border-light:   rgba(244,239,230,0.18);
+          --cl-border-subtle:  rgba(244,239,230,0.15);
+          --cl-placeholder:    rgba(244,239,230,0.35);
+          --cl-scissors-color: rgba(244,239,230,0.35);
+          --cl-coupon-border:  rgba(244,239,230,0.28);
+          --cl-header-bg:      rgba(244,239,230,0.04);
+        }
+
         .cl-main-grid {
           display: flex;
           flex-direction: column;
@@ -68,12 +112,12 @@ export default function Classifieds() {
         }
 
         /* Field report rows */
-        .cl-status-row { display: flex; flex-direction: column; border-bottom: 1px dotted rgba(14,14,12,0.15); padding: 8px 0; gap: 2px; }
+        .cl-status-row { display: flex; flex-direction: column; border-bottom: 1px dotted var(--cl-border-subtle); padding: 8px 0; gap: 2px; }
 
         /* Contact links */
-        .cl-primary-link { display: flex; flex-direction: column; text-decoration: none; gap: 2px; padding: 10px 0; border-bottom: 1px solid rgba(14,14,12,0.12); }
+        .cl-primary-link { display: flex; flex-direction: column; text-decoration: none; gap: 2px; padding: 10px 0; border-bottom: 1px solid var(--cl-border-light); }
         .cl-primary-link:hover span:last-child { opacity: 0.7; }
-        .cl-social-link { display: flex; justify-content: space-between; align-items: center; text-decoration: none; padding: 7px 0; border-bottom: 1px dotted rgba(14,14,12,0.12); }
+        .cl-social-link { display: flex; justify-content: space-between; align-items: center; text-decoration: none; padding: 7px 0; border-bottom: 1px dotted var(--cl-border-light); }
         .cl-social-link:hover .cl-social-val { color: var(--accent) !important; }
         @media (max-width: 767px) {
           .cl-social-link { flex-direction: column; align-items: flex-start; gap: 2px; }
@@ -81,9 +125,9 @@ export default function Classifieds() {
 
         /* Coupon form */
         .cl-coupon {
-          border: 1.5px dashed rgba(14,14,12,0.32);
+          border: 1.5px dashed var(--cl-coupon-border);
           position: relative;
-          background: rgba(14,14,12,0.01);
+          background: transparent;
         }
         .cl-scissors {
           position: absolute;
@@ -102,9 +146,9 @@ export default function Classifieds() {
           line-height: 1;
         }
         .cl-scissors-text {
-          font-family: ${mono};
-          font-size: 7px;
-          color: rgba(14,14,12,0.3);
+          font-family: ${condensed};
+          font-size: 8px;
+          color: var(--cl-scissors-color);
           letter-spacing: .1em;
           text-transform: uppercase;
         }
@@ -113,7 +157,7 @@ export default function Classifieds() {
         .cl-form-header {
           border-bottom: 2px solid var(--fg);
           padding: 10px 14px 9px;
-          background: rgba(14,14,12,0.035);
+          background: var(--cl-header-bg);
         }
         .cl-form-header-row {
           display: flex;
@@ -134,8 +178,8 @@ export default function Classifieds() {
           margin-bottom: 5px;
         }
         .cl-field-label {
-          font-family: ${mono};
-          font-size: 7.5px;
+          font-family: ${condensed};
+          font-size: 9px;
           color: var(--sepia);
           text-transform: uppercase;
           letter-spacing: .12em;
@@ -143,13 +187,13 @@ export default function Classifieds() {
           flex-shrink: 0;
           cursor: pointer;
         }
-        .cl-field-rule { flex: 1; height: 1px; background: rgba(14,14,12,0.15); }
+        .cl-field-rule { flex: 1; height: 1px; background: var(--cl-border-subtle); }
         .cl-field {
           display: block;
           width: 100%;
           background: transparent;
           border: none;
-          border-bottom: 1.5px solid rgba(14,14,12,0.18);
+          border-bottom: 1.5px solid var(--cl-border);
           padding: 6px 0;
           font-family: ${serif};
           font-size: 13px;
@@ -159,7 +203,7 @@ export default function Classifieds() {
           border-radius: 0;
           -webkit-appearance: none;
         }
-        .cl-field::placeholder { color: rgba(14,14,12,0.22); font-style: italic; }
+        .cl-field::placeholder { color: var(--cl-placeholder); font-style: italic; }
         .cl-field:focus { border-bottom-color: var(--accent); }
         textarea.cl-field {
           resize: none;
@@ -211,22 +255,22 @@ export default function Classifieds() {
 
           {/* Col 1 — From the Desk */}
           <div className="cl-col1">
-            <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>From the Desk</div>
+            <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>From the Desk</div>
             <h3 style={{ fontFamily: display, fontSize: 'clamp(24px, 5vw, 36px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--fg)', margin: '0 0 20px' }}>
               The desk is open.<br /><span style={{ color: 'var(--accent)' }}>File your dispatch.</span>
             </h3>
-            <blockquote style={{ margin: 0, padding: 'clamp(12px, 2.5vw, 14px) clamp(14px, 3vw, 16px)', borderLeft: '3px solid var(--accent)', background: 'rgba(193,39,45,0.04)' }}>
-              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.72, fontStyle: 'italic', color: 'var(--fg)', margin: '0 0 10px' }}>
+            <blockquote style={{ margin: 0, padding: 'clamp(12px, 2.5vw, 14px) clamp(14px, 3vw, 16px)', borderTop: '2px solid var(--accent)', borderBottom: '1px solid rgba(193,39,45,0.15)', background: 'rgba(193,39,45,0.04)' }}>
+              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.7, fontStyle: 'italic', color: 'var(--fg)', margin: '0 0 10px' }}>
                 &ldquo;Prasanna Rajendran does not have a dramatic origin story. No garage startup, no dropout mythology. Just a man in Chennai who got very good at one thing, then quietly got good at several others.&rdquo;
               </p>
-              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.72, fontStyle: 'italic', color: 'var(--fg)', margin: 0 }}>
+              <p style={{ fontFamily: serif, fontSize: 'clamp(13px, 2.5vw, 13.5px)', lineHeight: 1.7, fontStyle: 'italic', color: 'var(--fg)', margin: 0 }}>
                 &ldquo;The code still compiles. The curiosity never shipped a bug.&rdquo;
               </p>
-              <div style={{ fontFamily: mono, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.12em', marginTop: '10px' }}>— The Editor</div>
+              <div style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.12em', marginTop: '10px' }}>The Editor</div>
             </blockquote>
             <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '7px' }}>
               <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2a7a3b', flexShrink: 0 }} />
-              <div style={{ fontFamily: mono, fontSize: '7.5px', color: '#2a7a3b', fontWeight: 700, letterSpacing: '.06em', lineHeight: 1.5 }}>
+              <div style={{ fontFamily: condensed, fontSize: '9px', color: '#2a7a3b', fontWeight: 700, letterSpacing: '.06em', lineHeight: 1.5 }}>
                 ON ASSIGNMENT &nbsp;·&nbsp; <span style={{ color: 'var(--sepia)', fontWeight: 400 }}>Open to distinguished opportunities</span>
               </div>
             </div>
@@ -238,17 +282,17 @@ export default function Classifieds() {
 
               {/* Reach the Desk */}
               <div>
-                <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Reach the Desk</div>
+                <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Reach the Desk</div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {contacts.map(({ label, value, href, primary }) => (
                     primary
                       ? <a key={label} href={href} className="cl-primary-link">
-                          <span style={{ fontFamily: mono, fontSize: '7.5px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
+                          <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
                           <span style={{ fontFamily: display, fontSize: 'clamp(12px, 2.5vw, 13px)', fontWeight: 700, color: 'var(--accent)' }}>{value}</span>
                         </a>
                       : <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="cl-social-link">
-                          <span style={{ fontFamily: mono, fontSize: '7.5px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
-                          <span className="cl-social-val" style={{ fontFamily: mono, fontSize: '9px', color: 'var(--fg)', transition: 'color .15s' }}>
+                          <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{label}</span>
+                          <span className="cl-social-val" style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--fg)', transition: 'color .15s' }}>
                             {value} ↗
                           </span>
                         </a>
@@ -258,10 +302,10 @@ export default function Classifieds() {
 
               {/* Field Report */}
               <div>
-                <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Field Report</div>
+                <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Field Report</div>
                 {fieldReport.map(([k, v]) => (
                   <div key={k} className="cl-status-row">
-                    <span style={{ fontFamily: mono, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.08em' }}>{k}</span>
+                    <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.08em' }}>{k}</span>
                     <span style={{ fontFamily: serif, fontSize: 'clamp(11px, 2.2vw, 12px)', color: 'var(--fg)', fontWeight: 600 }}>{v}</span>
                   </div>
                 ))}
@@ -272,7 +316,7 @@ export default function Classifieds() {
 
           {/* Col 3 — Wire Submission Form */}
           <div className="cl-col3">
-            <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Letters to the Editor</div>
+            <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.15em', borderBottom: '1px solid var(--accent)', paddingBottom: '4px', marginBottom: '16px' }}>Letters to the Editor</div>
 
             <div className="cl-coupon">
               <span className="cl-scissors">
@@ -283,21 +327,27 @@ export default function Classifieds() {
 
               <div className="cl-form-header">
                 <div className="cl-form-header-row">
-                  <span style={{ fontFamily: mono, fontSize: '10px', fontWeight: 700, color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.15em' }}>The PR Gazette</span>
-                  <span style={{ fontFamily: mono, fontSize: '7.5px', color: 'var(--sepia)', letterSpacing: '.1em' }}>FORM E-01</span>
+                  <span style={{ fontFamily: condensed, fontSize: '10px', fontWeight: 700, color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '.15em' }}>The PR Gazette</span>
+                  <span style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', letterSpacing: '.1em' }}>FORM E-01</span>
                 </div>
-                <div style={{ fontFamily: mono, fontSize: '7px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.14em' }}>Editorial Correspondence</div>
+                <div style={{ fontFamily: condensed, fontSize: '7px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.14em' }}>Editorial Correspondence</div>
               </div>
 
-              {sent ? (
+              {status === 'sent' ? (
                 <div className="cl-form-body" style={{ textAlign: 'center' }}>
-                  <div className="cl-stamp">RECEIVED</div>
-                  <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.65, color: 'var(--fg)', fontStyle: 'italic', margin: '0' }}>
-                    Your dispatch has been filed. The editor reads every letter and responds in due course.
+                  <div className="cl-stamp">TRANSMITTED</div>
+                  <p style={{ fontFamily: serif, fontSize: '12.5px', lineHeight: 1.65, color: 'var(--fg)', fontStyle: 'italic', margin: '0 0 10px' }}>
+                    Dispatch received. The editor will be in touch.
+                  </p>
+                  <p style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', lineHeight: 1.8, margin: '0' }}>
+                    Direct wire:{' '}
+                    <a href="mailto:hello@prasannar.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>
+                      hello@prasannar.com
+                    </a>
                   </p>
                   <button
-                    onClick={() => { setSent(false); setForm({ name: '', subject: '', message: '' }) }}
-                    style={{ fontFamily: mono, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', background: 'none', border: 'none', cursor: 'pointer', marginTop: '16px', textDecoration: 'underline' }}
+                    onClick={() => { setStatus('idle'); setForm({ name: '', contact: '', message: '' }); setContactError('') }}
+                    style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--sepia)', textTransform: 'uppercase', letterSpacing: '.1em', background: 'none', border: 'none', cursor: 'pointer', marginTop: '16px', textDecoration: 'underline' }}
                   >
                     Send another
                   </button>
@@ -323,18 +373,25 @@ export default function Classifieds() {
 
                     <div className="cl-field-wrap">
                       <div className="cl-field-label-row">
-                        <label className="cl-field-label" htmlFor="cl-subject">Email / Mobile</label>
+                        <label className="cl-field-label" htmlFor="cl-contact">Email / Mobile</label>
                         <div className="cl-field-rule" />
                       </div>
                       <input
-                        id="cl-subject"
+                        id="cl-contact"
                         className="cl-field"
                         type="text"
                         placeholder="So the editor can write back"
-                        value={form.subject}
-                        onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+                        value={form.contact}
+                        onChange={e => { setForm(f => ({ ...f, contact: e.target.value })); if (contactError) setContactError('') }}
+                        onBlur={handleContactBlur}
+                        style={{ borderBottomColor: contactError ? 'var(--accent)' : undefined }}
                         required
                       />
+                      {contactError && (
+                        <div style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: '5px' }}>
+                          ✕ {contactError}
+                        </div>
+                      )}
                     </div>
 
                     <div className="cl-field-wrap">
@@ -348,15 +405,26 @@ export default function Classifieds() {
                         rows={3}
                         placeholder="Say what's on your mind…"
                         value={form.message}
+                        maxLength={1000}
                         onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                         required
                       />
+                      <div style={{ fontFamily: condensed, fontSize: '8px', letterSpacing: '.06em', textAlign: 'right', marginTop: '3px', color: form.message.length > 900 ? 'var(--accent)' : 'var(--sepia)', transition: 'color 0.2s' }}>
+                        {form.message.length}/1000
+                      </div>
                     </div>
 
-                    <div style={{ borderTop: '1px dotted rgba(14,14,12,0.18)', margin: '16px 0 14px' }} />
+                    <div style={{ borderTop: '1px dotted var(--cl-border)', margin: '16px 0 14px' }} />
 
-                    <button type="submit" className="cl-submit">
-                      Write to the Editor
+                    {status === 'error' && (
+                      <div style={{ fontFamily: condensed, fontSize: '8px', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '10px', textAlign: 'center' }}>
+                        ✕ Transmission failed — try again or write directly to{' '}
+                        <a href="mailto:hello@prasannar.com" style={{ color: 'var(--accent)' }}>hello@prasannar.com</a>
+                      </div>
+                    )}
+
+                    <button type="submit" className="cl-submit" disabled={status === 'sending'} style={{ opacity: status === 'sending' ? 0.6 : 1 }}>
+                      {status === 'sending' ? 'Transmitting…' : 'Write to the Editor'}
                     </button>
                   </form>
                 </div>
@@ -365,7 +433,7 @@ export default function Classifieds() {
           </div>
 
           {/* Col 4 — Photo */}
-          <div className="cl-col4" style={{ position: 'relative', minHeight: '420px', overflow: 'hidden', border: '1px solid rgba(14,14,12,0.15)' }}>
+          <div className="cl-col4" style={{ position: 'relative', minHeight: '420px', overflow: 'hidden', border: '1px solid var(--cl-border-subtle)' }}>
             <Image
               src="/pr-contact-still.webp"
               alt="Prasanna Rajendran"
@@ -373,7 +441,7 @@ export default function Classifieds() {
               style={{ objectFit: 'cover', filter: 'grayscale(0.85) sepia(0.4) contrast(1.1) brightness(0.88)' }}
             />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.72))', padding: '32px 12px 10px' }}>
-              <span style={{ fontFamily: mono, fontSize: '8px', color: 'rgba(244,239,230,0.78)', letterSpacing: '.08em' }}>Prasanna R. · Chennai</span>
+              <span style={{ fontFamily: condensed, fontSize: '8px', color: 'rgba(244,239,230,0.78)', letterSpacing: '.08em' }}>Prasanna R. · Chennai</span>
             </div>
           </div>
 
@@ -386,8 +454,8 @@ export default function Classifieds() {
           </div>
         </div>
       </div>
+      <SectionFiller watermark="CONTACT" footnote="Vol. PR · No. 1 · Correspondence · Chennai" page="10" accent="#00AFEC" />
 
-      <SectionFiller watermark="CONTACT" footnote="Classifieds · p. 10 · hello@prasannar.com · Chennai · Est. 1998" page="10" />
     </section>
   )
 }

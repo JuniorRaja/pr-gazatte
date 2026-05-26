@@ -5,9 +5,9 @@ import NpImage from '@/components/NpImage'
 import SectionFiller from '@/components/SectionFiller'
 import { countries, upcomingCountries } from '@/content/travel'
 
-const mono = '"JetBrains Mono", monospace'
+const condensed = '"Barlow Condensed", sans-serif'
 const serif = '"Source Serif 4", serif'
-const display = '"Playfair Display", serif'
+const display = '"Bodoni Moda", serif'
 
 export default function Travel() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -171,7 +171,7 @@ export default function Travel() {
         }
         .tv-dot.active::after { opacity: 0; }
         .tv-dot-label {
-          font-family: ${mono};
+          font-family: ${condensed};
           font-size: 8px;
           text-transform: uppercase;
           letter-spacing: .08em;
@@ -180,8 +180,8 @@ export default function Travel() {
           white-space: nowrap;
         }
         .tv-dot-year {
-          font-family: ${mono};
-          font-size: 7px;
+          font-family: ${condensed};
+          font-size: 8px;
           color: var(--sepia);
           margin-top: 1px;
         }
@@ -194,8 +194,8 @@ export default function Travel() {
 
         /* ── Planned badge ── */
         .tv-planned-badge {
-          font-family: ${mono};
-          font-size: 7px;
+          font-family: ${condensed};
+          font-size: 8px;
           font-weight: 700;
           letter-spacing: .1em;
           text-transform: uppercase;
@@ -257,10 +257,10 @@ export default function Travel() {
       {/* ═══ Section Header ═══ */}
       <hr className="tv-hr-strong" />
       <div className="tv-header section-padding-x" style={{ padding: '6px 16px', background: 'var(--fg)', color: 'var(--bg)' }}>
-        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.15em', textTransform: 'uppercase', fontWeight: 700 }}>
+        <span style={{ fontFamily: condensed, fontSize: '10px', letterSpacing: '.15em', textTransform: 'uppercase', fontWeight: 700 }}>
           Trails &amp; Borders · The Travel Record
         </span>
-        <span style={{ fontFamily: mono, fontSize: '10px', letterSpacing: '.1em' }}>
+        <span style={{ fontFamily: condensed, fontSize: '10px', letterSpacing: '.1em' }}>
           Page 8
         </span>
       </div>
@@ -286,14 +286,14 @@ export default function Travel() {
         {/* Headline byline — right side */}
         <p className="tv-headline-quote" style={{
           fontFamily: serif,
-          fontSize: '14px',
+          fontSize: '13px',
           fontStyle: 'italic',
           lineHeight: 1.65,
           color: 'var(--fg)',
           margin: 0,
           opacity: 0.8,
-          borderLeft: '3px solid var(--accent)',
-          paddingLeft: '16px',
+          borderTop: '2px solid var(--accent)',
+          paddingTop: '12px',
         }}>
           He plans the flight. The rest, he figures out on arrival. Seven countries in, the method hasn&apos;t failed him yet — it&apos;s just produced better stories than any guidebook could have written.
         </p>
@@ -301,11 +301,11 @@ export default function Travel() {
 
       {/* ── Stats quote strip ── */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(14,14,12,0.03)', borderTop: '1px solid rgba(14,14,12,0.15)', borderBottom: '1px solid rgba(14,14,12,0.15)', padding: '12px 16px' }}>
-        <span style={{ fontFamily: mono, fontSize: '20px', color: 'var(--accent)', lineHeight: 1, flexShrink: 0 }}>&ldquo;</span>
+        <span style={{ fontFamily: condensed, fontSize: '20px', color: 'var(--accent)', lineHeight: 1, flexShrink: 0 }}>&ldquo;</span>
         <p style={{ fontFamily: serif, fontSize: '13px', fontStyle: 'italic', lineHeight: 1.6, color: 'var(--fg)', margin: 0, opacity: 0.85 }}>
           Seven countries across four continents — two more on the horizon for 2026. The count is not the point. But it keeps growing anyway.
         </p>
-        <span style={{ fontFamily: mono, fontSize: '20px', color: 'var(--accent)', lineHeight: 1, flexShrink: 0, alignSelf: 'flex-end' }}>&rdquo;</span>
+        <span style={{ fontFamily: condensed, fontSize: '20px', color: 'var(--accent)', lineHeight: 1, flexShrink: 0, alignSelf: 'flex-end' }}>&rdquo;</span>
       </div>
 
       {/* ═══ Row 1 — Three Columns ═══ */}
@@ -321,7 +321,7 @@ export default function Travel() {
               sizes="(max-width: 960px) 100vw, 33vw"
             />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.65))', padding: '24px 10px 8px' }}>
-              <span style={{ fontFamily: mono, fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Somewhere between borders — Europe, 2023</span>
+              <span style={{ fontFamily: condensed, fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Somewhere between borders — Europe, 2023</span>
             </div>
           </div>
         </div>
@@ -329,7 +329,7 @@ export default function Travel() {
         {/* Col 2 — The Traveller */}
         <div className="tv-col-rule" style={{ padding: '20px 20px' }}>
           <div style={{
-            fontFamily: mono,
+            fontFamily: condensed,
             fontSize: '9px',
             letterSpacing: '.2em',
             textTransform: 'uppercase',
@@ -342,7 +342,7 @@ export default function Travel() {
           <p className="drop-cap" style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 12px',
             textAlign: 'justify',
@@ -352,7 +352,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 16px',
             textAlign: 'justify',
@@ -379,7 +379,7 @@ export default function Travel() {
         {/* Col 3 — The Method */}
         <div className="tv-col-rule tv-row1-method" style={{ padding: '20px 20px' }}>
           <div style={{
-            fontFamily: mono,
+            fontFamily: condensed,
             fontSize: '9px',
             letterSpacing: '.2em',
             textTransform: 'uppercase',
@@ -392,7 +392,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 12px',
             textAlign: 'justify',
@@ -402,7 +402,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: '0 0 12px',
             textAlign: 'justify',
@@ -412,7 +412,7 @@ export default function Travel() {
           <p style={{
             fontFamily: serif,
             fontSize: '13px',
-            lineHeight: 1.72,
+            lineHeight: 1.7,
             color: 'var(--fg)',
             margin: 0,
             textAlign: 'justify',
@@ -424,7 +424,7 @@ export default function Travel() {
         {/* Col 4 — Dispatches Filed */}
         <div style={{ padding: '20px 20px' }}>
           <div style={{
-            fontFamily: mono,
+            fontFamily: condensed,
             fontSize: '9px',
             letterSpacing: '.2em',
             textTransform: 'uppercase',
@@ -438,7 +438,7 @@ export default function Travel() {
           {countries.map((c, i) => (
             <div key={c.code} style={{ borderBottom: '1px solid rgba(14,14,12,0.1)', padding: '12px 0', display: 'flex', gap: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-                <span style={{ fontFamily: mono, fontSize: '11px', fontWeight: 700, color: 'var(--accent)', lineHeight: 1 }}>
+                <span style={{ fontFamily: condensed, fontSize: '11px', fontWeight: 700, color: 'var(--accent)', lineHeight: 1 }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <img 
@@ -455,11 +455,11 @@ export default function Travel() {
                   <span style={{ fontFamily: display, fontSize: '14px', fontWeight: 700, lineHeight: 1.2, color: 'var(--fg)' }}>
                     {c.name}
                   </span>
-                  <span style={{ fontFamily: mono, fontSize: '10px', fontWeight: 600, color: 'var(--fg)', letterSpacing: '.04em', flexShrink: 0 }}>
+                  <span style={{ fontFamily: condensed, fontSize: '10px', fontWeight: 600, color: 'var(--fg)', letterSpacing: '.04em', flexShrink: 0 }}>
                     {c.year}
                   </span>
                 </div>
-                <div style={{ fontFamily: mono, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.08em', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: condensed, fontSize: '9px', color: 'var(--sepia)', letterSpacing: '.08em', textTransform: 'uppercase' }}>
                   {c.region}
                 </div>
               </div>
@@ -498,7 +498,7 @@ export default function Travel() {
 
           {/* Timeline label */}
           <div style={{
-            fontFamily: mono,
+            fontFamily: condensed,
             fontSize: '9px',
             letterSpacing: '.15em',
             textTransform: 'uppercase',
@@ -558,7 +558,7 @@ export default function Travel() {
               {active.name}
             </h3>
             <div style={{
-              fontFamily: mono,
+              fontFamily: condensed,
               fontSize: '9px',
               letterSpacing: '.1em',
               textTransform: 'uppercase',
@@ -570,7 +570,7 @@ export default function Travel() {
             <p style={{
               fontFamily: serif,
               fontSize: '13px',
-              lineHeight: 1.72,
+              lineHeight: 1.7,
               color: 'var(--fg)',
               margin: '0 0 10px',
             }}>
@@ -592,7 +592,7 @@ export default function Travel() {
         <div className="tv-row2-sidebar" style={{ padding: '20px 20px', borderLeft: '1px solid rgba(14,14,12,0.18)' }}>
 
           <div style={{
-            fontFamily: mono,
+            fontFamily: condensed,
             fontSize: '9px',
             letterSpacing: '.2em',
             textTransform: 'uppercase',
@@ -642,7 +642,7 @@ export default function Travel() {
                 </h4>
               </div>
               <div style={{
-                fontFamily: mono,
+                fontFamily: condensed,
                 fontSize: '8px',
                 letterSpacing: '.1em',
                 textTransform: 'uppercase',
@@ -666,7 +666,7 @@ export default function Travel() {
           {/* After That */}
           <div style={{ marginTop: '8px' }}>
             <div style={{
-              fontFamily: mono,
+              fontFamily: condensed,
               fontSize: '9px',
               letterSpacing: '.2em',
               textTransform: 'uppercase',
@@ -690,8 +690,8 @@ export default function Travel() {
           </div>
         </div>
       </div>
+      <SectionFiller watermark="TRAVEL" footnote="Vol. PR · No. 1 · Travel · Chennai" page="8" accent="#D4A500" />
 
-      <SectionFiller watermark="TRAVEL" footnote="Trails & Borders · 7 countries dispatched · 2 planned · Annual Review" page="8" />
     </section>
   )
 }

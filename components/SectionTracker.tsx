@@ -7,119 +7,58 @@ interface SectionTrackerProps {
 }
 
 export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const currentHashRef = useRef<string>('')
+  const currentHashRef = useRef('')
+  const rafRef = useRef<number | null>(null)
+  const lastUpdateRef = useRef(0)
 
   useEffect(() => {
-    // Get initial hash if present
-    currentHashRef.current = window.location.hash.slice(1)
-
     const updateHash = (newHash: string) => {
-      // Skip if hash hasn't changed
       if (currentHashRef.current === newHash) return
-
+      // Throttle replaceState to stay well under browser limits (~100/30s)
+      const now = Date.now()
+      if (now - lastUpdateRef.current < 250) return
+      lastUpdateRef.current = now
       currentHashRef.current = newHash
 
-      // Update URL without triggering scroll or adding to history
       const url = new URL(window.location.href)
       if (newHash === '') {
-        // Clear hash completely for home section
         url.hash = ''
-        const urlWithoutHash = url.toString().replace('#', '')
-        window.history.replaceState(null, '', urlWithoutHash)
+        window.history.replaceState(null, '', url.toString().replace(/#$/, ''))
       } else {
         url.hash = newHash
         window.history.replaceState(null, '', url.toString())
       }
     }
 
-    const debouncedUpdateHash = (hash: string) => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
+    const getActiveSection = (): string => {
+      // Trigger point: 45% down from the top of the viewport
+      const triggerY = window.innerHeight * 0.45
+      let active = ''
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        // Once this section's top is above (or at) the trigger, it becomes the candidate.
+        // We keep iterating so the last matching section wins (i.e. the lowest one still above trigger).
+        if (el.getBoundingClientRect().top <= triggerY) active = id
       }
-      timeoutRef.current = setTimeout(() => {
-        updateHash(hash)
-      }, 300)
+      return active
     }
 
-    // Check if we're at the top of the page
-    const checkIfAtTop = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-      return scrollTop < 100 // Consider top if within 100px of the top
+    const onScroll = () => {
+      if (rafRef.current !== null) return
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null
+        updateHash(getActiveSection())
+      })
     }
 
-    // Track which sections are currently visible
-    const visibleSections = new Map<string, number>()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    // Set initial hash on mount
+    onScroll()
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const sectionId = entry.target.id
-
-          if (entry.isIntersecting) {
-            // Store the intersection ratio for this section
-            visibleSections.set(sectionId, entry.intersectionRatio)
-          } else {
-            // Remove section from visible list
-            visibleSections.delete(sectionId)
-          }
-        })
-
-        // Find the most visible section
-        if (visibleSections.size > 0) {
-          let maxRatio = 0
-          let mostVisibleSection = ''
-
-          visibleSections.forEach((ratio, id) => {
-            if (ratio > maxRatio) {
-              maxRatio = ratio
-              mostVisibleSection = id
-            }
-          })
-
-          if (mostVisibleSection) {
-            debouncedUpdateHash(mostVisibleSection)
-          }
-        } else if (checkIfAtTop()) {
-          // No sections visible and we're at the top - clear hash to show home
-          debouncedUpdateHash('')
-        }
-      },
-      {
-        root: null, // viewport
-        rootMargin: '-50% 0px -50% 0px', // center-based detection
-        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // multiple thresholds for accuracy
-      }
-    )
-
-    // Handle scroll events to detect when at top
-    const handleScroll = () => {
-      if (checkIfAtTop() && visibleSections.size === 0) {
-        debouncedUpdateHash('')
-      }
-    }
-
-    // Observe all sections
-    const elements: Element[] = []
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id)
-      if (element) {
-        observer.observe(element)
-        elements.push(element)
-      }
-    })
-
-    // Add scroll listener
-    window.addEventListener('scroll', handleScroll, { passive: true })
-
-    // Cleanup
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-      elements.forEach((element) => observer.unobserve(element))
-      observer.disconnect()
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', onScroll)
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
     }
   }, [sectionIds])
 
