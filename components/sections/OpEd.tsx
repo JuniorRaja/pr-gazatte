@@ -50,10 +50,10 @@ export default function OpEd() {
           {/* Body text - columns on desktop, single on mobile */}
           <div className="content-spacing" style={{ columns: 'auto', columnGap: '28px', columnRule: '1px solid rgba(14,14,12,0.15)' }}>
             <p className="drop-cap" style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
-              Most portfolios are just résumés wearing better fonts. This one is a newspaper because a person is more than a list of skills.
+              Most portfolios are just résumés wearing better fonts. This one is a newspaper because I am more than a list of skills.
             </p>
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
-              It&apos;s the rhythm that matters. The tech beat clicks in keystrokes and caffeine. The lab beat smells like curiosity and the occasional burnt experiment. The production beat: that one you feel in your stomach at 4 a.m. when confidence meets reality.
+              It&apos;s the rhythm that matters. The tech beat clicks in keystrokes and caffeine. The lab beat smells like curiosity and the occasional burnt experiment. The production beat: that one I feel in my stomach at 4 a.m. when confidence meets reality.
             </p>
             <p style={{ fontFamily: '"Source Serif 4", serif', fontSize: '13px', lineHeight: 1.7, color: 'var(--fg)', margin: '0 0 16px' }}>
               My days layer like this: architecture in the morning, diplomacy in the afternoon, and midnight tinkering where the best ideas still happen unsupervised. None of these layers are clean. And I&apos;ve stopped pretending they should be.
