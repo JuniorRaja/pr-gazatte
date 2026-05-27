@@ -460,7 +460,6 @@ export default function BooksReview() {
             fill
             sizes="(max-width: 960px) 100vw, 40vw"
             quality={85}
-            priority
             style={{ objectFit: 'cover', objectPosition: 'center top' }}
           />
           {/* Bottom caption overlay */}

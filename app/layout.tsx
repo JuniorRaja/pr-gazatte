@@ -20,7 +20,7 @@ const sourceSerif = Source_Serif_4({
 
 const barlow = Barlow_Condensed({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
   variable: '--font-condensed',
   display: 'swap',
 })

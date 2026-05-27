@@ -262,7 +262,6 @@ export default function PhotoDesk() {
                     fill
                     sizes="(max-width: 900px) 100vw, 480px"
                     quality={80}
-                    priority
                     placeholder="empty"
                     className={filterClass}
                     onLoad={() => markLoaded(`hero-${album.slug}`)}
