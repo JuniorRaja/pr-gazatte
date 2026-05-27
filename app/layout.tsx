@@ -159,6 +159,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {process.env.NEXT_PUBLIC_UMAMI_URL && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <>
             <Script
+              defer
               src={process.env.NEXT_PUBLIC_UMAMI_URL}
               data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
               data-domains="prasannar.com"

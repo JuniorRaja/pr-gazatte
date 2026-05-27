@@ -4,8 +4,8 @@ import { useEffect, useState, useCallback } from 'react'
 import { track } from '@/lib/analytics'
 
 const BODY_LINES = [
-  'Something landed on your doorstep.',
-  'A newspaper, from Chennai, about a man named PR.',
+  'Somewhere in Chennai, a man named PR made a newspaper about himself.',
+  'You\'re holding the first edition.',
   'He made this. For you.',
 ]
 
