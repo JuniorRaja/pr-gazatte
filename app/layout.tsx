@@ -159,11 +159,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {process.env.NEXT_PUBLIC_UMAMI_URL && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <>
             <Script
-              defer
-              src={process.env.NEXT_PUBLIC_UMAMI_URL}
-              data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-              data-domains="prasannar.com"
+              id="umami-analytics"
               strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                    var s = document.createElement('script');
+                    s.defer = true;
+                    s.src = '${process.env.NEXT_PUBLIC_UMAMI_URL}';
+                    s.setAttribute('data-website-id', '${process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}');
+                    s.setAttribute('data-auto-track', 'true');
+                    document.head.appendChild(s);
+                  }
+                `,
+              }}
             />
             <WebVitals />
           </>
