@@ -14,29 +14,15 @@ export default function SectionTracker({ sectionIds }: SectionTrackerProps) {
   const rafRef = useRef<number | null>(null)
   const lastUpdateRef = useRef(0)
   const firedDepthsRef = useRef(new Set<number>())
-  const sectionEnterTimeRef = useRef<number>(0)
 
   useEffect(() => {
     const updateHash = (newHash: string) => {
       if (currentHashRef.current === newHash) return
       const now = Date.now()
-      if (now - lastUpdateRef.current < 250) return
-
-      // Track time spent in previous section
-      if (currentHashRef.current && sectionEnterTimeRef.current) {
-        const seconds = Math.round((now - sectionEnterTimeRef.current) / 1000)
-        if (seconds >= 2) {
-          track('section_time', { section: currentHashRef.current, seconds })
-        }
-      }
+      if (now - lastUpdateRef.current < 300) return
 
       lastUpdateRef.current = now
       currentHashRef.current = newHash
-
-      if (newHash) {
-        sectionEnterTimeRef.current = now
-        track('section_view', { section: newHash })
-      }
 
       const url = new URL(window.location.href)
       if (newHash === '') {

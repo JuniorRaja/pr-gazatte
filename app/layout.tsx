@@ -169,7 +169,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     s.src = '${process.env.NEXT_PUBLIC_UMAMI_URL}';
                     s.setAttribute('data-website-id', '${process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}');
                     s.setAttribute('data-auto-track', 'true');
-                    s.setAttribute('data-performance', 'true');
                     document.head.appendChild(s);
                   }
                 `,
