@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { track } from '@/lib/analytics'
 
 const BODY_LINES = [
@@ -12,6 +12,7 @@ const BODY_LINES = [
 export default function NewsSplash() {
   const [visible, setVisible] = useState(false)
   const [exiting, setExiting] = useState(false)
+  const exitingRef = useRef(false)
 
   useEffect(() => {
     let didLock = false
@@ -31,14 +32,15 @@ export default function NewsSplash() {
   }, [])
 
   const dismiss = useCallback((method: 'button' | 'backdrop' | 'escape' = 'backdrop') => {
-    if (exiting) return
+    if (exitingRef.current) return
+    exitingRef.current = true
     track('splash_dismiss', { method })
     setExiting(true)
     setTimeout(() => {
       setVisible(false)
       document.body.style.overflow = ''
     }, 620)
-  }, [exiting])
+  }, [])
 
   useEffect(() => {
     if (!visible) return
@@ -83,7 +85,7 @@ export default function NewsSplash() {
 
         <button
           className="splash-cta"
-          onClick={() => dismiss('button')}
+          onClick={(e) => { e.stopPropagation(); dismiss('button') }}
           aria-label="Enter The PR Gazette"
         >
           Open it &rarr;

@@ -13,11 +13,6 @@ export function getCurrentDate() {
   }
 }
 
-export function getFormattedDate() {
-  const { day, month, date, year } = getCurrentDate()
-  return `${day}, ${month} ${date}, ${year}`
-}
-
 export function getMonthYear() {
   const { month, year } = getCurrentDate()
   return `${month} ${year}`
