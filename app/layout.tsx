@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Bodoni_Moda, Source_Serif_4, Barlow_Condensed, JetBrains_Mono } from 'next/font/google'
-import WebVitals from '@/components/WebVitals'
 import './globals.css'
 
 const bodoni = Bodoni_Moda({
@@ -169,12 +168,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     s.src = '${process.env.NEXT_PUBLIC_UMAMI_URL}';
                     s.setAttribute('data-website-id', '${process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}');
                     s.setAttribute('data-auto-track', 'true');
+                    s.setAttribute('data-performance', 'true');
                     document.head.appendChild(s);
                   }
                 `,
               }}
             />
-            <WebVitals />
           </>
         )}
       </body>
