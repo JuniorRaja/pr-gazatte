@@ -162,7 +162,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src={process.env.NEXT_PUBLIC_UMAMI_URL}
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
             data-auto-track="true"
-            data-performance="true"
           />
         )}
       </body>
