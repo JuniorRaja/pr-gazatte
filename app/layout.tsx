@@ -163,7 +163,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
             data-auto-track="true"
             data-performance="true"
-            data-domains={new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://prasannar.com').hostname}
           />
         )}
       </body>
