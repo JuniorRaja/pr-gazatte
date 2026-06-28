@@ -15,6 +15,8 @@ import SectionTracker from '@/components/SectionTracker'
 import SmoothScroll from '@/components/SmoothScroll'
 import BackToTop from '@/components/BackToTop'
 
+export const revalidate = 86400
+
 const SECTION_IDS = [
   'op-ed',
   'tech',

@@ -1,6 +1,8 @@
+import { Suspense } from 'react'
 import Image from 'next/image'
 import SectionFiller from '@/components/SectionFiller'
 import WeatherWidget from '@/components/WeatherWidget'
+import MastheadDate from '@/components/MastheadDate'
 import RandomHeadline from '@/components/RandomHeadline'
 import { getMonthYear } from '@/utils/date'
 
@@ -27,6 +29,13 @@ const index = [
   { p: '10', t: 'Classifieds: Hire · Wanted · Lost' },
 ]
 
+const WeatherFallback = () => (
+  <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', textAlign: 'right', color: 'var(--fg)' }}>
+    <div style={{ fontWeight: 700, color: 'var(--accent)' }}>WEATHER</div>
+    <div>Chennai</div>
+  </div>
+)
+
 export default function Masthead() {
   const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
   const dateStr = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
@@ -47,10 +56,12 @@ export default function Masthead() {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '8px' }}>
             <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '10px', letterSpacing: '.05em', color: 'var(--fg)' }}>
-              <div style={{ fontWeight: 700 }}>{dateStr}</div>
+              <div style={{ fontWeight: 700 }}><MastheadDate serverDate={dateStr} /></div>
               <div style={{ marginTop: 2 }}>Vol. PR · No. 1</div>
             </div>
-            <WeatherWidget />
+            <Suspense fallback={<WeatherFallback />}>
+              <WeatherWidget />
+            </Suspense>
           </div>
         </div>
         
@@ -66,10 +77,12 @@ export default function Masthead() {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '8px' }}>
             <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '9px', letterSpacing: '.05em', color: 'var(--fg)' }}>
-              <div style={{ fontWeight: 700 }}>{dateStr}</div>
+              <div style={{ fontWeight: 700 }}><MastheadDate serverDate={dateStr} /></div>
               <div style={{ marginTop: 2 }}>Vol. PR · No. 1</div>
             </div>
-            <WeatherWidget />
+            <Suspense fallback={<WeatherFallback />}>
+              <WeatherWidget />
+            </Suspense>
           </div>
         </div>
       </div>
@@ -159,7 +172,7 @@ export default function Masthead() {
           </p>
           {/* Portrait */}
           <div style={{ marginTop: '20px', height: 'clamp(280px, 40vh, 600px)', border: '1px solid rgba(14,14,12,0.2)', overflow: 'hidden', position: 'relative' }}>
-            <Image src="/pr-masthead-still-profes.webp" alt="Prasanna Rajendran" fill priority style={{ objectFit: 'cover', objectPosition: 'center 20%', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
+            <Image src="/pr-masthead-still-profes.webp" alt="Prasanna Rajendran" fill priority sizes="(max-width: 1023px) 100vw, 33vw" style={{ objectFit: 'cover', objectPosition: 'center 20%', filter: 'grayscale(0.9) sepia(0.45) contrast(1.1) brightness(0.85)' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.6))', padding: '12px 8px 6px' }}>
               <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', color: 'rgba(244,239,230,0.8)', letterSpacing: '.08em' }}>Chennai · 2024</span>
             </div>

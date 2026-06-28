@@ -21,7 +21,7 @@ export function AdCustomSoftware() {
   return (
     <AdFrame>
       <div style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: '8px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--accent)', textAlign: 'center', marginBottom: '6px' }}>— Advertisement —</div>
-      <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '9px', letterSpacing: '.25em', textTransform: 'uppercase', textAlign: 'center', color: 'var(--sepia)' }}>P. Rajendran &amp; Co.</div>
+      <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: '9px', fontWeight: 600, letterSpacing: '.25em', textTransform: 'uppercase', textAlign: 'center', color: 'var(--sepia)' }}>P. Rajendran &amp; Co.</div>
       <OrnamentalRule symbol="✦" />
       <div style={{ fontFamily: '"Bodoni Moda", serif', fontSize: 'clamp(15px, 1.8vw, 21px)', fontWeight: 900, lineHeight: 1.1, textAlign: 'center', color: 'var(--fg)', letterSpacing: '-0.01em' }}>
         BESPOKE SOFTWARE<br /><span style={{ fontStyle: 'italic', fontWeight: 700 }}>Engineered to Order</span>

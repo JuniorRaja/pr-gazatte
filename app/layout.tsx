@@ -5,7 +5,7 @@ import './globals.css'
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800', '900'],
+  weight: ['600', '700', '900'],
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
@@ -147,6 +147,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link rel="dns-prefetch" href="https://flagcdn.com" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4EFE6" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E0E0C" />
@@ -155,7 +158,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="max-w-[1400px] mx-auto bg-[var(--bg)] text-[var(--fg)] border-t-4 border-t-[var(--fg)] min-h-screen md:border md:border-[var(--fg)] md:border-t-4">
           {children}
         </div>
-        {process.env.NEXT_PUBLIC_UMAMI_URL && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+        {process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_UMAMI_URL && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <Script
             id="umami-analytics"
             strategy="afterInteractive"

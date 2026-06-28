@@ -17,7 +17,10 @@ function windDir(deg: number) {
 
 export default async function WeatherWidget() {
   try {
-    const res = await fetch(WEATHER_URL, { next: { revalidate: 1800 } })
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 3000)
+    const res = await fetch(WEATHER_URL, { next: { revalidate: 1800 }, signal: controller.signal })
+    clearTimeout(timeoutId)
     const data = await res.json()
     const c = data.current
     const desc = WMO_DESC[c.weather_code] ?? 'Unknown'

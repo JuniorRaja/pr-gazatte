@@ -450,6 +450,7 @@ export default function Classifieds() {
               src="/pr-contact-still.webp"
               alt="Prasanna Rajendran"
               fill
+              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw"
               style={{ objectFit: 'cover', filter: 'grayscale(0.85) sepia(0.4) contrast(1.1) brightness(0.88)' }}
             />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(14,14,12,0.72))', padding: '32px 12px 10px' }}>
